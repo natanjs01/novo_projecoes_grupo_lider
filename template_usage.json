@@ -1,0 +1,18 @@
+{
+  "palette": "glacier",
+  "deck_title": "Controladoria — 1S2025 vs 1S2026",
+  "slides": [
+    {
+      "slide": 1,
+      "template": "cover_split"
+    },
+    {
+      "slide": 2,
+      "template": "comparison_table"
+    },
+    {
+      "slide": 3,
+      "template": "closing_cta"
+    }
+  ]
+}

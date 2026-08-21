@@ -1,0 +1,19 @@
+{
+  "slides": [
+    {"id": 1, "title": "KPIs Consolidados", "file": "1.html", "status": "ready"},
+    {"id": 2, "title": "Performance Loja a Loja", "file": "2.html", "status": "ready"},
+    {"id": 3, "title": "Margens e Rentabilidade", "file": "3.html", "status": "ready"},
+    {"id": 4, "title": "Evolução Trimestral", "file": "4.html", "status": "ready"}
+  ],
+  "summary": {
+    "total_revenue_2025": 2263.8,
+    "total_revenue_2026": 2410.6,
+    "growth_nominal": 6.5,
+    "growth_real": 1.9,
+    "net_margin_2025": 1.8,
+    "net_margin_2026": 2.8,
+    "best_store": "L24 LIDER QUINTINO",
+    "best_store_growth": 11.9
+  },
+  "updated_at": "2026-08-21T00:00:00Z"
+}

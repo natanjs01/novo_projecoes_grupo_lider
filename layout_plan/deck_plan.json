@@ -1,0 +1,144 @@
+{
+  "deck_title": "Controladoria — 1S2025 vs 1S2026",
+  "palette": "glacier",
+  "slides": [
+    {
+      "template": "cover_split",
+      "content": {
+        "brand_text": "Controladoria",
+        "chapter": "1S2025 vs. 1S2026",
+        "eyebrow": "Vendas e margens — consolidado das lojas",
+        "title": "Desempenho Financeiro Semestral",
+        "title_em": "2025 vs. 2026",
+        "subtitle": "Receita líquida de R$ 2.329,83 mi no 1S2026: +3,2% nominal e +3,7% real, com margem bruta de 30,3% e lucro líquido 65,6% maior.",
+        "sections": [
+          {
+            "label": "Consolidado"
+          },
+          {
+            "label": "Margens"
+          },
+          {
+            "label": "Lojas"
+          },
+          {
+            "label": "Trimestres"
+          }
+        ],
+        "meta_left": "Lucro líquido R$ 65,90 mi",
+        "meta_right": "2026",
+        "hero": ""
+      },
+      "images": {
+        "hero": {
+          "query": "modern supermarket aisle with shelves and shopping carts",
+          "aspect_ratio": "3:4",
+          "alt": "Corredor de supermercado com prateleiras abastecidas",
+          "url": "https://cdn.abacus.ai/images/ae11a347-252f-4e14-b498-c0cfef7a38c1.jpg"
+        }
+      },
+      "objective": "Abrir com o desempenho financeiro semestral consolidado e seus números-chave",
+      "reason": "Painel editorial com foto de varejo e coluna de texto que carrega os KPIs consolidados do semestre."
+    },
+    {
+      "template": "comparison_table",
+      "content": {
+        "eyebrow": "01 — PERFORMANCE POR LOJA CONSOLIDADA",
+        "title": "Destaques e Atenções",
+        "subtitle": "Receita líquida do 1S2026, variação nominal e margem líquida por loja consolidada.",
+        "rule_cap": "R$ milhões",
+        "col1_label": "Loja",
+        "col1_sub": "consolidada",
+        "col2_label": "Leitura",
+        "col2_sub": "1S2026",
+        "col3_label": "Receita 1S26",
+        "col3_sub": "vs. 1S2025",
+        "col4_label": "Margem e lucro",
+        "col4_sub": "1S2026",
+        "rows": [
+          {
+            "name": "L24 Quintino",
+            "region": "Maior receita do grupo",
+            "era": "+1,1% nom.",
+            "value": "139,78",
+            "unit": "R$ mi",
+            "known": "ML 2,8%; lucro líquido R$ 3,94 mi",
+            "em": true
+          },
+          {
+            "name": "L32 Marabá",
+            "region": "Maior crescimento",
+            "era": "+24,7% nom.",
+            "value": "87,11",
+            "unit": "R$ mi",
+            "known": "ML 3,0%; LL de R$ 1,36 a R$ 2,58 mi"
+          },
+          {
+            "name": "L36 Paragominas",
+            "region": "Expansão consistente",
+            "era": "+24,4% nom.",
+            "value": "60,53",
+            "unit": "R$ mi",
+            "known": "MB 30,0%; ML 2,8%"
+          },
+          {
+            "name": "L17 Canudos",
+            "region": "Maior queda relevante",
+            "era": "-12,9% nom.",
+            "value": "86,81",
+            "unit": "R$ mi",
+            "known": "MB estável em 28,7%; ML 2,7%"
+          },
+          {
+            "name": "L06 Mag Castanheira",
+            "region": "Pior margem líquida",
+            "era": "-13,8% nom.",
+            "value": "29,75",
+            "unit": "R$ mi",
+            "known": "ML 2,4%; MB recua a 26,1%"
+          }
+        ],
+        "source": "Consolidação Lxx somada às linhas Jeronimo's; despesas rateadas de material e administrativas.",
+        "brand": "Controladoria"
+      },
+      "images": {},
+      "objective": "Mostrar receita e margem líquida por loja, destacando melhores e piores desempenhos",
+      "reason": "Matriz de atributos por loja (receita, variação, margem) é exatamente uma tabela comparativa."
+    },
+    {
+      "template": "closing_cta",
+      "content": {
+        "eyebrow": "02 — EVOLUÇÃO TRIMESTRAL E TENDÊNCIAS",
+        "title": "Margem em Recuperação",
+        "title_em": "Sazonalidade Preservada",
+        "subtitle": "Comparativo Q1 e Q2 de 2025 e 2026 no consolidado das lojas.",
+        "takeaways": [
+          {
+            "heading": "Q1: salto de margem",
+            "body": "Receita quase estável (R$ 1.107,23 mi para R$ 1.115,36 mi), mas ML sobe de 1,2% para 2,9% e o lucro líquido vai de R$ 13,08 mi a R$ 32,57 mi."
+          },
+          {
+            "heading": "Q2: receita puxa o volume",
+            "body": "Receita sobe de R$ 1.149,45 mi para R$ 1.214,47 mi e o lucro líquido atinge R$ 33,33 mi, com ML de 2,7% contra 2,3% em 2025."
+          },
+          {
+            "heading": "Sazonalidade confirmada",
+            "body": "Q2 supera Q1 em receita nos dois anos; a margem bruta recua de 30,6% no Q126 para 29,9% no Q226, com CMV de R$ 851,23 mi."
+          },
+          {
+            "heading": "Agenda de controladoria",
+            "body": "Sustentar a margem bruta de 30,3% e conter a despesa de material (R$ 501,22 mi, +2,1%) para firmar a margem líquida em 2,8%."
+          }
+        ],
+        "contacts": [
+          "Controladoria — fechamento 1S2026"
+        ],
+        "footer_left": "Vendas e Margens — 1S2025 vs 1S2026",
+        "footer_right": "2026"
+      },
+      "images": {},
+      "objective": "Fechar com a evolução trimestral, sazonalidade e a agenda de margem",
+      "reason": "Slide de síntese que consolida Q1/Q2 de 2025 e 2026 e a leitura de tendência em blocos substantivos."
+    }
+  ]
+}
