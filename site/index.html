@@ -5,12 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Grupo Lider Dashboard</title>
     <meta name="description" content="Dashboard financeiro do Grupo Lider" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet" />
-    <script type="module" src="/src/main.ts"></script>
+    <style>
+      * { box-sizing: border-box; }
+      html, body { margin: 0; min-height: 100%; background: #071827; }
+      .viewer { min-height: 100vh; padding: 14px; background: #071827; }
+      .viewer-nav { display: flex; gap: 8px; width: min(100%, 1920px); margin: 0 auto 14px; padding: 5px; border: 1px solid #234464; border-radius: 8px; background: #102540; }
+      .viewer-button { flex: 1; min-height: 42px; border: 0; border-radius: 5px; background: transparent; color: #9bb0c5; cursor: pointer; font: 700 .86rem 'Segoe UI', sans-serif; }
+      .viewer-button span { margin-right: 8px; color: #f5a623; font-size: .72rem; }
+      .viewer-button:hover, .viewer-button.active { background: #f5a623; color: #071827; }
+      .viewer-button:hover span, .viewer-button.active span { color: #071827; }
+      .slide-frame { position: relative; width: min(100%, calc((100vh - 90px) * 1.7778)); height: min(calc(100vw * .5625), calc(100vh - 90px)); margin: 0 auto; overflow: hidden; background: #0a1628; }
+      .slide-frame iframe { position: absolute; top: 0; left: 0; width: 1920px; height: 1080px; border: 0; transform-origin: top left; }
+      @media (max-width: 700px) { .viewer { padding: 8px; } .viewer-nav { overflow-x: auto; } .viewer-button { min-width: 130px; } }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
+    <main class="viewer">
+      <nav class="viewer-nav" aria-label="Navegação dos slides">
+        <button class="viewer-button active" data-slide="1" type="button"><span>01</span>KPIs consolidados</button>
+        <button class="viewer-button" data-slide="2" type="button"><span>02</span>Faturamento por loja</button>
+        <button class="viewer-button" data-slide="3" type="button"><span>03</span>Margens e rentabilidade</button>
+        <button class="viewer-button" data-slide="4" type="button"><span>04</span>Evolução trimestral</button>
+      </nav>
+      <section class="slide-frame" id="slide-frame" aria-label="KPIs consolidados">
+        <iframe id="slide" src="./slides/1.html" title="KPIs consolidados"></iframe>
+      </section>
+    </main>
+    <script>
+      const frame = document.getElementById('slide-frame');
+      const slide = document.getElementById('slide');
+      const buttons = document.querySelectorAll('[data-slide]');
+      const fitSlide = () => {
+        slide.style.transform = `scale(${Math.min(frame.clientWidth / 1920, frame.clientHeight / 1080)})`;
+      };
+      buttons.forEach((button) => button.addEventListener('click', () => {
+        buttons.forEach((item) => item.classList.remove('active'));
+        button.classList.add('active');
+        slide.src = `./slides/${button.dataset.slide}.html`;
+        slide.title = button.textContent.slice(2).trim();
+        frame.setAttribute('aria-label', slide.title);
+      }));
+      window.addEventListener('resize', fitSlide);
+      fitSlide();
+    </script>
   </body>
 </html>
