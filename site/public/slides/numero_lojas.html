@@ -102,7 +102,7 @@
       justify-content: center;
       min-height: 0;
       border: 1px solid #1E3A5F;
-      border-radius: 12px;
+      border-radius: 0;
       background: radial-gradient(circle at 52% 44%, #123454 0%, #0B2036 52%, #091B2E 100%);
       overflow: hidden;
     }
@@ -146,7 +146,7 @@
 
     /* Box do Total de Lojas */
     .total-box {
-      background: #0088cc;
+      background: #00B4D8;
       display: flex;
       height: 76px;
       color: #ffffff;
@@ -161,7 +161,7 @@
       font-size: 38px;
       font-weight: 900;
       letter-spacing: -1px;
-      background: #0077b3;
+      background: #008BA8;
     }
 
     .total-label {
@@ -259,6 +259,8 @@
     .bg-eletro { background: #10427a; }
     .bg-cd { background: #005a9c; }
     .bg-shopping { background: #8e1b54; }
+    .bg-pets { background: #c43b74; }
+    .bg-magazan-casa { background: #c46a20; }
 
     /* Estilo dos círculos com número das lojas no mapa */
     .city-bubble {
@@ -359,6 +361,7 @@
           <text x="440" y="670" fill="#94A3B8" font-size="16" font-weight="700" opacity="0.75">MT</text>
           <text x="80" y="270" fill="#94A3B8" font-size="16" font-weight="700" opacity="0.75">AM</text>
           <text x="320" y="45" fill="#94A3B8" font-size="16" font-weight="700" opacity="0.75">AP</text>
+          <text x="150" y="625" fill="#B6DCE5" font-size="15" font-weight="600" opacity="0.9">Marcadores: concentração por polo</text>
 
           <!-- 1. BELÉM (Maior hub com concentração) -->
           <g class="city-bubble" filter="url(#bubbleShadow)">
@@ -430,7 +433,7 @@
         
         <!-- Total Geral -->
         <div class="total-box">
-          <div class="total-number">86</div>
+          <div class="total-number">125</div>
           <div class="total-label">
             Operações / Unidades<br>
             <span>Estado do Pará</span>
@@ -439,7 +442,7 @@
 
         <!-- 1. Supermercados Líder -->
         <div class="brand-card bg-super">
-          <div class="brand-count">21 <small>LOJAS</small></div>
+          <div class="brand-count">27 <small>LOJAS</small></div>
           <div class="brand-divider"></div>
           <div class="brand-info">
             <span class="brand-name">Líder</span>
@@ -450,7 +453,7 @@
 
         <!-- 2. Magazan -->
         <div class="brand-card bg-magazan">
-          <div class="brand-count">17 <small>LOJAS</small></div>
+          <div class="brand-count">23 <small>LOJAS</small></div>
           <div class="brand-divider"></div>
           <div class="brand-info">
             <span class="brand-name">Magazan</span>
@@ -461,7 +464,7 @@
 
         <!-- 3. FarmaLíder -->
         <div class="brand-card bg-farma">
-          <div class="brand-count">23 <small>LOJAS</small></div>
+          <div class="brand-count">26 <small>LOJAS</small></div>
           <div class="brand-divider"></div>
           <div class="brand-info">
             <span class="brand-name">FarmaLíder</span>
@@ -472,7 +475,7 @@
 
         <!-- 4. Ótica Líder -->
         <div class="brand-card bg-otica">
-          <div class="brand-count">17 <small>LOJAS</small></div>
+          <div class="brand-count">20 <small>LOJAS</small></div>
           <div class="brand-divider"></div>
           <div class="brand-info">
             <span class="brand-name">Ótica Líder</span>
@@ -483,13 +486,46 @@
 
         <!-- 5. Líder Home Center -->
         <div class="brand-card bg-home">
-          <div class="brand-count">08 <small>LOJAS</small></div>
+          <div class="brand-count">15 <small>LOJAS</small></div>
           <div class="brand-divider"></div>
           <div class="brand-info">
             <span class="brand-name">Home Center</span>
             <span class="brand-sub">Construção & Casa</span>
           </div>
           <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?w=300&auto=format&fit=crop&q=80');"></div>
+        </div>
+
+        <!-- 6. Pets Líder -->
+        <div class="brand-card bg-pets">
+          <div class="brand-count">09 <small>LOJAS</small></div>
+          <div class="brand-divider"></div>
+          <div class="brand-info">
+            <span class="brand-name">Pets Líder</span>
+            <span class="brand-sub">Pet shops</span>
+          </div>
+          <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=900&auto=format&fit=crop&q=85');"></div>
+        </div>
+
+        <!-- 7. Magazan Casa -->
+        <div class="brand-card bg-magazan-casa">
+          <div class="brand-count">01 <small>LOJA</small></div>
+          <div class="brand-divider"></div>
+          <div class="brand-info">
+            <span class="brand-name">Magazan Casa</span>
+            <span class="brand-sub">Casa e decoração</span>
+          </div>
+          <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=900&auto=format&fit=crop&q=85');"></div>
+        </div>
+
+        <!-- 8. Líder Shopping -->
+        <div class="brand-card bg-shopping">
+          <div class="brand-count">01 <small>SHOPPING</small></div>
+          <div class="brand-divider"></div>
+          <div class="brand-info">
+            <span class="brand-name">Líder Shopping</span>
+            <span class="brand-sub">Shopping center</span>
+          </div>
+          <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?w=900&auto=format&fit=crop&q=85');"></div>
         </div>
 
         <!-- 6. Castanheira Shopping -->
