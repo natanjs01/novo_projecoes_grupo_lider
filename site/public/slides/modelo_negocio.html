@@ -10,7 +10,7 @@
 html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #071827; }
 .slide { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #071827; color: #fff; font-family: Inter, Arial, sans-serif; }
 .slide::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, #071827 0%, #0c2238 56%, #102f45 100%); }
-.inner { position: relative; z-index: 1; height: 100%; padding: 44px 58px 34px; display: flex; flex-direction: column; }
+.inner { position: relative; z-index: 1; height: 100%; padding: 34px 34px 24px; display: flex; flex-direction: column; }
 .header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 22px; border-bottom: 2px solid #1e3a5f; }
 .title { display: flex; align-items: center; gap: 16px; }
 .icon { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 8px; background: #f5a623; color: #071827; font-size: 25px; font-weight: 900; }
@@ -18,31 +18,28 @@ h1, h2, h3, .big { font-family: 'Bebas Neue', Impact, sans-serif; font-weight: 4
 h1 { margin: 0; font-size: 52px; line-height: .95; }
 .subtitle { margin: 7px 0 0; color: #9bb0c5; font-size: 19px; }
 .period { padding: 10px 15px; border-left: 2px solid #f5a623; color: #f5a623; font-weight: 800; font-size: 16px; text-transform: uppercase; }
-.intro { max-width: 1080px; margin: 24px 0 20px; }
+.intro { max-width: 1320px; margin: 20px 0 16px; }
 .kicker { color: #f5a623; font-size: 14px; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
 .intro h2 { margin: 8px 0 4px; font-size: 39px; line-height: 1; }
 .intro p { margin: 0; color: #b6c9db; font-size: 17px; }
-.columns { flex: 1; display: grid; grid-template-columns: 1.35fr 1fr; gap: 22px; min-height: 0; }
-.panel { border: 1px solid #234464; background: #102540; padding: 22px; min-height: 0; }
-.panel-head { display: flex; justify-content: space-between; align-items: end; padding-bottom: 15px; border-bottom: 1px solid #234464; }
-.panel h3 { margin: 6px 0 0; font-size: 29px; }
+.columns { flex: 1; display: grid; grid-template-columns: 2fr 1fr; gap: 18px; min-height: 0; }
+.panel { min-height: 0; padding: 16px; background: rgba(16,37,64,.44); }
+.panel-head { display: flex; justify-content: space-between; align-items: end; padding: 9px 16px 13px; border-bottom: 1px solid #234464; }
+.panel h3 { margin: 6px 0 0; font-size: 27px; }
 .public-tag { color: #66809a; font-size: 12px; }
-.business-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
-.business { min-height: 176px; overflow: hidden; border: 1px solid #315578; background: #0b1c30; }
-.business img { width: 100%; height: 78px; object-fit: cover; display: block; opacity: .92; }
-.business .copy { padding: 11px 13px; }
-.business strong { display: block; color: #fff; font-size: 17px; }
-.business span { display: block; margin-top: 5px; color: #9bb0c5; font-size: 13px; line-height: 1.25; }
-.right { display: flex; flex-direction: column; gap: 14px; }
-.hero-image { height: 165px; overflow: hidden; border: 1px solid #234464; background: #102540; }
-.hero-image img { width: 100%; height: 100%; object-fit: cover; opacity: .8; }
-.connection { flex: 1; padding: 21px; border: 1px solid #234464; background: #102540; }
-.connection-row { display: grid; grid-template-columns: 44px 1fr; gap: 14px; padding: 17px 0; border-bottom: 1px solid rgba(155,176,197,.16); }
-.connection-row:last-child { border-bottom: 0; }
-.number { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid #00b4d8; border-radius: 50%; color: #00b4d8; font-weight: 800; }
-.connection-row h4 { margin: 0; color: #fff; font-size: 17px; }
-.connection-row p { margin: 5px 0 0; color: #9bb0c5; font-size: 14px; line-height: 1.35; }
-.footer { display: flex; justify-content: space-between; gap: 20px; margin-top: 24px; padding-top: 14px; border-top: 1px solid #234464; color: #66809a; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; }
+.panel-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; height: calc(100% - 65px); margin-top: 14px; }
+.study-grid { grid-template-columns: repeat(2, 1fr); }
+.business { min-width: 0; overflow: hidden; border: 1px solid #315578; border-radius: 22px 22px 34px 34px; background: #0b1c30; display: flex; flex-direction: column; }
+.business img { width: 100%; height: 150px; object-fit: cover; display: block; opacity: .92; }
+.business .copy { flex: 1; padding: 18px 14px; text-align: center; border-top: 3px solid var(--card-color, #00b4d8); }
+.business strong { display: block; color: #fff; font-family: 'Bebas Neue', Impact, sans-serif; font-size: 25px; line-height: 1; text-transform: uppercase; }
+.business span { display: block; margin-top: 15px; color: #b8c7d5; font-size: 14px; line-height: 1.35; }
+.business em { display: block; margin-top: 18px; padding-top: 15px; border-top: 1px solid rgba(155,176,197,.25); color: #fff; font-size: 14px; font-style: normal; line-height: 1.4; }
+.business em b { color: var(--card-color, #f5a623); }
+.section-label { margin: 0 0 -3px; padding: 8px; border-radius: 14px 14px 0 0; background: #536274; color: #fff; text-align: center; font-family: 'Bebas Neue', Impact, sans-serif; font-size: 26px; letter-spacing: .04em; }
+.panel.study { padding-top: 0; }
+.panel.study .panel-head { display: none; }
+.footer { display: flex; justify-content: space-between; gap: 20px; margin-top: 18px; padding-top: 12px; border-top: 1px solid #234464; color: #66809a; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; }
 @media (max-width: 900px) { .slide { transform-origin: top left; } }
 </style>
 </head>
@@ -56,25 +53,19 @@ h1 { margin: 0; font-size: 52px; line-height: .95; }
     <section class="intro"><span class="kicker">Estratégia e diversificação</span><h2>Um ecossistema para atender diferentes momentos do cliente</h2><p>As bandeiras do Grupo Líder combinam varejo alimentar, departamentos, saúde, casa, pets, shopping e logística no estado do Pará.</p></section>
     <main class="columns">
       <section class="panel">
-        <div class="panel-head"><div><span class="kicker">Bandeiras e operações</span><h3>Ecossistema Grupo Líder Pará</h3></div><span class="public-tag">Fonte: material gerencial</span></div>
-        <div class="business-grid">
-          <article class="business"><img src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>Supermercados Líder</strong><span>Varejo alimentar e operação principal do grupo.</span></div></article>
-          <article class="business"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>Magazan</strong><span>Varejo de departamentos e soluções para o dia a dia.</span></div></article>
-          <article class="business"><img src="https://images.unsplash.com/photo-1585435557343-3b092031a831?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>FarmaLíder</strong><span>Saúde, medicamentos e cuidados para a comunidade.</span></div></article>
-          <article class="business"><img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>Ótica Líder</strong><span>Produtos e serviços para visão e bem-estar.</span></div></article>
-          <article class="business"><img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>Home Center</strong><span>Construção, reforma, casa e decoração.</span></div></article>
-          <article class="business"><img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>Pets Líder</strong><span>Produtos e serviços para animais de estimação.</span></div></article>
-          <article class="business"><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>Magazan Casa</strong><span>Casa, decoração e soluções para o lar.</span></div></article>
-          <article class="business"><img src="https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>Shoppings</strong><span>Líder Shopping e Castanheira Shopping.</span></div></article>
-          <article class="business"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>Centros Logísticos</strong><span>Unidades de apoio em Belém e Castanhal.</span></div></article>
+        <h3 class="section-label">Iniciativas em execução</h3>
+        <div class="panel-grid">
+          <article class="business" style="--card-color:#ef4444"><img src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>Bem-estar</strong><span>Expansão da categoria de suplementação</span><em><b>Foco</b><br>Whey Protein, Creatina e Pré-treino</em></div></article>
+          <article class="business" style="--card-color:#f5a623"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>Marca própria</strong><span>Desenvolvimento de produtos e maior controle de sortimento</span><em><b>Foco</b><br>Novas categorias para o cliente</em></div></article>
+          <article class="business" style="--card-color:#00b4d8"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>App Meu Líder</strong><span>Experiência digital para aproximar o cliente das lojas</span><em><b>Foco</b><br>Ofertas, relacionamento e conveniência</em></div></article>
+          <article class="business" style="--card-color:#22c55e"><img src="https://images.unsplash.com/photo-1585435557343-3b092031a831?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>Liderzan Saúde</strong><span>Ampliação da presença do grupo em saúde e cuidados</span><em><b>Foco</b><br>Atendimento e serviços para a comunidade</em></div></article>
         </div>
       </section>
-      <section class="right">
-        <div class="hero-image"><img src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=1200&auto=format&fit=crop&q=85"></div>
-        <div class="connection"><span class="kicker">Leituras estratégicas</span>
-          <div class="connection-row"><div class="number">01</div><div><h4>Portfólio diversificado</h4><p>Alimentar, departamentos, saúde, casa e pets ampliam as ocasiões de compra.</p></div></div>
-          <div class="connection-row"><div class="number">02</div><div><h4>Presença física integrada</h4><p>Shoppings e centros logísticos apoiam a experiência e a distribuição das operações.</p></div></div>
-          <div class="connection-row"><div class="number">03</div><div><h4>Próximo passo gerencial</h4><p>Medir a contribuição de cada bandeira para o resultado consolidado do Grupo Líder Pará.</p></div></div>
+      <section class="panel study">
+        <h3 class="section-label">Em andamento/estudo</h3>
+        <div class="panel-grid study-grid">
+          <article class="business" style="--card-color:#a78bfa"><img src="https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>Shoppings</strong><span>Líder Shopping e Castanheira Shopping</span><em><b>Foco</b><br>Experiência, serviços e conexão com o cliente</em></div></article>
+          <article class="business" style="--card-color:#00b4d8"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>Centros logísticos</strong><span>Unidades de apoio em Belém e Castanhal</span><em><b>Foco</b><br>Eficiência na distribuição das operações</em></div></article>
         </div>
       </section>
     </main>
