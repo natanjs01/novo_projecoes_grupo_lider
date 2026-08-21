@@ -98,13 +98,14 @@
     .map-section {
       position: relative;
       display: flex;
-      align-items: center;
+      align-items: stretch;
       justify-content: center;
       min-height: 0;
       border: 1px solid #1E3A5F;
       border-radius: 0;
       background: radial-gradient(circle at 52% 44%, #123454 0%, #0B2036 52%, #091B2E 100%);
       overflow: hidden;
+      isolation: isolate;
     }
 
     .map-section::before {
@@ -131,9 +132,42 @@
 
     .map-svg {
       width: 100%;
-      max-height: 850px;
-      padding: 46px 24px 38px;
+      height: 100%;
+      max-height: none;
+      padding: 58px 54px 58px;
+      object-fit: contain;
       filter: drop-shadow(0 18px 28px rgba(0, 180, 216, 0.12));
+    }
+
+    .map-key {
+      position: absolute;
+      right: 26px;
+      bottom: 18px;
+      z-index: 2;
+      display: flex;
+      gap: 16px;
+      color: #94A3B8;
+      font-size: 12px;
+    }
+
+    .map-key span::before {
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin-right: 6px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      background: #0d5aa6;
+      vertical-align: -1px;
+    }
+
+    .map-key span:last-child::before {
+      border: 0;
+      border-radius: 0;
+      background: #58B5C8;
+      height: 2px;
+      vertical-align: 3px;
     }
 
     /* Coluna Direita: Cards das Lojas */
@@ -342,10 +376,10 @@
                    C 220,430 180,390 145,340 
                    C 115,295 100,240 120,185 
                    C 140,135 170,90 210,65 Z" 
-                fill="url(#paraGrad)" 
-                    stroke="#48B8D2" 
-                    stroke-width="3.5" 
-                stroke-linejoin="round"/>
+                    fill="none" 
+                    stroke="none"/>
+
+                  <path d="M743.3,212.8 L745.4,217.0 L748.5,217.6 L752.0,219.3 L758.1,218.4 L760.3,220.1 L764.0,222.4 L770.4,219.1 L768.4,226.2 L773.5,227.0 L778.4,225.4 L782.5,224.1 L785.5,226.6 L789.4,227.4 L785.8,253.7 L779.6,277.3 L770.5,294.2 L758.3,307.6 L759.5,314.9 L755.6,325.5 L749.3,335.7 L743.3,342.0 L738.2,352.1 L730.0,366.8 L721.1,377.7 L703.0,396.5 L668.2,434.8 L670.4,462.5 L653.5,487.6 L622.3,525.8 L618.1,576.7 L578.8,621.3 L225.9,622.8 L199.4,601.1 L175.2,574.9 L146.5,516.5 L241.5,294.2 L240.5,280.4 L215.2,271.4 L196.7,258.5 L178.7,252.5 L160.0,243.6 L139.8,231.3 L126.9,215.2 L115.1,196.1 L112.2,121.5 L121.7,116.8 L130.1,117.8 L131.1,110.3 L136.7,105.7 L147.4,103.3 L157.6,105.4 L162.2,99.8 L170.3,96.2 L179.7,97.2 L186.4,92.4 L193.2,84.0 L202.8,83.6 L209.9,87.1 L220.9,89.1 L230.0,86.0 L240.3,85.3 L252.5,87.9 L262.0,90.5 L267.3,84.4 L263.9,75.6 L258.0,67.9 L264.4,62.9 L269.7,59.1 L279.3,63.8 L309.5,56.2 L326.8,78.1 L335.2,93.9 L353.2,95.8 L363.5,102.8 L376.1,111.3 L389.1,114.0 L400.1,130.9 L414.2,158.6 L439.4,192.9 L453.1,218.4 L476.2,233.6 L513.0,189.4 L582.9,162.6 L597.8,160.8 L634.3,185.6 L654.1,189.0 L663.7,199.8 L695.4,205.8 L700.1,205.7 L707.3,209.7 L714.8,212.5 L720.4,208.0 L729.4,210.5 L732.8,211.9 L737.7,212.4 Z" fill="url(#paraGrad)" stroke="#48B8D2" stroke-width="3.5" stroke-linejoin="round"/>
 
                   <path d="M 210,65 C 260,40 330,45 385,60 C 430,70 480,95 530,90 C 575,85 640,110 680,140 C 725,175 750,225 740,270 C 730,310 700,340 735,395 C 760,440 730,500 705,550 C 670,610 600,640 540,655 C 480,670 430,640 375,615 C 320,590 280,520 250,475 C 220,430 180,390 145,340 C 115,295 100,240 120,185 C 140,135 170,90 210,65 Z" fill="url(#mapGrid)" opacity=".9"/>
 
@@ -426,6 +460,7 @@
             <text x="610" y="124" fill="#ffffff" font-size="7" font-weight="700" text-anchor="middle">SALINAS</text>
           </g>
         </svg>
+        <div class="map-key"><span>Polos de lojas</span><span>Rios e referências geográficas</span></div>
       </section>
 
       <!-- Lado Direito: Cards Empilhados das Bandeiras -->
