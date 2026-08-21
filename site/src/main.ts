@@ -48,7 +48,7 @@ const renderPage = () => {
         ${['KPIs consolidados', 'Faturamento por loja', 'Margens e rentabilidade', 'Evolução trimestral'].map((label, index) => `<button class="viewer-button${index === activeSession ? ' active' : ''}" data-session="${index}" type="button"><span>0${index + 1}</span>${label}</button>`).join('')}
       </nav>
       <section class="slide-frame" aria-label="${session.title}">
-        <iframe src="/slides/${activeSession + 1}.html" title="${session.title}" loading="eager"></iframe>
+        <iframe src="${import.meta.env.BASE_URL}slides/${activeSession + 1}.html" title="${session.title}" loading="eager"></iframe>
       </section>
     </main>
   `;
