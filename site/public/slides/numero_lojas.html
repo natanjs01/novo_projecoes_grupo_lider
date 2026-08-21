@@ -120,16 +120,6 @@
       letter-spacing: 1.5px;
     }
 
-    .map-section::after {
-      content: "Fonte: cadastro gerencial · posição aproximada por município";
-      position: absolute;
-      left: 26px;
-      bottom: 18px;
-      z-index: 1;
-      color: #64748B;
-      font-size: 12px;
-    }
-
     .map-svg {
       width: 100%;
       height: 100%;
@@ -142,7 +132,7 @@
     .map-key {
       position: absolute;
       right: 26px;
-      bottom: 18px;
+      top: 20px;
       z-index: 2;
       display: flex;
       gap: 16px;
@@ -395,7 +385,6 @@
           <text x="440" y="670" fill="#94A3B8" font-size="16" font-weight="700" opacity="0.75">MT</text>
           <text x="80" y="270" fill="#94A3B8" font-size="16" font-weight="700" opacity="0.75">AM</text>
           <text x="320" y="45" fill="#94A3B8" font-size="16" font-weight="700" opacity="0.75">AP</text>
-          <text x="150" y="625" fill="#B6DCE5" font-size="15" font-weight="600" opacity="0.9">Marcadores: concentração por polo</text>
 
           <!-- 1. BELÉM (Maior hub com concentração) -->
           <g class="city-bubble" filter="url(#bubbleShadow)">
@@ -460,7 +449,7 @@
             <text x="610" y="124" fill="#ffffff" font-size="7" font-weight="700" text-anchor="middle">SALINAS</text>
           </g>
         </svg>
-        <div class="map-key"><span>Polos de lojas</span><span>Rios e referências geográficas</span></div>
+        <div class="map-key"><span>Polos de lojas</span><span>Rios e referências</span></div>
       </section>
 
       <!-- Lado Direito: Cards Empilhados das Bandeiras -->
