@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indicadores financeiros consolidados</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap');
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #071827; }
+.slide {
+  position: relative; width: 1920px; height: 1080px; overflow: hidden;
+  background: #0A1628; color: #ffffff; font-family: Inter, Arial, sans-serif;
+}
+.slide::before {
+  content: '';
+  position: absolute; inset: -12%;
+  background:
+    linear-gradient(122deg, transparent 0 12%, rgba(30,58,95,0.9) 12.2% 21%, transparent 21.2% 29%, rgba(17,34,64,0.95) 29.2% 39%, transparent 39.2% 48%, rgba(30,58,95,0.78) 48.2% 57%, transparent 57.2%),
+    linear-gradient(31deg, transparent 0 24%, rgba(0,180,216,0.22) 24.2% 38%, transparent 38.2% 52%, rgba(30,58,95,0.82) 52.2% 65%, transparent 65.2%),
+    #0A1628;
+  transform: rotate(-7deg) scale(1.16);
+}
+.slide::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(132deg, transparent 0 38%, rgba(7,24,39,0.55) 38.1% 48%, transparent 48.1% 66%, rgba(7,24,39,0.5) 66.1% 76%, transparent 76.1%);
+  pointer-events: none;
+}
+.inner {
+  position: relative; z-index: 1; width: 100%; height: 100%;
+  display: grid; grid-template-columns: 1.05fr 0.95fr; align-items: center;
+  padding: 0 150px;
+}
+.left {
+  display: flex; align-items: center; justify-content: center;
+}
+.topbar {
+  display: block;
+}
+.brand {
+  display: flex; align-items: center; justify-content: center;
+}
+.brand-mark {
+  width: 430px; height: 170px; display: grid; place-items: center;
+}
+.brand-mark img { width: 100%; height: 100%; object-fit: contain; }
+.brand-name {
+  display: none;
+}
+.chapter {
+  display: none;
+}
+.hero {
+  max-width: 720px; margin: 0;
+  text-align: center;
+}
+.hero .tag {
+  display: inline-block; color: #F5A623; font-size: 18px; letter-spacing: .34em;
+  text-transform: uppercase; font-weight: 800;
+}
+.hero h1 {
+  margin: 38px 0 0; font: 800 64px/1.16 Inter, Arial, sans-serif;
+  letter-spacing: 0; color: #ffffff;
+}
+.hero p {
+  display: none;
+}
+.rule {
+  width: 100px; height: 4px; background: linear-gradient(90deg, #F5A623, #00B4D8); margin: 30px auto 0;
+}
+.meta {
+  display: none;
+}
+.meta-item {
+  color: #8ea3bb; font-size: 16px; letter-spacing: .08em; text-transform: uppercase;
+}
+.meta-item strong {
+  display: block; margin-top: 10px; color: #ffffff; font-size: 24px; letter-spacing: 0;
+}
+.right {
+  position: relative; display: flex; align-items: center; justify-content: center;
+}
+.panel {
+  display: none;
+}
+.panel::before {
+  content: '';
+  position: absolute; inset: 0 0 auto 0; height: 6px; border-radius: 26px 26px 0 0;
+  background: linear-gradient(90deg, #f5a623, #00b4d8, #6ee7b7);
+}
+.panel-header {
+  display: flex; justify-content: space-between; align-items: center;
+  color: #eaf4ff; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; font-size: 12px;
+}
+.panel-header span:last-child { color: #73d4ff; }
+.bar-wrap {
+  position: relative; margin-top: 26px; height: 210px; padding: 18px 12px 10px;
+  border-radius: 18px; background: rgba(14,30,44,0.85); border: 1px solid rgba(148,163,184,0.18);
+}
+.chart {
+  position: absolute; inset: 18px 12px 20px 12px;
+  border-radius: 12px;
+  background:
+    linear-gradient(to top, rgba(148,163,184,0.08), rgba(148,163,184,0.00)),
+    linear-gradient(180deg, rgba(0,180,216,0.16), rgba(0,180,216,0.02));
+}
+.chart svg {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+}
+.chart .line {
+  fill: none; stroke: #f5a623; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round;
+}
+.chart .line.secondary {
+  stroke: #00b4d8; stroke-width: 4; opacity: 0.9;
+}
+.legend {
+  position: absolute; left: 18px; bottom: 16px; display: flex; gap: 18px;
+  color: #b7c9d9; font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+}
+.legend .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+.footer {
+  display: none;
+}
+.footer strong { color: #ffffff; font-weight: 800; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="inner">
+    <div class="left">
+      <div class="topbar">
+        <div class="brand">
+          <div class="brand-mark"><img src="../assets/logo.png?v=2" alt="Grupo Líder"></div>
+          <div class="brand-name">Grupo Lider</div>
+        </div>
+        <div class="chapter">Capítulo 04</div>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="hero">
+        <div class="tag">Resultados 1S26</div>
+        <h1>Indicadores<br>financeiros<br>consolidados</h1>
+        <div class="rule"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Material gerencial</span>
+    <strong>Indicadores financeiros consolidados</strong>
+    <span>Uso interno</span>
+  </div>
+</div>
+</body>
+</html>

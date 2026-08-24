@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 export default defineConfig({
+    base: '/novo_projecoes_grupo_lider/',
     server: {
         host: '0.0.0.0',
         port: 4173,
