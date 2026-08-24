@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indicadores financeiros consolidados</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bebas+Neue&display=swap');
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #071827; }
+.slide {
+  position: relative; width: 1920px; height: 1080px; overflow: hidden;
+  background: #0b1220; color: #edf5ff; font-family: Inter, Arial, sans-serif;
+}
+.slide::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(120deg, rgba(7,24,39,0.95) 0%, rgba(12,31,47,0.98) 38%, rgba(9,17,28,0.96) 100%),
+    linear-gradient(135deg, rgba(245,166,35,0.12), transparent 35%);
+}
+.slide::after {
+  content: '';
+  position: absolute; inset: 8% 0 0 auto;
+  width: 36%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.00));
+  border-left: 1px solid rgba(148,163,184,0.25);
+  box-shadow: -120px 0 140px rgba(14,42,64,0.35);
+}
+.inner {
+  position: relative; z-index: 1; width: 100%; height: 100%;
+  display: grid; grid-template-columns: 1.4fr 0.9fr; gap: 36px;
+  padding: 70px 90px 60px 90px;
+}
+.left {
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px;
+}
+.brand {
+  display: flex; align-items: center; gap: 18px;
+}
+.brand-mark {
+  width: 150px; height: 58px; display: grid; place-items: center;
+}
+.brand-mark img { width: 100%; height: 100%; object-fit: contain; }
+.brand-name {
+  color: #c7d7eb; font-size: 18px;
+  letter-spacing: .12em; text-transform: uppercase; font-weight: 700;
+}
+.chapter {
+  color: #f5a623; letter-spacing: .22em; font-size: 14px; text-transform: uppercase; font-weight: 800;
+}
+.hero {
+  max-width: 860px;
+  margin-top: 28px;
+}
+.hero .tag {
+  display: inline-block; padding: 8px 14px; border-radius: 999px;
+  background: rgba(245,166,35,0.1); border: 1px solid rgba(245,166,35,0.35);
+  color: #f5a623; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; font-weight: 800;
+}
+.hero h1 {
+  margin: 22px 0 18px;
+  font: 400 104px/0.9 'Bebas Neue', Impact, sans-serif;
+  letter-spacing: .04em; text-transform: uppercase; color: #f4f9ff;
+}
+.hero p {
+  margin: 0;
+  max-width: 720px; color: #b7c9d9; font-size: 30px; line-height: 1.35;
+}
+.rule {
+  width: 140px; height: 5px; background: linear-gradient(90deg, #f5a623 0%, #00b4d8 100%); margin-top: 34px;
+}
+.meta {
+  display: flex; gap: 42px; padding-top: 24px; border-top: 1px solid rgba(148,163,184,0.25);
+}
+.meta-item {
+  color: #8ea3bb; font-size: 16px; letter-spacing: .08em; text-transform: uppercase;
+}
+.meta-item strong {
+  display: block; margin-top: 10px; color: #ffffff; font-size: 24px; letter-spacing: 0;
+}
+.right {
+  position: relative; display: flex; align-items: center; justify-content: center;
+}
+.panel {
+  position: relative; width: 100%; max-width: 470px; padding: 28px 24px 20px;
+  background: rgba(13, 24, 37, 0.76); border: 1px solid rgba(148,163,184,0.25);
+  border-radius: 26px; box-shadow: 0 26px 60px rgba(0,0,0,0.24);
+}
+.panel::before {
+  content: '';
+  position: absolute; inset: 0 0 auto 0; height: 6px; border-radius: 26px 26px 0 0;
+  background: linear-gradient(90deg, #f5a623, #00b4d8, #6ee7b7);
+}
+.panel-header {
+  display: flex; justify-content: space-between; align-items: center;
+  color: #eaf4ff; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; font-size: 12px;
+}
+.panel-header span:last-child { color: #73d4ff; }
+.bar-wrap {
+  position: relative; margin-top: 26px; height: 210px; padding: 18px 12px 10px;
+  border-radius: 18px; background: rgba(14,30,44,0.85); border: 1px solid rgba(148,163,184,0.18);
+}
+.chart {
+  position: absolute; inset: 18px 12px 20px 12px;
+  border-radius: 12px;
+  background:
+    linear-gradient(to top, rgba(148,163,184,0.08), rgba(148,163,184,0.00)),
+    linear-gradient(180deg, rgba(0,180,216,0.16), rgba(0,180,216,0.02));
+}
+.chart svg {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+}
+.chart .line {
+  fill: none; stroke: #f5a623; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round;
+}
+.chart .line.secondary {
+  stroke: #00b4d8; stroke-width: 4; opacity: 0.9;
+}
+.legend {
+  position: absolute; left: 18px; bottom: 16px; display: flex; gap: 18px;
+  color: #b7c9d9; font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+}
+.legend .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+.footer {
+  position: absolute; left: 90px; right: 90px; bottom: 42px;
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 18px; border-top: 1px solid rgba(148,163,184,0.25);
+  color: #8ea3bb; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;
+}
+.footer strong { color: #ffffff; font-weight: 800; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="inner">
+    <div class="left">
+      <div class="topbar">
+        <div class="brand">
+          <div class="brand-mark"><img src="../assets/logo.png?v=2" alt="Grupo Líder"></div>
+          <div class="brand-name">Grupo Lider</div>
+        </div>
+        <div class="chapter">Capítulo 04</div>
+      </div>
+
+      <div class="hero">
+        <div class="tag">Finanças</div>
+        <h1>Indicadores<br>financeiros<br>consolidados</h1>
+        <p>Visão executiva do desempenho do negócio em receita, rentabilidade, eficiência e evolução comercial.</p>
+        <div class="rule"></div>
+      </div>
+
+      <div class="meta">
+        <div class="meta-item">Período<strong>1º sem 2026</strong></div>
+        <div class="meta-item">Escopo<strong>Consolidado</strong></div>
+        <div class="meta-item">Acesso<strong>Controladoria</strong></div>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="panel">
+        <div class="panel-header">
+          <span>Indicadores</span>
+          <span>2026</span>
+        </div>
+        <div class="bar-wrap">
+          <div class="chart">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <path class="line" d="M0 82 L18 74 L32 68 L52 60 L70 52 L86 46 L100 36"/>
+              <path class="line secondary" d="M0 88 L18 86 L32 79 L52 70 L70 62 L86 49 L100 42"/>
+            </svg>
+          </div>
+          <div class="legend">
+            <span><span class="dot" style="background:#f5a623;"></span>Receita</span>
+            <span><span class="dot" style="background:#00b4d8;"></span>Lucro</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Material gerencial</span>
+    <strong>Indicadores financeiros consolidados</strong>
+    <span>Uso interno</span>
+  </div>
+</div>
+</body>
+</html>
