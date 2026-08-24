@@ -12,3 +12,4 @@ __pycache__/
 *.xlsx
 logs/
 site/logs/
+informacoes_adicionais.md
