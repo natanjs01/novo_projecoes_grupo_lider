@@ -26,7 +26,7 @@
       </div>
       <div>
         <h1 class="fb text-5xl leading-none" style="color:#fff">ANÁLISE DE MARGENS E RENTABILIDADE POR LOJA</h1>
-        <p class="text-lg" style="color:#94A3B8">MB% e ML% · 1S2025 vs 1S2026 · Média MB 29,7% · Média ML 8,6%</p>
+        <p class="text-lg" style="color:#94A3B8">MB% e ML% · 1S2025 vs 1S2026 · Média MB 29,5% → 29,4% · Média ML 7,8% → 8,5%</p>
       </div>
     </div>
     <div class="flex gap-5">
@@ -43,8 +43,8 @@
       <div class="flex-none mb-2">
         <h2 class="fb text-3xl" style="color:#fff">RANKING DE MARGENS POR LOJA (1S2026) · ORDENADO POR MARGEM BRUTA</h2>
       </div>
-      <div class="flex-1 min-h-0 flex items-center justify-center">
-        <canvas id="marginChart" width="1280" height="720" style="width:1280px;height:720px"></canvas>
+      <div class="flex-1 min-h-0 flex items-start justify-center overflow-y-auto">
+        <canvas id="marginChart" width="1280" height="1760" style="width:1280px;height:1760px"></canvas>
       </div>
     </div>
 
@@ -57,11 +57,11 @@
           <p class="text-lg font-bold" style="color:#F5A623">MAIS RENTÁVEIS (MB%)</p>
         </div>
         <div class="flex flex-col gap-2">
-          <div class="flex justify-between"><p class="text-lg font-bold" style="color:#fff">🥇 L08 Batista Campos</p><p class="text-lg font-bold" style="color:#A78BFA">33,1%</p></div>
-          <div class="flex justify-between"><p class="text-lg" style="color:#fff">🥈 L05 Castanheira</p><p class="text-lg font-bold" style="color:#A78BFA">32,6%</p></div>
-          <div class="flex justify-between"><p class="text-lg" style="color:#fff">🥉 L54 Duque</p><p class="text-lg font-bold" style="color:#A78BFA">32,2%</p></div>
-          <div class="flex justify-between"><p class="text-lg" style="color:#fff">L10 Castanhal</p><p class="text-lg font-bold" style="color:#A78BFA">32,1%</p></div>
-          <div class="flex justify-between"><p class="text-lg" style="color:#fff">L48 São Francisco</p><p class="text-lg font-bold" style="color:#A78BFA">32,0%</p></div>
+          <div class="flex justify-between"><p class="text-lg font-bold" style="color:#fff">🥇 L29 Fazenda Três Marias I</p><p class="text-lg font-bold" style="color:#A78BFA">100,0%</p></div>
+          <div class="flex justify-between"><p class="text-lg" style="color:#fff">🥈 L10 Castanhal</p><p class="text-lg font-bold" style="color:#A78BFA">31,3%</p></div>
+          <div class="flex justify-between"><p class="text-lg" style="color:#fff">🥉 L08 Batista Campos</p><p class="text-lg font-bold" style="color:#A78BFA">31,2%</p></div>
+          <div class="flex justify-between"><p class="text-lg" style="color:#fff">L41 Magazan Casa</p><p class="text-lg font-bold" style="color:#A78BFA">30,9%</p></div>
+          <div class="flex justify-between"><p class="text-lg" style="color:#fff">L32 Marabá</p><p class="text-lg font-bold" style="color:#A78BFA">30,8%</p></div>
         </div>
       </div>
 
@@ -71,10 +71,10 @@
           <p class="text-lg font-bold" style="color:#EF4444">MENOR MARGEM BRUTA</p>
         </div>
         <div class="flex flex-col gap-2">
-          <div class="flex justify-between"><p class="text-lg" style="color:#fff">L06 MAG Castanheira</p><p class="text-lg font-bold" style="color:#EF4444">26,1%</p></div>
-          <div class="flex justify-between"><p class="text-lg" style="color:#fff">L19 MAG Castanhal</p><p class="text-lg font-bold" style="color:#EF4444">26,1%</p></div>
-          <div class="flex justify-between"><p class="text-lg" style="color:#fff">L01 Condor</p><p class="text-lg font-bold" style="color:#EF4444">27,1%</p></div>
-          <div class="flex justify-between"><p class="text-lg" style="color:#fff">L44 Guamá</p><p class="text-lg font-bold" style="color:#EF4444">27,4%</p></div>
+          <div class="flex justify-between"><p class="text-lg" style="color:#fff">L55 Mosqueiro</p><p class="text-lg font-bold" style="color:#EF4444">0,0%</p></div>
+          <div class="flex justify-between"><p class="text-lg" style="color:#fff">L19 Mag Castanhal</p><p class="text-lg font-bold" style="color:#EF4444">26,1%</p></div>
+          <div class="flex justify-between"><p class="text-lg" style="color:#fff">L06 Mag Castanheira</p><p class="text-lg font-bold" style="color:#EF4444">26,1%</p></div>
+          <div class="flex justify-between"><p class="text-lg" style="color:#fff">L44 Guamá</p><p class="text-lg font-bold" style="color:#EF4444">26,9%</p></div>
         </div>
       </div>
 
@@ -85,9 +85,9 @@
         </div>
         <div class="grid grid-cols-2 gap-2">
           <div class="rounded-lg p-2" style="background:#0A1628"><p class="text-base" style="color:#94A3B8">MB 1S2025</p><p class="fb text-4xl" style="color:#A78BFA">29,5%</p></div>
-          <div class="rounded-lg p-2" style="background:#0A1628"><p class="text-base" style="color:#94A3B8">MB 1S2026</p><p class="fb text-4xl" style="color:#A78BFA">29,7%</p></div>
+          <div class="rounded-lg p-2" style="background:#0A1628"><p class="text-base" style="color:#94A3B8">MB 1S2026</p><p class="fb text-4xl" style="color:#A78BFA">29,4%</p></div>
           <div class="rounded-lg p-2" style="background:#0A1628"><p class="text-base" style="color:#94A3B8">ML 1S2025</p><p class="fb text-4xl" style="color:#FB923C">7,8%</p></div>
-          <div class="rounded-lg p-2" style="background:#0A1628"><p class="text-base" style="color:#94A3B8">ML 1S2026</p><p class="fb text-4xl" style="color:#FB923C">8,6%</p></div>
+          <div class="rounded-lg p-2" style="background:#0A1628"><p class="text-base" style="color:#94A3B8">ML 1S2026</p><p class="fb text-4xl" style="color:#FB923C">8,5%</p></div>
         </div>
         <div class="mt-2 rounded-lg px-3 py-1" style="background:#0A1628">
           <p class="text-base font-bold" style="color:#22C55E">↑ ML expandiu +0,8 p.p. com eficiência operacional</p>
@@ -96,8 +96,8 @@
 
       <div class="rounded-xl p-4" style="background:#112240;border:1px solid #1E3A5F">
         <p class="text-lg font-bold mb-1" style="color:#94A3B8">DISPERSÃO MB%</p>
-        <p class="text-lg" style="color:#fff">Spread: <span style="color:#F5A623">26,1% – 33,1%</span> = 7,0 p.p.</p>
-        <p class="text-lg" style="color:#94A3B8">Acima média (29,7%): <span style="color:#22C55E">60% das lojas</span></p>
+        <p class="text-lg" style="color:#fff">Spread: <span style="color:#F5A623">0,0% – 100,0%</span> = 100,0 p.p.</p>
+        <p class="text-lg" style="color:#94A3B8">Acima média (29,4%): <span style="color:#22C55E">15 de 34 filiais</span></p>
       </div>
     </div>
   </div>
@@ -112,10 +112,10 @@
 <script>
 window.addEventListener('load', function() {
   lucide.createIcons();
-  var labels = ['L01','L04','L17','L18','L37','L11','L44','L33','L07','L36','L27','L38','L40','L24','L31','L42','L03','L28','L12','L50','L09','L02','L32','L48','L10','L54','L05','L08'];
-  var mb26 = [27.1,28.9,28.7,29.0,29.1,29.2,27.4,29.6,30.0,30.0,29.7,29.8,29.9,30.1,30.1,30.2,30.4,30.6,30.8,31.3,31.5,31.6,31.7,32.0,32.1,32.2,32.6,33.1];
-  var ml26 = [7.8,8.4,8.3,8.4,8.4,8.4,7.9,8.5,8.7,8.7,8.6,8.6,8.6,8.7,8.7,8.8,8.8,8.9,8.9,9.0,9.1,9.1,9.2,9.2,9.3,9.3,9.4,9.6];
-  var mb25 = [26.0,27.6,28.7,28.3,26.9,27.5,27.4,29.3,28.9,29.3,28.1,28.8,29.9,29.9,29.5,30.2,30.4,29.6,30.1,30.7,30.7,31.0,32.5,31.5,30.4,31.1,31.7,31.9];
+  var labels = ['L01 Condor','L02 Alcindo Cacela','L03 Doca','L04 Obidos','L05 Castanheira','L06 Mag Castanheira','L07 Pca Brasil','L08 Batista Campos','L09 Humaita','L10 Castanhal','L11 Icoaraci','L12 Br','L17 Canudos','L18 C.Nova','L19 Mag Castanhal','L24 Quintino','L27 Pedreira','L28 Independencia','L29 Fazenda Tres Marias I','L31 Barcarena','L32 Maraba','L33 Augusto Montenegro','L36 Paragominas','L37 Capanema','L38 Abaetetuba','L40 Marambaia','L41 Magazan Casa','L42 Salinopolis','L44 Guama','L47 14 De Marco','L48 Sao Francisco','L50 Estrela','L54 Duque','L55 Mosqueiro'];
+  var mb26 = [27.05,30.32,29.02,27.92,30.56,26.11,28.83,31.24,30.21,31.25,28.89,29.52,28.29,28.3,26.06,28.76,28.93,29.61,100.0,29.85,30.85,28.88,29.99,28.52,29.75,29.13,30.85,29.69,26.88,30.44,30.18,30.44,30.83,0];
+  var ml26 = [7.82,8.76,8.39,8.07,8.85,7.54,8.34,9.03,8.73,9.03,8.34,8.54,8.17,8.17,7.52,8.31,8.36,8.56,28.98,8.63,8.92,8.34,8.66,8.24,8.6,8.42,8.93,8.62,7.76,8.79,8.72,8.79,8.91,0];
+  var mb25 = [26.04,31.01,30.35,27.6,31.72,26.19,28.92,31.9,29.99,30.41,27.51,30.13,28.75,28.31,26.41,29.88,28.06,29.6,100.0,29.47,32.48,29.32,29.29,26.85,28.84,29.88,33.24,30.19,27.37,0,31.49,30.71,31.06,0];
   new Chart(document.getElementById('marginChart').getContext('2d'), {
     type: 'bar',
     data: { labels: labels, datasets: [
@@ -130,8 +130,25 @@ window.addEventListener('load', function() {
         x: { beginAtZero: true, max: 40, grid: { color: '#1A2E4A' }, ticks: { color: '#94A3B8', font: { size: 15, family: 'Inter' }, callback: function(v){return v+'%';} } },
         y: { grid: { display: false }, ticks: { color: '#E2E8F0', font: { size: 14, family: 'Inter' } } }
       },
-      layout: { padding: { top: 8, right: 8 } }
-    }
+      layout: { padding: { top: 8, right: 70 } }
+    },
+    plugins: [{ id: 'marginValueLabels', afterDatasetsDraw(chart) {
+      var context = chart.ctx;
+      chart.data.datasets.forEach(function(dataset, datasetIndex) {
+        var meta = chart.getDatasetMeta(datasetIndex);
+        meta.data.forEach(function(bar, index) {
+          var value = Number(dataset.data[index]);
+          if (!Number.isFinite(value) || value === 0) return;
+          context.save();
+          context.fillStyle = datasetIndex === 2 ? '#FB923C' : (datasetIndex === 1 ? '#C4B5FD' : '#94A3B8');
+          context.font = '700 14px Inter';
+          context.textAlign = 'left';
+          context.textBaseline = 'middle';
+          context.fillText(value.toFixed(1) + '%', bar.x + 8, bar.y);
+          context.restore();
+        });
+      });
+    }}]
   });
 });
 </script>
