@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ciclo de caixa</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap');
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#071827}.slide{position:relative;width:1920px;height:1080px;overflow:hidden;background:#fff;color:#071827;font-family:Inter,Arial,sans-serif}.header{height:118px;display:flex;align-items:center;justify-content:space-between;padding:0 62px;background:#112240;border-bottom:3px solid #1E3A5F}.header h1{margin:0;color:#fff;font-size:34px}.header h1:after{content:'';display:block;width:86px;height:4px;margin-top:12px;background:linear-gradient(90deg,#F5A623,#00B4D8)}.logo{width:205px;height:72px;object-fit:contain}.content{padding:42px 82px 0}.chart{position:relative;height:690px;border-bottom:2px solid #CBD5E1}.axis-label{position:absolute;left:0;top:292px;color:#071827;font-size:19px;font-weight:800;writing-mode:vertical-rl;transform:rotate(180deg)}.groups{position:absolute;left:130px;right:50px;bottom:126px;height:430px;display:flex;justify-content:space-between}.category{width:310px;display:flex;align-items:end;justify-content:center;gap:12px;position:relative}.bar{width:44px;background:#142F73;position:relative}.bar.receivable{background:#A9A9A9}.bar.supplier{background:#104D68}.bar.stock{background:#B9DFEE}.bar.stock.current{background:#00B4D8}.bar.cycle{background:#0B6EAD}.bar-value{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);font-size:18px;font-weight:800;white-space:nowrap;color:#071827}.category-label{position:absolute;top:calc(100% + 23px);left:50%;transform:translateX(-50%);font-size:20px;font-weight:800;white-space:nowrap;color:#475569}
+
+/* Conectores com largura e offset corrigidos */
+.connector-top{position:absolute;left:22px;width:224px;border-top:2px dotted #94A3B8;border-left:2px dotted #94A3B8;border-right:2px dotted #94A3B8;pointer-events:none}
+.connector-top-label{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);font-size:18px;font-weight:800;color:#475569;white-space:nowrap}
+
+.connector-sub{position:absolute;left:190px;width:56px;border-top:2px dotted #0B449B;border-left:2px dotted #0B449B;border-right:2px dotted #0B449B;pointer-events:none}
+.connector-sub-label{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);font-size:18px;font-weight:800;color:#0B449B;white-space:nowrap}
+
+.arrow-down-gray{position:absolute;right:-7px;bottom:-10px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:10px solid #94A3B8}
+.arrow-down-blue{position:absolute;right:-7px;bottom:-10px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:10px solid #0B449B}
+
+.legend{position:absolute;left:495px;bottom:7px;display:flex;gap:24px;align-items:center;color:#475569;font-size:19px;font-weight:700}.legend-item{display:flex;align-items:center;gap:7px}.swatch{width:16px;height:16px;display:inline-block}.swatch.gray{background:#A9A9A9}.swatch.dark{background:#104D68}.swatch.light{background:#B9DFEE}.swatch.cyan{background:#00B4D8}.swatch.navy{background:#142F73}.metrics{height:112px;display:flex;align-items:center;border-top:2px solid #CBD5E1}.metric-label{width:220px;color:#0B449B;font-size:17px;font-weight:800;line-height:1.15}.metric-values{flex:1;display:flex;justify-content:space-between;padding:0 50px 0 0}.metric-values span{width:160px;text-align:center;color:#0B449B;font-size:20px;font-weight:800}.note{position:absolute;left:28px;right:28px;bottom:67px;color:#64748B;font-size:13px}.footer{position:absolute;left:0;right:0;bottom:0;height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 62px;background:#112240;border-top:2px solid #1E3A5F;color:#8EA3BB;font-size:13px}.footer strong{color:#F5A623}
+</style>
+</head>
+<body><div class="slide">
+<header class="header"><h1>CICLO DE CAIXA</h1><div class="logo" style="display:flex;align-items:center;justify-content:flex-end;color:#DC2626;font-weight:800;font-size:30px;font-style:italic;">LIDER</div></header>
+<main class="content"><div class="chart"><div class="axis-label">Ciclo de caixa (em dias)</div>
+
+<div class="groups">
+  <!-- Categoria Recebíveis -->
+  <div class="category">
+    <div class="connector-top" style="left:43px; width:224px; bottom:150px; height:80px;">
+      <div class="connector-top-label">-3 DIAS</div>
+      <div class="arrow-down-gray"></div>
+    </div>
+    <div class="connector-sub" style="left:211px; width:56px; bottom:140px; height:40px;">
+      <div class="connector-sub-label">-2 DIA</div>
+      <div class="arrow-down-blue"></div>
+    </div>
+
+    <div class="bar receivable" style="height:110px"><span class="bar-value">34</span></div>
+    <div class="bar supplier" style="height:98px"><span class="bar-value">30</span></div>
+    <div class="bar stock" style="height:110px"><span class="bar-value">34</span></div>
+    <div class="bar stock current" style="height:107px"><span class="bar-value">33</span></div>
+    <div class="bar cycle" style="height:100px"><span class="bar-value">31</span></div>
+    <span class="category-label">Recebíveis</span>
+  </div>
+
+  <!-- Categoria Fornecedores -->
+  <div class="category">
+    <div class="connector-top" style="left:43px; width:224px; bottom:230px; height:80px;">
+      <div class="connector-top-label">+10 DIAS</div>
+      <div class="arrow-down-gray"></div>
+    </div>
+    <div class="connector-sub" style="left:211px; width:56px; bottom:220px; height:42px;">
+      <div class="connector-sub-label">+1 DIA</div>
+      <div class="arrow-down-blue"></div>
+    </div>
+
+    <div class="bar receivable" style="height:150px"><span class="bar-value">46</span></div>
+    <div class="bar supplier" style="height:153px"><span class="bar-value">47</span></div>
+    <div class="bar stock" style="height:175px"><span class="bar-value">54</span></div>
+    <div class="bar stock current" style="height:178px"><span class="bar-value">55</span></div>
+    <div class="bar cycle" style="height:182px"><span class="bar-value">56</span></div>
+    <span class="category-label">Fornecedores</span>
+  </div>
+
+  <!-- Categoria Estoque -->
+  <div class="category">
+    <div class="connector-top" style="left:43px; width:224px; bottom:260px; height:42px;">
+      <div class="connector-top-label">-2 DIAS</div>
+      <div class="arrow-down-gray"></div>
+    </div>
+    <div class="connector-sub" style="left:211px; width:56px; bottom:240px; height:28px;">
+      <div class="connector-sub-label">+5 DIAS</div>
+      <div class="arrow-down-blue"></div>
+    </div>
+
+    <div class="bar receivable" style="height:218px"><span class="bar-value">69</span></div>
+    <div class="bar supplier" style="height:205px"><span class="bar-value">65</span></div>
+    <div class="bar stock" style="height:199px"><span class="bar-value">63</span></div>
+    <div class="bar stock current" style="height:196px"><span class="bar-value">62</span></div>
+    <div class="bar cycle" style="height:212px"><span class="bar-value">67</span></div>
+    <span class="category-label">Estoque</span>
+  </div>
+
+  <!-- Categoria Ciclo de Caixa -->
+  <div class="category">
+    <div class="connector-top" style="left:43px; width:224px; bottom:220px; height:86px;">
+      <div class="connector-top-label">-15 DIAS</div>
+      <div class="arrow-down-gray"></div>
+    </div>
+    <div class="connector-sub" style="left:211px; width:56px; bottom:180px; height:46px;">
+      <div class="connector-sub-label">+2 DIAS</div>
+      <div class="arrow-down-blue"></div>
+    </div>
+
+    <div class="bar receivable" style="height:181px"><span class="bar-value">57</span></div>
+    <div class="bar supplier" style="height:153px"><span class="bar-value">48</span></div>
+    <div class="bar stock" style="height:137px"><span class="bar-value">43</span></div>
+    <div class="bar stock current" style="height:128px"><span class="bar-value">40</span></div>
+    <div class="bar cycle" style="height:134px"><span class="bar-value">42</span></div>
+    <span class="category-label">Ciclo de Caixa</span>
+  </div>
+</div>
+
+<div class="legend"><span class="legend-item"><i class="swatch gray"></i>2T25</span><span class="legend-item"><i class="swatch dark"></i>3T25</span><span class="legend-item"><i class="swatch light"></i>4T25</span><span class="legend-item"><i class="swatch cyan"></i>1T26</span><span class="legend-item"><i class="swatch navy"></i>2T26</span></div></div>
+<div class="metrics"><div class="metric-label">CICLO DE CAIXA<br>EM DIAS</div><div class="metric-values"><span>57</span><span>48</span><span>43</span><span>40</span><span>42</span></div></div></main>
+<p class="note">Fonte: abas Liquidez_25 e Liquidez_26 · 2026 em andamento · Valores apresentados conforme base disponível e referência visual, sujeitos a atualização.</p><footer class="footer"><span>Grupo Lider · Controladoria</span><strong>CICLO DE CAIXA</strong><span>Slide 11</span></footer>
+</div></body></html>
