@@ -29,7 +29,7 @@ h1 { margin: 0; font-size: 52px; line-height: .95; }
 .panel h3 { margin: 6px 0 0; font-size: 27px; }
 .public-tag { color: #66809a; font-size: 12px; }
 .panel-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; height: calc(100% - 65px); margin-top: 14px; }
-.study-grid { grid-template-columns: repeat(2, 1fr); }
+.study-grid { grid-template-columns: 1fr; }
 .business { min-width: 0; overflow: hidden; border: 1px solid #315578; border-radius: 22px 22px 34px 34px; background: #0b1c30; display: flex; flex-direction: column; }
 .business img { width: 100%; height: 150px; object-fit: cover; display: block; opacity: .92; }
 .business .copy { flex: 1; padding: 18px 14px; text-align: center; border-top: 3px solid var(--card-color, #00b4d8); }
@@ -37,6 +37,21 @@ h1 { margin: 0; font-size: 52px; line-height: .95; }
 .business span { display: block; margin-top: 15px; color: #b8c7d5; font-size: 14px; line-height: 1.35; }
 .business em { display: block; margin-top: 18px; padding-top: 15px; border-top: 1px solid rgba(155,176,197,.25); color: #fff; font-size: 14px; font-style: normal; line-height: 1.4; }
 .business em b { color: var(--card-color, #f5a623); }
+.wellness-details { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; text-align: left; }
+.wellness-stat { display: grid; grid-template-columns: 82px 1fr; gap: 10px; align-items: center; padding: 10px 8px; border-top: 1px solid rgba(155,176,197,.25); }
+.wellness-stat strong { color: #ef4444; font-family: 'Bebas Neue', Impact, sans-serif; font-size: 32px; line-height: 1; text-transform: none; text-align: center; }
+.wellness-stat span { margin: 0; color: #d5e3f2; font-size: 13px; line-height: 1.25; }
+.wellness-stat:last-child strong { font-size: 28px; }
+.brand-extra { margin-top: 16px; padding: 12px 8px 0; border-top: 1px solid rgba(155,176,197,.25); color: #d5e3f2; font-size: 13px; line-height: 1.35; text-align: left; }
+.brand-extra b { color: var(--card-color, #f5a623); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+.panel-grid > .business:nth-child(2) .brand-extra { background: rgba(245,166,35,.12); border: 1px solid rgba(245,166,35,.42); border-radius: 8px; padding: 10px; }
+.shoplider-extra { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; padding-top: 12px; border-top: 1px solid rgba(155,176,197,.25); text-align: left; }
+.shoplider-stat { padding: 8px; background: rgba(0,180,216,.08); border-left: 2px solid var(--card-color, #00b4d8); }
+.shoplider-stat strong { color: #00b4d8; font-family: 'Bebas Neue', Impact, sans-serif; font-size: 23px; line-height: 1; text-transform: none; }
+.shoplider-stat span { display: block; margin: 4px 0 0; color: #d5e3f2; font-size: 11px; line-height: 1.15; }
+.health-extra { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; padding-top: 12px; border-top: 1px solid rgba(155,176,197,.25); text-align: left; }
+.health-extra div { padding: 8px; background: rgba(34,197,94,.08); border-left: 2px solid var(--card-color, #22c55e); color: #d5e3f2; font-size: 12px; line-height: 1.2; }
+.health-extra strong { display: block; color: #22c55e; font-family: 'Bebas Neue', Impact, sans-serif; font-size: 19px; text-transform: none; }
 .section-label { margin: 0 0 -3px; padding: 8px; border-radius: 14px 14px 0 0; background: #536274; color: #fff; text-align: center; font-family: 'Bebas Neue', Impact, sans-serif; font-size: 26px; letter-spacing: .04em; }
 .panel.study { padding-top: 0; }
 .panel.study .panel-head { display: none; }
@@ -56,16 +71,15 @@ h1 { margin: 0; font-size: 52px; line-height: .95; }
       <section class="panel">
         <h3 class="section-label">Iniciativas em execução</h3>
         <div class="panel-grid">
-          <article class="business" style="--card-color:#ef4444"><img src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>Bem-estar</strong><span>Expansão da categoria de suplementação</span><em><b>Foco</b><br>Whey Protein, Creatina e Pré-treino</em></div></article>
-          <article class="business" style="--card-color:#f5a623"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>Marca própria</strong><span>Desenvolvimento de produtos e maior controle de sortimento</span><em><b>Foco</b><br>Novas categorias para o cliente</em></div></article>
-          <article class="business" style="--card-color:#00b4d8"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>App Meu Líder</strong><span>Experiência digital para aproximar o cliente das lojas</span><em><b>Foco</b><br>Ofertas, relacionamento e conveniência</em></div></article>
-          <article class="business" style="--card-color:#22c55e"><img src="https://images.unsplash.com/photo-1585435557343-3b092031a831?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>Liderzan Saúde</strong><span>Ampliação da presença do grupo em saúde e cuidados</span><em><b>Foco</b><br>Atendimento e serviços para a comunidade</em></div></article>
+          <article class="business" style="--card-color:#ef4444"><img src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>Bem-estar</strong><span>Expansão da categoria de suplementação</span><em><b>Foco</b><br>Whey Protein, Creatina e Pré-treino</em><div class="wellness-details"><div class="wellness-stat"><strong>+7 mil</strong><span>vidas no plano de saúde<br>NutriLíder</span></div><div class="wellness-stat"><strong>XX</strong><span>atendimentos mensais<br>Clínica Líder · Espaço Saúde</span></div><div class="wellness-stat"><strong>2ª</strong><span>rede de farmácias que mais vacina no Brasil</span></div></div></div></article>
+          <article class="business" style="--card-color:#f5a623"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>Marca própria</strong><span>Desenvolvimento de produtos e maior controle de sortimento</span><em><b>Foco</b><br>Novas categorias para o cliente</em><div class="brand-extra"><b>Portfólio</b><br>Pleninutri · suplementação vitamínica<br>Jeronimo · Dra. Neuza<br>Café Líder · Refrigerante Líder</div></div></article>
+          <article class="business" style="--card-color:#00b4d8"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>Shoplider</strong><span>Experiência digital para aproximar o cliente das lojas</span><em><b>Foco</b><br>Ofertas, relacionamento e conveniência</em><div class="shoplider-extra"><div class="shoplider-stat"><strong>18 mi/mês</strong><span>movimentação mensal</span></div><div class="shoplider-stat"><strong>R$ 196</strong><span>ticket médio vs R$ 97 fora</span></div><div class="shoplider-stat"><strong>96%</strong><span>resultado no ano</span></div><div class="shoplider-stat"><strong>190 mil</strong><span>usuários</span></div><div class="shoplider-stat"><strong>2,7</strong><span>vezes ao ano</span></div></div></div></article>
+          <article class="business" style="--card-color:#22c55e"><img src="https://images.unsplash.com/photo-1585435557343-3b092031a831?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>Liderzan Saúde</strong><span>Ampliação da presença do grupo em saúde e cuidados</span><em><b>Foco</b><br>Atendimento e serviços para a comunidade</em><div class="health-extra"><div><strong>Telemedicina</strong>Atendimento remoto</div><div><strong>Telepsicologia</strong>Cuidado emocional</div><div><strong>Desconto</strong>Clínica Líder Saúde</div><div><strong>Parceria</strong>SulAmérica Seguros</div></div></div></article>
         </div>
       </section>
       <section class="panel study">
         <h3 class="section-label">Em andamento/estudo</h3>
         <div class="panel-grid study-grid">
-          <article class="business" style="--card-color:#a78bfa"><img src="https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>Shoppings</strong><span>Líder Shopping e Castanheira Shopping</span><em><b>Foco</b><br>Experiência, serviços e conexão com o cliente</em></div></article>
           <article class="business" style="--card-color:#00b4d8"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&auto=format&fit=crop&q=85"><div class="copy"><strong>Centros logísticos</strong><span>Unidades de apoio em Belém e Castanhal</span><em><b>Foco</b><br>Eficiência na distribuição das operações</em></div></article>
         </div>
       </section>
