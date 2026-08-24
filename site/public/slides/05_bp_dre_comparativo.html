@@ -118,10 +118,14 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 }
 .bp-table-wrap th,
 .bp-table-wrap td {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
 }
+.bp-table-wrap th:first-child,
+.bp-table-wrap td:first-child { width: 56%; }
+.bp-table-wrap th:not(:first-child),
+.bp-table-wrap td:not(:first-child) { width: 14.66%; }
 .bp-table-wrap thead th {
   color: #dfeafb;
   background: rgba(17,35,53,0.55);
@@ -135,17 +139,18 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 .bp-table-wrap thead th:first-child { text-align: left; }
 .bp-table-wrap thead th:not(:first-child) { text-align: center; }
 .bp-table-wrap tbody td {
-  padding: 6px 6px;
+  height: 32px;
+  padding: 4px 6px;
   border-bottom: 1px solid rgba(148,163,184,0.12);
   color: #d5e3f2;
   vertical-align: middle;
-  line-height: 1.1;
+  line-height: 1.15;
 }
 .bp-table-wrap tbody td:first-child {
   text-align: left;
   color: #edf5ff;
   font-weight: 600;
-  white-space: nowrap;
+  font-size: 11px;
 }
 .bp-table-wrap tbody td:not(:first-child) { text-align: center; font-weight: 700; }
 .bp-table-wrap tbody tr:nth-child(odd) { background: rgba(255,255,255,0.01); }
@@ -170,7 +175,7 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
   color: transparent;
   height: 28px;
 }
-.bp-table-wrap tbody tr { height: 28px; }
+.bp-table-wrap tbody tr { height: 32px; }
 .num { color: #fff; }
 .pos { color: #52d197; }
 .neg { color: #ff7d7d; }
@@ -196,10 +201,14 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 }
 .dre-table-wrap thead th:first-child { text-align: left; }
 .dre-table-wrap thead th:not(:first-child) { text-align: center; }
+.dre-table-wrap th:first-child,
+.dre-table-wrap td:first-child { width: 53%; }
+.dre-table-wrap th:not(:first-child),
+.dre-table-wrap td:not(:first-child) { width: 15.66%; }
 .dre-table-wrap tbody td {
-  padding: 5px 6px; border-bottom: 1px solid rgba(148,163,184,0.12); color: #d5e3f2; vertical-align: middle;
+  min-height: 32px; padding: 5px 6px; border-bottom: 1px solid rgba(148,163,184,0.12); color: #d5e3f2; vertical-align: middle; line-height: 1.15; white-space: normal; overflow: visible; text-overflow: clip;
 }
-.dre-table-wrap tbody td:first-child { text-align: left; color: #edf5ff; font-weight: 600; }
+.dre-table-wrap tbody td:first-child { text-align: left; color: #edf5ff; font-weight: 600; font-size: 11px; }
 .dre-table-wrap tbody td:not(:first-child) { text-align: center; font-weight: 700; }
 .dre-table-wrap tbody tr:nth-child(odd) { background: rgba(255,255,255,0.01); }
 .footer {
