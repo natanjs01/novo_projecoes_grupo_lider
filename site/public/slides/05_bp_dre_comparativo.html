@@ -60,16 +60,16 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 .bp-panel, .dre-panel {
   display: flex; flex-direction: column;
   min-height: 0;
-  border: 1px solid rgba(148,163,184,0.2);
-  border-radius: 16px;
+  border: 1px solid rgba(148,163,184,0.16);
+  border-radius: 2px;
   overflow: hidden;
   background: rgba(12,30,45,0.9);
   box-shadow: 0 10px 22px rgba(0,0,0,0.14);
 }
 .bp-panel-header {
   display: flex; justify-content: space-between; align-items: center;
-  padding: 12px 16px;
-  background: linear-gradient(90deg, rgba(0,180,216,0.22), rgba(17,34,49,0.9));
+  padding: 10px 16px;
+  background: #0b3d5a;
   border-bottom: 1px solid rgba(148,163,184,0.22);
   color: #fff;
   font-weight: 800;
@@ -81,18 +81,22 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 .bp-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 12px;
   height: 100%;
+  padding: 0 10px 10px;
 }
 .bp-col {
   display: flex;
   flex-direction: column;
   min-height: 0;
+  background: rgba(8,15,23,0.72);
+  border: 1px solid rgba(148,163,184,0.14);
 }
-.bp-col:first-child { border-right: 1px solid rgba(148,163,184,0.2); }
+.bp-col:first-child { border-right: 1px solid rgba(148,163,184,0.14); }
 .subheader {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 12px 14px 8px;
-  background: rgba(17,35,53,0.7);
+  padding: 11px 14px;
+  background: #0b3d5a;
   font-size: 12px; letter-spacing: .16em; text-transform: uppercase;
   font-weight: 800;
   color: #dfeafb;
@@ -103,8 +107,8 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 }
 .bp-table-wrap {
   flex: 1;
-  padding: 8px 12px 10px;
-  background: rgba(10,22,34,0.34);
+  padding: 4px 10px 8px;
+  background: rgba(8,15,23,0.72);
 }
 .bp-table-wrap table {
   width: 100%;
@@ -120,7 +124,7 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 }
 .bp-table-wrap thead th {
   color: #dfeafb;
-  background: rgba(17,35,53,0.8);
+  background: rgba(17,35,53,0.55);
   font-size: 10px;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -131,7 +135,7 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 .bp-table-wrap thead th:first-child { text-align: left; }
 .bp-table-wrap thead th:not(:first-child) { text-align: center; }
 .bp-table-wrap tbody td {
-  padding: 5px 6px;
+  padding: 6px 6px;
   border-bottom: 1px solid rgba(148,163,184,0.12);
   color: #d5e3f2;
   vertical-align: middle;
@@ -146,14 +150,17 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 .bp-table-wrap tbody td:not(:first-child) { text-align: center; font-weight: 700; }
 .bp-table-wrap tbody tr:nth-child(odd) { background: rgba(255,255,255,0.01); }
 .bp-table-wrap tbody tr.total td {
-  background: rgba(245,166,35,0.08);
+  background: rgba(245,166,35,0.14);
+  border-top: 1px solid rgba(245,166,35,0.38);
+  border-bottom: 1px solid rgba(245,166,35,0.38);
   color: #fff;
   font-weight: 800;
   height: 32px;
 }
 .bp-table-wrap tbody tr.total td:first-child { color: #fff; }
 .bp-table-wrap tbody tr.subtotal td {
-  background: rgba(0,180,216,0.08);
+  background: rgba(0,180,216,0.13);
+  border-top: 1px solid rgba(0,180,216,0.28);
   color: #fff;
   font-weight: 800;
   height: 30px;
