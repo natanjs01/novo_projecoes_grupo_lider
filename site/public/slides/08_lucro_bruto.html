@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucro bruto</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap');
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#071827}.slide{position:relative;width:1920px;height:1080px;overflow:hidden;background:#fff;color:#071827;font-family:Inter,Arial,sans-serif}.header{height:118px;display:flex;align-items:center;justify-content:space-between;padding:0 62px;background:#112240;border-bottom:3px solid #1E3A5F}.header h1{margin:0;color:#fff;font-size:34px}.header h1:after{content:'';display:block;width:86px;height:4px;margin-top:12px;background:linear-gradient(90deg,#F5A623,#00B4D8)}.logo{width:205px;height:72px;object-fit:contain}.content{padding:42px 82px 0}.chart{position:relative;height:650px;border-bottom:2px solid #CBD5E1}.bars{position:absolute;left:270px;right:70px;bottom:110px;height:430px;display:flex;align-items:end;justify-content:space-between}.group{width:150px;height:100%;display:flex;align-items:end;justify-content:center;position:relative}.group.semester{margin-left:210px}.bar{width:92px;background:#142F73;position:relative}.bar.primary{background:#0B6EAD}.bar-value{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);white-space:nowrap;color:#071827;font-size:20px;font-weight:800}.x-label{position:absolute;top:calc(100% + 22px);left:50%;transform:translateX(-50%);white-space:nowrap;color:#475569;font-size:17px;font-weight:700}.unit{position:absolute;left:0;bottom:76px;font-size:17px;font-weight:800}
+
+.callout-box{position:absolute;color:#0B449B;font-size:21px;line-height:1.25;font-weight:800;text-align:center}
+.callout-stem-base{position:absolute;width:0;border-left:2px dotted #0B449B}
+.callout-line{position:absolute;height:0;border-top:2px dotted #7B9DB8}
+.callout-stem{position:absolute;width:0;border-left:2px dotted #7B9DB8}
+.callout-arrow{position:absolute;width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:12px solid #0B449B;transform:translateX(-50%)}
+
+.metrics{position:relative;height:100px;border-top:2px solid #CBD5E1}.metric-label{position:absolute;left:0;top:0;width:200px;height:100%;display:flex;align-items:center;color:#0B449B;font-size:17px;font-weight:800;line-height:1.15}.metric-values{position:absolute;left:270px;right:70px;top:0;height:100%;display:flex;justify-content:space-between}.metric-group{width:150px;height:100%;display:flex;align-items:center;justify-content:center}.metric-group.semester{margin-left:210px}.metric-group span{text-align:center;color:#0B449B;font-size:20px;font-weight:800}.note{position:absolute;left:28px;right:28px;bottom:67px;color:#64748B;font-size:13px}.footer{position:absolute;left:0;right:0;bottom:0;height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 62px;background:#112240;border-top:2px solid #1E3A5F;color:#8EA3BB;font-size:13px}.footer strong{color:#F5A623}
+</style>
+</head>
+<body><div class="slide">
+<header class="header"><h1>LUCRO BRUTO</h1><div class="logo" style="display:flex;align-items:center;justify-content:flex-end;color:#DC2626;font-weight:800;font-size:30px;font-style:italic;">LIDER</div></header>
+<main class="content"><div class="chart"><div class="unit">R$ MILHÕES</div>
+
+<!-- Quarter callout: base 1T26 (center 767.4) -> target 2T26 (center 978.6), QoQ -->
+<div class="callout-box" style="top:28px; left:755px; width:235px;">+4,0%<br>(+R$ 13,5 mi)</div>
+<div class="callout-stem-base" style="top:90px; left:767.4px; height:130px;"></div>
+<div class="callout-line" style="top:90px; left:767.4px; width:211.2px;"></div>
+<div class="callout-stem" style="top:90px; left:978.6px; height:108px;"></div>
+<div class="callout-arrow" style="top:198px; left:978.6px;"></div>
+
+<!-- Semester callout: base 6M25 (center 1399.8) -> target 6M26 (center 1611), YoY -->
+<div class="callout-box" style="top:8px; left:1380px; width:250px;">+4,8%<br>(+R$ 31,0 mi)</div>
+<div class="callout-stem-base" style="top:68px; left:1399.8px; height:110px;"></div>
+<div class="callout-line" style="top:68px; left:1399.8px; width:211.2px;"></div>
+<div class="callout-stem" style="top:68px; left:1611px; height:85px;"></div>
+<div class="callout-arrow" style="top:153px; left:1611px;"></div>
+
+<div class="bars"><div class="group"><div class="bar" style="height:266px"><span class="bar-value">329,9</span><span class="x-label">2T25</span></div></div><div class="group"><div class="bar primary" style="height:259px"><span class="bar-value">320,7</span><span class="x-label">1T25</span></div></div><div class="group"><div class="bar primary" style="height:272px"><span class="bar-value">334,1</span><span class="x-label">1T26</span></div></div><div class="group"><div class="bar" style="height:285px"><span class="bar-value">347,6</span><span class="x-label">2T26</span></div></div><div class="group semester"><div class="bar" style="height:315px"><span class="bar-value">650,6</span><span class="x-label">6M25</span></div></div><div class="group"><div class="bar" style="height:330px"><span class="bar-value">681,6</span><span class="x-label">6M26</span></div></div></div></div>
+<div class="metrics"><div class="metric-label">MARGEM<br>BRUTA</div><div class="metric-values"><div class="metric-group"><span>28,4%</span></div><div class="metric-group"><span>28,7%</span></div><div class="metric-group"><span>28,6%</span></div><div class="metric-group"><span>27,4%</span></div><div class="metric-group semester"><span>28,6%</span></div><div class="metric-group"><span>28,0%</span></div></div></div></main>
+<p class="note">Fonte: abas EBITDA_BC_25 e EBITDA_BC_26 · Lucro bruto e margem bruta em R$ milhões · 6M25 e 6M26 calculados como 1T + 2T.</p><footer class="footer"><span>Grupo Lider · Controladoria</span><strong>LUCRO BRUTO</strong><span>Slide 08</span></footer>
+</div></body></html>

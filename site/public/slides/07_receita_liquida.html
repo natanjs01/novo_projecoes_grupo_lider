@@ -28,7 +28,7 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 .callout-box { position: absolute; color: #0B449B; font-size: 22px; line-height: 1.25; font-weight: 800; text-align: center; }
 
 /* Solid vertical connector dropping from the callout box down onto the base bar */
-.callout-stem-base { position: absolute; width: 0; border-left: 2px solid #0B449B; }
+.callout-stem-base { position: absolute; width: 0; border-left: 2px dotted #0B449B; }
 
 /* Horizontal dotted bracket line (spans between the two bar centers it compares) */
 .callout-line { position: absolute; height: 0; border-top: 2px dotted #7B9DB8; }
@@ -39,10 +39,6 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 /* Arrowhead pointing down into the target bar */
 .callout-arrow { position: absolute; width: 0; height: 0; border-left: 7px solid transparent; border-right: 7px solid transparent; border-top: 12px solid #0B449B; transform: translateX(-50%); }
 
-.metrics { height: 100px; display: flex; align-items: center; border-top: 2px solid #CBD5E1; }
-.metric-label { width: 200px; color: #0B449B; font-size: 17px; font-weight: 800; line-height: 1.15; }
-.metric-values { flex: 1; display: flex; justify-content: space-between; padding: 0 60px 0 20px; }
-.metric-values span { width: 150px; text-align: center; color: #0B449B; font-size: 21px; font-weight: 800; }
 .note { position: absolute; left: 28px; right: 28px; bottom: 67px; color: #64748B; font-size: 13px; }
 .footer { position: absolute; z-index: 1; left: 0; right: 0; bottom: 0; height: 66px; display: flex; align-items: center; justify-content: space-between; padding: 0 62px; background: #112240; border-top: 2px solid #1E3A5F; color: #8EA3BB; font-size: 13px; }
 .footer strong { color: #F5A623; }
@@ -77,11 +73,9 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
         <div class="group"><div class="bar" style="height: 326px"><span class="bar-value">2.433,8</span><span class="x-label">6M26</span></div></div>
       </div>
     </div>
-    <div class="metrics"><div class="metric-label">VARIAÇÃO<br>SEQUENCIAL</div><div class="metric-values"><span>-</span><span>+0,6%</span><span>+8,5%</span><span>-</span><span>+6,9%</span></div></div>
   </main>
   <p class="note">Fonte: abas EBITDA_BC_25 e EBITDA_BC_26 · Receita líquida em R$ milhões · Variações calculadas contra o período-base correspondente.</p>
   <footer class="footer"><span>Grupo Lider · Controladoria</span><strong>RECEITA LÍQUIDA</strong><span>Slide 07</span></footer>
 </div>
 </body>
 </html>
-
