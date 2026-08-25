@@ -7,7 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bebas+Neue&display=swap');
 .fi { font-family: 'Inter','Segoe UI',Arial,sans-serif; }
 .fb { font-family: 'Bebas Neue',Impact,Arial Narrow,sans-serif; }
 * { box-sizing:border-box; }
@@ -44,17 +44,23 @@
         <h2 class="fb text-3xl" style="color:#fff">FATURAMENTO BRUTO POR LOJA (R$ MIL) · ORDENADO POR 1S2026</h2>
         <div class="flex gap-3">
           <div class="rounded-lg px-3 py-1" style="background:#0A1628">
-            <p class="text-base" style="color:#94A3B8">TOTAL 1S2025</p>
-            <p class="fb text-2xl" style="color:#fff">R$ 2.716 M</p>
+            <p class="text-xs" style="color:#94A3B8">TOTAL 1S2025</p>
+            <p class="fb text-2xl" style="color:#fff">R$ 2.716 mi</p>
           </div>
           <div class="rounded-lg px-3 py-1" style="background:#0A1628">
-            <p class="text-base" style="color:#94A3B8">TOTAL 1S2026</p>
-            <p class="fb text-2xl" style="color:#00B4D8">R$ 2.846 M</p>
+            <p class="text-xs" style="color:#94A3B8">TOTAL 1S2026</p>
+            <p class="fb text-2xl" style="color:#00B4D8">R$ 2.846 mi</p>
+          </div>
+          <div class="rounded-lg px-3 py-1 flex flex-col justify-center" style="background:#0A1628;border:1px solid rgba(34,197,94,0.3)">
+            <p class="text-xs" style="color:#94A3B8">CRESCIMENTO</p>
+            <p class="fb text-2xl" style="color:#22C55E">+4,8%</p>
           </div>
         </div>
       </div>
-      <div class="flex-1 min-h-0 flex items-start justify-center overflow-y-auto">
-        <canvas id="storeChart" width="1280" height="1760" style="width:1280px;height:1760px"></canvas>
+      <div class="flex-1 min-h-0 w-full overflow-y-auto overflow-x-hidden pr-2">
+        <div style="position:relative; width:100%; height:1700px;">
+          <canvas id="storeChart"></canvas>
+        </div>
       </div>
     </div>
 
@@ -95,7 +101,7 @@
         <div class="flex flex-col gap-2">
           <div><p class="text-base" style="color:#64748B">Filiais com crescimento</p><p class="text-xl font-bold" style="color:#22C55E">15 de 33 filiais</p></div>
           <div><p class="text-base" style="color:#64748B">Crescimento consolidado</p><p class="text-xl font-bold" style="color:#00B4D8">+4,8% nominal</p></div>
-          <div><p class="text-base" style="color:#64748B">Maior filial (1S26)</p><p class="text-xl font-bold" style="color:#F5A623">L24 Quintino · R$ 172 M</p></div>
+          <div><p class="text-base" style="color:#64748B">Maior filial (1S26)</p><p class="text-xl font-bold" style="color:#F5A623">L24 Quintino · R$ 172 mi</p></div>
         </div>
       </div>
     </div>
@@ -107,47 +113,90 @@
     <p class="text-base" style="color:#64748B">14/19</p>
   </div>
 </div>
+
 <script>
 window.addEventListener('load', function() {
   lucide.createIcons();
+  
   var labels = ['L24 Quintino','L03 Doca','L18 C.Nova','L31 Barcarena','L28 Independencia','L07 Pca Brasil','L12 Br','L40 Marambaia','L32 Maraba','L33 Augusto Montenegro','L54 Duque','L17 Canudos','L38 Abaetetuba','L37 Capanema','L42 Salinopolis','L50 Estrela','L09 Humaita','L02 Alcindo Cacela','L44 Guama','L36 Paragominas','L48 Sao Francisco','L08 Batista Campos','L11 Icoaraci','L27 Pedreira','L05 Castanheira','L10 Castanhal','L04 Obidos','L01 Condor','L06 Mag Castanheira','L19 Mag Castanhal','L41 Magazan Casa','L29 Fazenda Tres Marias I','L55 Mosqueiro'];
   var d25 = [170103,157369,150616,154228,126226,123505,114460,110440,85633,114838,93414,117515,92281,79988,83949,75384,90642,80817,76746,59631,62325,65850,56259,60728,60588,53865,56686,46164,51448,24659,11270,316,0];
   var d26 = [171939,157227,154701,149658,127022,119124,117699,110410,107136,106379,104507,103584,93688,88247,85789,85045,84986,78154,75549,72941,70050,67149,62987,59648,59085,57717,51266,45947,45107,21926,3571,223,0];
+
+  function formatVal(v) {
+    if (v >= 1000) return 'R$ ' + (v / 1000).toFixed(1) + ' Mi';
+    return 'R$ ' + v.toLocaleString('pt-BR') + ' mil';
+  }
+
   new Chart(document.getElementById('storeChart').getContext('2d'), {
     type: 'bar',
-    data: { labels: labels, datasets: [
-      { label: '1S2025', data: d25, backgroundColor: '#1E3A5F', borderColor: '#2D5A8E', borderWidth: 1, borderRadius: 3 },
-      { label: '1S2026', data: d26, backgroundColor: '#00B4D8', borderColor: '#00B4D8', borderWidth: 1, borderRadius: 3 }
-    ]},
-    options: {
-      animation: false, responsive: false, indexAxis: 'y',
-      plugins: { legend: { display: false }, tooltip: { enabled: false } },
-      scales: {
-        x: { beginAtZero: true, grid: { color: '#1A2E4A' }, ticks: { color: '#94A3B8', font: { size: 15, family: 'Inter' }, callback: function(v) { return 'R$'+(v/1000).toFixed(0)+'M'; } } },
-        y: { grid: { display: false }, ticks: { color: '#E2E8F0', font: { size: 14, family: 'Inter' } } }
-      },
-      layout: { padding: { right: 110 } }
+    data: { 
+      labels: labels, 
+      datasets: [
+        { label: '1S2025', data: d25, backgroundColor: '#1E3A5F', borderColor: '#2D5A8E', borderWidth: 1, borderRadius: 4, barPercentage: 0.8, categoryPercentage: 0.7 },
+        { label: '1S2026', data: d26, backgroundColor: '#00B4D8', borderColor: '#00B4D8', borderWidth: 1, borderRadius: 4, barPercentage: 0.8, categoryPercentage: 0.7 }
+      ]
     },
-    plugins: [{ id: 'vl', afterDatasetsDraw(chart) {
-      var c = chart.ctx;
-      var ds = chart.data.datasets[1]; var ds0 = chart.data.datasets[0];
-      chart.getDatasetMeta(1).data.forEach(function(bar, idx) {
-        var v = ds.data[idx]; var v0 = ds0.data[idx]; var g = ((v-v0)/v0*100).toFixed(1);
-        var col = parseFloat(g)>=0 ? '#22C55E' : '#EF4444'; var sign = parseFloat(g)>=0 ? '+' : '';
-        c.save(); c.fillStyle = '#E2E8F0'; c.font = 'bold 13px Inter'; c.textAlign = 'left';
-        c.fillText('R$'+(v/1000).toFixed(0)+'k', bar.x+4, bar.y+4);
-        c.fillStyle = col; c.fillText(sign+g+'%', bar.x+76, bar.y+4); c.restore();
-      });
-    }}]
+    options: {
+      animation: false, 
+      responsive: true, 
+      maintainAspectRatio: false,
+      indexAxis: 'y',
+      plugins: { 
+        legend: { display: false }, 
+        tooltip: { enabled: true } 
+      },
+      scales: {
+        x: { 
+          beginAtZero: true, 
+          grid: { color: 'rgba(30, 58, 95, 0.5)' }, 
+          ticks: { 
+            color: '#94A3B8', 
+            font: { size: 13, family: 'Inter' },
+            callback: function(v) { return formatVal(v); }
+          } 
+        },
+        y: { 
+          grid: { display: false }, 
+          ticks: { color: '#E2E8F0', font: { size: 13, family: 'Inter', weight: '600' } } 
+        }
+      },
+      layout: { padding: { right: 180, top: 10, bottom: 10 } }
+    },
+    plugins: [{ 
+      id: 'customLabels', 
+      afterDatasetsDraw(chart) {
+        var c = chart.ctx;
+        var meta0 = chart.getDatasetMeta(0);
+        var meta1 = chart.getDatasetMeta(1);
+
+        meta1.data.forEach(function(bar26, idx) {
+          var bar25 = meta0.data[idx];
+          var v25 = chart.data.datasets[0].data[idx];
+          var v26 = chart.data.datasets[1].data[idx];
+
+          var pct = v25 ? ((v26 - v25) / v25 * 100).toFixed(1) : null;
+          var pctColor = pct === null || parseFloat(pct) >= 0 ? '#22C55E' : '#EF4444';
+          var pctText = pct === null ? 'novo' : (parseFloat(pct) >= 0 ? '+' : '') + pct + '%';
+
+          c.save();
+          c.font = '500 12px Inter';
+          
+          c.fillStyle = '#94A3B8';
+          c.fillText('25: ' + formatVal(v25), bar25.x + 8, bar25.y + 4);
+
+          c.fillStyle = '#E2E8F0';
+          c.fillText('26: ' + formatVal(v26), bar26.x + 8, bar26.y + 4);
+
+          c.font = 'bold 12px Inter';
+          c.fillStyle = pctColor;
+          c.fillText(pctText, bar26.x + 8 + c.measureText('26: ' + formatVal(v26)).width + 8, bar26.y + 4);
+
+          c.restore();
+        });
+      }
+    }]
   });
 });
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
