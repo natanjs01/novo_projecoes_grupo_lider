@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Margens por Segmento</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@import url('https://placehold.co/1200x800/e8e6e3/e8e6e3');
+.fi { font-family: 'Inter','Segoe UI',Arial,sans-serif; }
+.fb { font-family: 'Bebas Neue',Impact,Arial Narrow,sans-serif; }
+* { box-sizing:border-box; }
+.lider-logo { width:205px; height:72px; object-fit:contain; flex:none; }
+</style>
+</head>
+<body class="m-0 p-0">
+<div class="fi relative overflow-hidden w-[1920px] h-[1080px] flex flex-col" style="background:#0A1628">
+
+  <!-- HEADER -->
+  <div class="flex-none flex items-center justify-between px-14 py-2" style="background:#112240;border-bottom:2px solid #1E3A5F">
+    <div class="flex items-center gap-4">
+      <img class="lider-logo" src="../assets/logo.png?v=2" alt="Grupo Lider">
+      <div class="rounded-lg flex items-center justify-center" style="background:#A78BFA;width:40px;height:40px">
+        <i data-lucide="percent" style="width:20px;height:20px;color:#0A1628"></i>
+      </div>
+      <div>
+        <h1 class="fb text-5xl leading-none" style="color:#fff">MARGENS POR SEGMENTO MESMA LOJA</h1>
+        <p class="text-lg" style="color:#94A3B8">MB% e ML% · 1S2025 vs 1S2026 · 9 segmentos</p>
+      </div>
+    </div>
+    <div class="flex gap-5">
+      <div class="flex items-center gap-2"><div class="rounded" style="background:#1E3A5F;width:22px;height:10px"></div><p class="text-lg" style="color:#94A3B8">MB% 1S2025</p></div>
+      <div class="flex items-center gap-2"><div class="rounded" style="background:#A78BFA;width:22px;height:10px"></div><p class="text-lg" style="color:#94A3B8">MB% 1S2026</p></div>
+      <div class="flex items-center gap-2"><div class="rounded" style="background:#FB923C;width:22px;height:10px"></div><p class="text-lg" style="color:#94A3B8">ML% 1S2026</p></div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="flex-1 min-h-0 flex gap-4 px-12 py-3">
+
+    <!-- Chart -->
+    <div class="flex-1 min-w-0 rounded-xl flex flex-col p-4" style="background:#112240;border:1px solid #1E3A5F">
+      <div class="flex-none mb-2">
+        <h2 class="fb text-3xl" style="color:#fff">1S2025 x 1S2026 · MB% E ML% POR SEGMENTO MESMA LOJA</h2>
+      </div>
+      <div class="flex-1 min-h-0 flex items-start justify-center">
+        <canvas id="segmentMarginChart" width="1480" height="760" style="width:1480px;height:760px"></canvas>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="flex-none flex flex-col gap-3" style="width:300px">
+      <div class="rounded-xl p-4" style="background:#112240;border:1px solid #1E3A5F">
+        <div class="flex items-center gap-2 mb-2">
+          <i data-lucide="crown" style="width:16px;height:16px;color:#F5A623"></i>
+          <p class="text-lg font-bold" style="color:#F5A623">TOP MARGEM BRUTA 1S26</p>
+        </div>
+        <div class="flex flex-col gap-2">
+          <div class="flex justify-between"><p class="text-lg font-bold" style="color:#fff">🥇 Restaurante</p><p class="text-lg font-bold" style="color:#A78BFA">56,6%</p></div>
+          <div class="flex justify-between"><p class="text-lg" style="color:#fff">🥈 Outros</p><p class="text-lg font-bold" style="color:#A78BFA">31,1%</p></div>
+          <div class="flex justify-between"><p class="text-lg" style="color:#fff">🥉 Farmácia</p><p class="text-lg font-bold" style="color:#A78BFA">30,5%</p></div>
+          <div class="flex justify-between"><p class="text-lg" style="color:#fff">Supermercado</p><p class="text-lg font-bold" style="color:#A78BFA">29,1%</p></div>
+          <div class="flex justify-between"><p class="text-lg" style="color:#fff">Magazan</p><p class="text-lg font-bold" style="color:#A78BFA">26,2%</p></div>
+        </div>
+      </div>
+
+      <div class="rounded-xl p-4" style="background:#112240;border:1px solid #1E3A5F">
+        <div class="flex items-center gap-2 mb-2">
+          <i data-lucide="trending-down" style="width:16px;height:16px;color:#EF4444"></i>
+          <p class="text-lg font-bold" style="color:#EF4444">MENOR MARGEM BRUTA</p>
+        </div>
+        <div class="flex flex-col gap-2">
+          <div class="flex justify-between"><p class="text-lg" style="color:#fff">Ótica</p><p class="text-lg font-bold" style="color:#EF4444">12,1%</p></div>
+          <div class="flex justify-between"><p class="text-lg" style="color:#fff">NutriLíder</p><p class="text-lg font-bold" style="color:#EF4444">18,0%</p></div>
+          <div class="flex justify-between"><p class="text-lg" style="color:#fff">Petshop</p><p class="text-lg font-bold" style="color:#EF4444">24,9%</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="flex-none flex items-center justify-between px-14 py-2" style="background:#112240;border-top:1px solid #1E3A5F">
+    <p class="text-base" style="color:#64748B">Grupo Lider · Controladoria</p>
+    <p class="text-base" style="color:#64748B">17/19</p>
+  </div>
+</div>
+<script>
+window.addEventListener('load', function() {
+  lucide.createIcons();
+  var order = [3,8,2,0,1,5,4,7,6];
+  var labelsRaw = ['SUPERMERCADO','MAGAZAN','FARMACIA','RESTAURANTE','HOME CENTER','PETSHOP','OTICA','NUTRILIDER','OUTROS'];
+  var mb25Raw = [27.99,27.66,29.6,54.67,34.24,25.74,23.27,23,-15.42];
+  var mb26Raw = [29.14,26.18,30.52,56.55,25.4,24.88,12.05,17.97,31.14];
+  var ml26Raw = [8.43,7.55,8.82,16.32,7.34,7.2,3.23,5.17,8.99];
+  var labels = order.map(function(i){ return labelsRaw[i]; });
+  var mb25 = order.map(function(i){ return mb25Raw[i]; });
+  var mb26 = order.map(function(i){ return mb26Raw[i]; });
+  var ml26 = order.map(function(i){ return ml26Raw[i]; });
+  new Chart(document.getElementById('segmentMarginChart').getContext('2d'), {
+    type: 'bar',
+    data: { labels: labels, datasets: [
+      { label: 'MB% 1S2025', data: mb25, backgroundColor: '#1E3A5F', borderColor: '#2D5A8E', borderWidth: 1, borderRadius: 3 },
+      { label: 'MB% 1S2026', data: mb26, backgroundColor: '#A78BFA', borderColor: '#A78BFA', borderWidth: 1, borderRadius: 3 },
+      { label: 'ML% 1S2026', data: ml26, backgroundColor: '#FB923C', borderColor: '#FB923C', borderWidth: 1, borderRadius: 3 }
+    ]},
+    options: {
+      animation: false, responsive: false, indexAxis: 'y',
+      plugins: { legend: { display: false }, tooltip: { enabled: false } },
+      scales: {
+        x: { beginAtZero: true, max: 60, grid: { color: '#1A2E4A' }, ticks: { color: '#94A3B8', font: { size: 15, family: 'Inter' }, callback: function(v) { return v+'%'; } } },
+        y: { grid: { display: false }, ticks: { color: '#E2E8F0', font: { size: 17, family: 'Inter' } } }
+      },
+      layout: { padding: { top: 8, right: 90 } }
+    },
+    plugins: [{ id: 'segmentMarginLabels', afterDatasetsDraw(chart) {
+      var c = chart.ctx;
+      chart.data.datasets.forEach(function(ds, di) {
+        chart.getDatasetMeta(di).data.forEach(function(bar, i) {
+          var v = Number(ds.data[i]);
+          if (!Number.isFinite(v) || v === 0) return;
+          c.save();
+          c.fillStyle = di === 2 ? '#FB923C' : (di === 1 ? '#C4B5FD' : '#94A3B8');
+          c.font = '700 14px Inter'; c.textAlign = 'left'; c.textBaseline = 'middle';
+          c.fillText(v.toFixed(1) + '%', bar.x + 8, bar.y);
+          c.restore();
+        });
+      });
+    }}]
+  });
+});
+</script>
+</body>
+</html>

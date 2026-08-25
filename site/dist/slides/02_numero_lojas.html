@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grupo Líder | Número de Lojas</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Bebas+Neue&display=swap');
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    body {
+      background-color: #071827;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    /* Container formato Slide 16:9 */
+    .slide-container {
+      width: 1920px;
+      height: 1080px;
+      background: #0A1628;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      color: #fff;
+    }
+
+    /* Header estilizado idêntico ao exemplo */
+    .header {
+      height: 86px;
+      background: #112240;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 56px;
+      color: #ffffff;
+      position: relative;
+      border-bottom: 2px solid #1E3A5F;
+    }
+
+    .header-title {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 42px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-title span {
+      font-weight: 300;
+      opacity: 0.85;
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #F5A623;
+    }
+
+    .header-logo .icon-coracao {
+      width: 44px;
+      height: 44px;
+      background: #F5A623;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+      color: #0A1628;
+      font-weight: bold;
+    }
+
+    .header-logo img {
+      width: 205px;
+      height: 72px;
+      object-fit: contain;
+      background: none;
+      padding: 0;
+      border-radius: 0;
+    }
+
+    /* Conteúdo principal dividido em 2 colunas */
+    .main-content {
+      flex: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 520px;
+      padding: 24px 56px 48px;
+      gap: 28px;
+      position: relative;
+    }
+
+    /* Coluna Esquerda: Mapa */
+    .map-section {
+      position: relative;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      min-height: 0;
+      border: 1px solid #1E3A5F;
+      border-radius: 0;
+      background: radial-gradient(circle at 52% 44%, #123454 0%, #0B2036 52%, #091B2E 100%);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .map-section::before {
+      content: "COBERTURA OPERACIONAL · PARÁ";
+      position: absolute;
+      top: 22px;
+      left: 26px;
+      z-index: 1;
+      color: #94A3B8;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+    }
+
+    .map-svg {
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      padding: 58px 54px 58px;
+      object-fit: contain;
+      filter: drop-shadow(0 18px 28px rgba(0, 180, 216, 0.12));
+    }
+
+    .map-key {
+      position: absolute;
+      right: 26px;
+      top: 20px;
+      z-index: 2;
+      display: flex;
+      gap: 16px;
+      color: #94A3B8;
+      font-size: 12px;
+    }
+
+    .map-key span::before {
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin-right: 6px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      background: #0d5aa6;
+      vertical-align: -1px;
+    }
+
+    .map-key span:last-child::before {
+      border: 0;
+      border-radius: 0;
+      background: #58B5C8;
+      height: 2px;
+      vertical-align: 3px;
+    }
+
+    /* Coluna Direita: Cards das Lojas */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-top: 0;
+    }
+
+    /* Box do Total de Lojas */
+    .total-box {
+      background: #00B4D8;
+      display: flex;
+      height: 76px;
+      color: #ffffff;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .total-number {
+      width: 95px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      background: #008BA8;
+    }
+
+    .total-label {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 12px;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.1;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Cards de cada bandeira */
+    .brand-card {
+      display: flex;
+      height: 76px;
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-count {
+      width: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 1;
+      z-index: 2;
+    }
+
+    .brand-count small {
+      font-size: 7px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-divider {
+      width: 1.5px;
+      height: 65%;
+      background: rgba(255, 255, 255, 0.4);
+      margin: auto 0;
+      z-index: 2;
+    }
+
+    .brand-info {
+      width: 155px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 10px;
+      z-index: 2;
+    }
+
+    .brand-name {
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: -0.3px;
+      line-height: 1.1;
+    }
+
+    .brand-sub {
+      font-size: 10px;
+      opacity: 0.9;
+      font-weight: 500;
+    }
+
+    /* Área da foto no card com degradê */
+    .brand-photo {
+      flex: 1;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+
+    .brand-photo::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, inherit 0%, rgba(0,0,0,0) 65%, rgba(0,0,0,0.2) 100%);
+    }
+
+    /* Cores personalizadas por bandeira */
+    .bg-super { background: #d71920; }
+    .bg-magazan { background: #e38d13; }
+    .bg-farma { background: #138752; }
+    .bg-otica { background: #4a2c7a; }
+    .bg-home { background: #0077b5; }
+    .bg-eletro { background: #10427a; }
+    .bg-cd { background: #005a9c; }
+    .bg-shopping { background: #8e1b54; }
+    .bg-pets { background: #c43b74; }
+    .bg-magazan-casa { background: #c46a20; }
+    .bg-clinica { background: #0b7f9a; }
+
+    /* Estilo dos círculos com número das lojas no mapa */
+    .city-bubble {
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .city-bubble:hover {
+      transform: scale(1.08);
+      transform-origin: center;
+    }
+
+    /* Faixa de rodapé estilizada */
+    .footer-strip {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 12px;
+      background: linear-gradient(90deg, #d71920 0%, #d71920 6%, #0b458c 6%, #0b458c 100%);
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding-right: 20px;
+      color: rgba(255,255,255,0.7);
+      font-size: 9px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slide-container">
+    
+    <!-- Topo -->
+    <header class="header">
+      <div class="header-title">
+        NÚMERO DE LOJAS <span>| GRUPO LÍDER</span>
+      </div>
+      <div class="header-logo">
+        <img src="../assets/logo.png?v=2" alt="Grupo Líder">
+      </div>
+    </header>
+
+    <!-- Conteúdo do Slide -->
+    <main class="main-content">
+      
+      <!-- Lado Esquerdo: Mapa do Pará com nós de dados -->
+      <section class="map-section">
+        <svg class="map-svg" viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- Gradiente para o estado do Pará -->
+            <linearGradient id="paraGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#14506C" />
+              <stop offset="100%" stop-color="#0B3048" />
+            </linearGradient>
+
+            <pattern id="mapGrid" width="46" height="46" patternUnits="userSpaceOnUse">
+              <path d="M 46 0 L 0 0 0 46" fill="none" stroke="#4C8AA2" stroke-width="1" opacity=".18"/>
+            </pattern>
+
+            <!-- Sombra dos círculos de cidades -->
+            <filter id="bubbleShadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#042a54" flood-opacity="0.4"/>
+            </filter>
+          </defs>
+
+          <!-- Traçado geográfico realista e estilizado do Pará -->
+          <path d="M 210,65 
+                   C 260,40 330,45 385,60 
+                   C 430,70 480,95 530,90 
+                   C 575,85 640,110 680,140 
+                   C 725,175 750,225 740,270 
+                   C 730,310 700,340 735,395 
+                   C 760,440 730,500 705,550 
+                   C 670,610 600,640 540,655 
+                   C 480,670 430,640 375,615 
+                   C 320,590 280,520 250,475 
+                   C 220,430 180,390 145,340 
+                   C 115,295 100,240 120,185 
+                   C 140,135 170,90 210,65 Z" 
+                    fill="none" 
+                    stroke="none"/>
+
+                  <path d="M743.3,212.8 L745.4,217.0 L748.5,217.6 L752.0,219.3 L758.1,218.4 L760.3,220.1 L764.0,222.4 L770.4,219.1 L768.4,226.2 L773.5,227.0 L778.4,225.4 L782.5,224.1 L785.5,226.6 L789.4,227.4 L785.8,253.7 L779.6,277.3 L770.5,294.2 L758.3,307.6 L759.5,314.9 L755.6,325.5 L749.3,335.7 L743.3,342.0 L738.2,352.1 L730.0,366.8 L721.1,377.7 L703.0,396.5 L668.2,434.8 L670.4,462.5 L653.5,487.6 L622.3,525.8 L618.1,576.7 L578.8,621.3 L225.9,622.8 L199.4,601.1 L175.2,574.9 L146.5,516.5 L241.5,294.2 L240.5,280.4 L215.2,271.4 L196.7,258.5 L178.7,252.5 L160.0,243.6 L139.8,231.3 L126.9,215.2 L115.1,196.1 L112.2,121.5 L121.7,116.8 L130.1,117.8 L131.1,110.3 L136.7,105.7 L147.4,103.3 L157.6,105.4 L162.2,99.8 L170.3,96.2 L179.7,97.2 L186.4,92.4 L193.2,84.0 L202.8,83.6 L209.9,87.1 L220.9,89.1 L230.0,86.0 L240.3,85.3 L252.5,87.9 L262.0,90.5 L267.3,84.4 L263.9,75.6 L258.0,67.9 L264.4,62.9 L269.7,59.1 L279.3,63.8 L309.5,56.2 L326.8,78.1 L335.2,93.9 L353.2,95.8 L363.5,102.8 L376.1,111.3 L389.1,114.0 L400.1,130.9 L414.2,158.6 L439.4,192.9 L453.1,218.4 L476.2,233.6 L513.0,189.4 L582.9,162.6 L597.8,160.8 L634.3,185.6 L654.1,189.0 L663.7,199.8 L695.4,205.8 L700.1,205.7 L707.3,209.7 L714.8,212.5 L720.4,208.0 L729.4,210.5 L732.8,211.9 L737.7,212.4 Z" fill="url(#paraGrad)" stroke="#48B8D2" stroke-width="3.5" stroke-linejoin="round"/>
+
+                  <path d="M 210,65 C 260,40 330,45 385,60 C 430,70 480,95 530,90 C 575,85 640,110 680,140 C 725,175 750,225 740,270 C 730,310 700,340 735,395 C 760,440 730,500 705,550 C 670,610 600,640 540,655 C 480,670 430,640 375,615 C 320,590 280,520 250,475 C 220,430 180,390 145,340 C 115,295 100,240 120,185 C 140,135 170,90 210,65 Z" fill="url(#mapGrid)" opacity=".9"/>
+
+          <!-- Divisórias e Rio Amazonas estilizados -->
+          <path d="M 120,185 Q 260,220 400,230 T 740,270" fill="none" stroke="#7AD6E5" stroke-width="3" opacity=".7"/>
+          <path d="M 375,615 Q 430,450 490,320 T 680,140" fill="none" stroke="#58B5C8" stroke-width="2.5" opacity=".55"/>
+          <path d="M 185,300 Q 330,315 470,350 T 680,470" fill="none" stroke="#58B5C8" stroke-width="1.5" opacity=".42"/>
+
+          <!-- Siglas de referência geográfica -->
+          <text x="645" y="130" fill="#ffffff" font-size="20" font-weight="800" opacity="0.85">PA</text>
+          <text x="760" y="240" fill="#94A3B8" font-size="16" font-weight="700" opacity="0.75">MA</text>
+          <text x="750" y="470" fill="#94A3B8" font-size="16" font-weight="700" opacity="0.75">TO</text>
+          <text x="440" y="670" fill="#94A3B8" font-size="16" font-weight="700" opacity="0.75">MT</text>
+          <text x="80" y="270" fill="#94A3B8" font-size="16" font-weight="700" opacity="0.75">AM</text>
+          <text x="320" y="45" fill="#94A3B8" font-size="16" font-weight="700" opacity="0.75">AP</text>
+
+          <!-- 1. BELÉM (Maior hub com concentração) -->
+          <g class="city-bubble" filter="url(#bubbleShadow)">
+            <circle cx="580" cy="200" r="54" fill="#0a4b8f" stroke="#ffffff" stroke-width="3.5"/>
+            <text x="580" y="196" fill="#ffffff" font-size="28" font-weight="900" text-anchor="middle">67</text>
+            <text x="580" y="214" fill="#ffffff" font-size="10" font-weight="700" text-anchor="middle" letter-spacing="1">BELÉM</text>
+          </g>
+
+          <!-- 2. ANANINDEUA -->
+          <g class="city-bubble" filter="url(#bubbleShadow)">
+            <circle cx="670" cy="225" r="34" fill="#0d5aa6" stroke="#ffffff" stroke-width="2.5"/>
+            <text x="670" y="223" fill="#ffffff" font-size="18" font-weight="800" text-anchor="middle">18</text>
+            <text x="670" y="238" fill="#ffffff" font-size="8.5" font-weight="700" text-anchor="middle">ANAN.</text>
+          </g>
+
+          <!-- 3. CASTANHAL -->
+          <g class="city-bubble" filter="url(#bubbleShadow)">
+            <circle cx="650" cy="155" r="30" fill="#0d5aa6" stroke="#ffffff" stroke-width="2.5"/>
+            <text x="650" y="153" fill="#ffffff" font-size="16" font-weight="800" text-anchor="middle">10</text>
+            <text x="650" y="167" fill="#ffffff" font-size="8" font-weight="700" text-anchor="middle">CAST.</text>
+          </g>
+
+          <!-- 4. MARABÁ (Sul do Pará) -->
+          <g class="city-bubble" filter="url(#bubbleShadow)">
+            <circle cx="630" cy="450" r="32" fill="#0d5aa6" stroke="#ffffff" stroke-width="2.5"/>
+            <text x="630" y="448" fill="#ffffff" font-size="17" font-weight="800" text-anchor="middle">06</text>
+            <text x="630" y="463" fill="#ffffff" font-size="8" font-weight="700" text-anchor="middle">MARABÁ</text>
+          </g>
+
+          <!-- 5. PARAGOMINAS -->
+          <g class="city-bubble" filter="url(#bubbleShadow)">
+            <circle cx="685" cy="330" r="26" fill="#0d5aa6" stroke="#ffffff" stroke-width="2"/>
+            <text x="685" y="328" fill="#ffffff" font-size="14" font-weight="800" text-anchor="middle">05</text>
+            <text x="685" y="340" fill="#ffffff" font-size="7.5" font-weight="700" text-anchor="middle">PARAG.</text>
+          </g>
+
+          <!-- 6. ABAETETUBA -->
+          <g class="city-bubble" filter="url(#bubbleShadow)">
+            <circle cx="515" cy="270" r="26" fill="#0d5aa6" stroke="#ffffff" stroke-width="2"/>
+            <text x="515" y="268" fill="#ffffff" font-size="14" font-weight="800" text-anchor="middle">06</text>
+            <text x="515" y="280" fill="#ffffff" font-size="7.5" font-weight="700" text-anchor="middle">ABAET.</text>
+          </g>
+
+          <!-- 7. BARCARENA -->
+          <g class="city-bubble" filter="url(#bubbleShadow)">
+            <circle cx="525" cy="205" r="24" fill="#0d5aa6" stroke="#ffffff" stroke-width="2"/>
+            <text x="525" y="203" fill="#ffffff" font-size="13" font-weight="800" text-anchor="middle">06</text>
+            <text x="525" y="214" fill="#ffffff" font-size="7" font-weight="700" text-anchor="middle">BARC.</text>
+          </g>
+
+          <!-- 8. CAPANEMA -->
+          <g class="city-bubble" filter="url(#bubbleShadow)">
+            <circle cx="715" cy="190" r="23" fill="#0d5aa6" stroke="#ffffff" stroke-width="2"/>
+            <text x="715" y="188" fill="#ffffff" font-size="13" font-weight="800" text-anchor="middle">06</text>
+            <text x="715" y="199" fill="#ffffff" font-size="7" font-weight="700" text-anchor="middle">CAPAN.</text>
+          </g>
+
+          <!-- 9. SALINAS -->
+          <g class="city-bubble" filter="url(#bubbleShadow)">
+            <circle cx="610" cy="115" r="23" fill="#0d5aa6" stroke="#ffffff" stroke-width="2"/>
+            <text x="610" y="113" fill="#ffffff" font-size="13" font-weight="800" text-anchor="middle">06</text>
+            <text x="610" y="124" fill="#ffffff" font-size="7" font-weight="700" text-anchor="middle">SALINAS</text>
+          </g>
+        </svg>
+        <div class="map-key"><span>Polos de lojas</span><span>Rios e referências</span></div>
+      </section>
+
+      <!-- Lado Direito: Cards Empilhados das Bandeiras -->
+      <aside class="sidebar">
+        
+        <!-- Total Geral -->
+        <div class="total-box">
+          <div class="total-number">130</div>
+          <div class="total-label">
+            Operações / Unidades<br>
+            <span>Estado do Pará</span>
+          </div>
+        </div>
+
+        <!-- 1. Supermercados Líder -->
+        <div class="brand-card bg-super">
+          <div class="brand-count">27 <small>LOJAS</small></div>
+          <div class="brand-divider"></div>
+          <div class="brand-info">
+            <span class="brand-name">Líder</span>
+            <span class="brand-sub">Supermercados</span>
+          </div>
+          <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=300&auto=format&fit=crop&q=80');"></div>
+        </div>
+
+        <!-- 2. Magazan -->
+        <div class="brand-card bg-magazan">
+          <div class="brand-count">23 <small>LOJAS</small></div>
+          <div class="brand-divider"></div>
+          <div class="brand-info">
+            <span class="brand-name">Magazan</span>
+            <span class="brand-sub">Departamentos</span>
+          </div>
+          <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=300&auto=format&fit=crop&q=80');"></div>
+        </div>
+
+        <!-- 3. FarmaLíder -->
+        <div class="brand-card bg-farma">
+          <div class="brand-count">26 <small>LOJAS</small></div>
+          <div class="brand-divider"></div>
+          <div class="brand-info">
+            <span class="brand-name">FarmaLíder</span>
+            <span class="brand-sub">Farmácias</span>
+          </div>
+          <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1585435557343-3b092031a831?w=900&auto=format&fit=crop&q=85');"></div>
+        </div>
+
+        <!-- 4. Ótica Líder -->
+        <div class="brand-card bg-otica">
+          <div class="brand-count">20 <small>LOJAS</small></div>
+          <div class="brand-divider"></div>
+          <div class="brand-info">
+            <span class="brand-name">Ótica Líder</span>
+            <span class="brand-sub">Óticas</span>
+          </div>
+          <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=300&auto=format&fit=crop&q=80');"></div>
+        </div>
+
+        <!-- 5. Líder Home Center -->
+        <div class="brand-card bg-home">
+          <div class="brand-count">15 <small>LOJAS</small></div>
+          <div class="brand-divider"></div>
+          <div class="brand-info">
+            <span class="brand-name">Home Center</span>
+            <span class="brand-sub">Construção & Casa</span>
+          </div>
+          <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?w=300&auto=format&fit=crop&q=80');"></div>
+        </div>
+
+        <!-- 6. Pets Líder -->
+        <div class="brand-card bg-pets">
+          <div class="brand-count">09 <small>LOJAS</small></div>
+          <div class="brand-divider"></div>
+          <div class="brand-info">
+            <span class="brand-name">Pets Líder</span>
+            <span class="brand-sub">Pet shops</span>
+          </div>
+          <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=900&auto=format&fit=crop&q=85');"></div>
+        </div>
+
+        <!-- 7. Clínica Líder Saúde -->
+        <div class="brand-card bg-clinica">
+          <div class="brand-count">09 <small>UNID.</small></div>
+          <div class="brand-divider"></div>
+          <div class="brand-info">
+            <span class="brand-name">Clínica Líder Saúde</span>
+            <span class="brand-sub">Unidades de saúde</span>
+          </div>
+          <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1516841273335-e39b37888115?w=900&auto=format&fit=crop&q=85');"></div>
+        </div>
+
+        <!-- 7. Magazan Casa -->
+        <div class="brand-card bg-magazan-casa">
+          <div class="brand-count">01 <small>LOJA</small></div>
+          <div class="brand-divider"></div>
+          <div class="brand-info">
+            <span class="brand-name">Magazan Casa</span>
+            <span class="brand-sub">Casa e decoração</span>
+          </div>
+          <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=900&auto=format&fit=crop&q=85');"></div>
+        </div>
+
+        <!-- 7. Centro de Distribuição -->
+        <div class="brand-card bg-cd">
+          <div class="brand-count">02 <small>UNID.</small></div>
+          <div class="brand-divider"></div>
+          <div class="brand-info">
+            <span class="brand-name">Centros Logísticos</span>
+            <span class="brand-sub">Belém & Castanhal</span>
+          </div>
+          <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=300&auto=format&fit=crop&q=80');"></div>
+        </div>
+
+      </aside>
+    </main>
+
+    <!-- Rodapé -->
+    <div class="footer-strip">
+      Grupo Líder • Informações Institucionais • 2/19
+    </div>
+
+  </div>
+
+</body>
+</html>

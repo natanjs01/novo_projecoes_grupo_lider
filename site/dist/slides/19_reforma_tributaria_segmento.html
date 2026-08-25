@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reforma Tributária - Comparativo por Segmento Ajustado</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bebas+Neue&display=swap');
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #071827; }
+
+.slide {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background: radial-gradient(circle at 80% 20%, #0d2840 0%, #071827 70%);
+  color: #edf5ff;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(to right, rgba(255,255,255,0.015) 0, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 80px);
+  pointer-events: none;
+}
+
+.header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 64px 10px 64px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(9, 21, 31, 0.6);
+  backdrop-filter: blur(10px);
+}
+
+.title-section h1 {
+  margin: 0;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 34px;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.title-section p {
+  margin: 2px 0 0 0;
+  color: #00B4D8;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.logo { width: 140px; height: auto; object-fit: contain; }
+
+.content {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  padding: 12px 64px 40px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* TABELA OTIMIZADA COM COLUNAS DE TEXTO MAIS JUSTAS E FONTE MAIOR */
+.table-card {
+  background: rgba(15, 30, 46, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 470px;
+}
+
+.table-container {
+  width: 100%;
+  overflow-y: auto;
+  flex: 1;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+thead tr.header-top th {
+  position: sticky;
+  top: 0;
+  background: #06131e;
+  color: #F5A623;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 6px 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  z-index: 11;
+}
+
+thead tr.header-sub th {
+  position: sticky;
+  top: 24px;
+  background: #091a29;
+  color: #00B4D8;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 5px 4px;
+  border-bottom: 2px solid rgba(0, 180, 216, 0.3);
+  text-align: center;
+  z-index: 10;
+}
+
+thead th.seg-group {
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+tbody tr.group-highlight {
+  background: rgba(0, 180, 216, 0.04);
+}
+
+tbody tr.total-row {
+  background: rgba(245, 166, 35, 0.1);
+  font-weight: 700;
+  border-top: 2px solid #F5A623;
+}
+
+tbody tr.total-row td {
+  color: #F5A623;
+  font-size: 11.5px;
+  padding: 6px 4px;
+}
+
+td {
+  padding: 4px 4px;
+  font-size: 11px;
+  color: #DDEBFF;
+}
+
+td.cst-trans {
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 11px;
+  color: #F5A623;
+  width: 75px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+td.rule-title {
+  font-weight: 600;
+  color: #ffffff;
+  width: 220px;
+  white-space: nowrap;
+}
+
+td.val-col {
+  text-align: center;
+  font-weight: 600;
+  font-size: 11px;
+}
+
+td.val-col.pre { color: #8FA3B8; }
+td.val-col.post { color: #00B4D8; font-weight: 700; }
+td.border-left-seg { border-left: 1px solid rgba(255, 255, 255, 0.1); }
+
+/* SEÇÃO DE GRÁFICOS OTIMIZADA PARA MAIOR VISIBILIDADE */
+.summary-comparison {
+  background: rgba(15, 30, 46, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: auto;
+}
+
+.section-title {
+  margin: 0;
+  color: #F5A623;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.seg-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+.seg-card {
+  background: rgba(9, 21, 31, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.seg-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: #00B4D8;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 3px;
+  text-align: center;
+}
+
+.model-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.model-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 1px;
+}
+
+.model-header.pre { color: #00B4D8; }
+.model-header.post { color: #F5A623; }
+
+.bar-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bar-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10.5px;
+  color: #CBD5E1;
+  font-weight: 500;
+}
+
+.bar-info span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+}
+
+.bar-info b {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 11px;
+  margin-left: 4px;
+}
+
+.progress-bg {
+  width: 100%;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill { height: 100%; border-radius: 3px; }
+.fill-pre { background: #00B4D8; }
+.fill-post { background: #F5A623; }
+
+.footnote {
+  position: absolute;
+  z-index: 2;
+  left: 64px;
+  right: 64px;
+  bottom: 34px;
+  color: #64748B;
+  font-size: 9.5px;
+  line-height: 1.3;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 4px;
+}
+
+.footer {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 64px;
+  background: #040e17;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: #64748B;
+  font-size: 10px;
+}
+
+.footer strong { color: #F5A623; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="slide">
+  <header class="header">
+    <div class="title-section">
+      <h1>REFORMA TRIBUTÁRIA</h1>
+      <p>Análise Comparativa por Segmento: Tabela Mapeada + Gráficos Pré vs Pós-Reforma (%)</p>
+    </div>
+    <img class="logo" src="../assets/logo.png?v=2" alt="Grupo Lider">
+  </header>
+
+  <main class="content">
+    
+    <!-- TABELA COMPACTADA COM COLUNAS OTIMIZADAS -->
+    <div class="table-card">
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr class="header-top">
+              <th rowspan="2" style="text-align: center; vertical-align: middle;">CST (De → Para)</th>
+              <th rowspan="2" style="text-align: left; vertical-align: middle; padding-left: 6px;">Regra Fiscal (Pré → Pós)</th>
+              <th colspan="2" class="seg-group">Consolidado</th>
+              <th colspan="2" class="seg-group">Magazan</th>
+              <th colspan="2" class="seg-group">Home Center</th>
+              <th colspan="2" class="seg-group">Farmácia</th>
+              <th colspan="2" class="seg-group">Supermercado</th>
+              <th colspan="2" class="seg-group">Petshop</th>
+              <th colspan="2" class="seg-group">Demais Seg.</th>
+            </tr>
+            <tr class="header-sub">
+              <th class="seg-group">Pré</th><th>Pós</th>
+              <th class="seg-group">Pré</th><th>Pós</th>
+              <th class="seg-group">Pré</th><th>Pós</th>
+              <th class="seg-group">Pré</th><th>Pós</th>
+              <th class="seg-group">Pré</th><th>Pós</th>
+              <th class="seg-group">Pré</th><th>Pós</th>
+              <th class="seg-group">Pré</th><th>Pós</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="group-highlight">
+              <td class="cst-trans">01 → 000</td>
+              <td class="rule-title">Tributação Normal → Integral</td>
+              <td class="val-col pre border-left-seg" rowspan="4" style="vertical-align: middle; background: rgba(0,0,0,0.15);">64,05%</td><td class="val-col post">61,06%</td>
+              <td class="val-col pre border-left-seg" rowspan="4" style="vertical-align: middle; background: rgba(0,0,0,0.15);">94,48%</td><td class="val-col post">93,63%</td>
+              <td class="val-col pre border-left-seg" rowspan="4" style="vertical-align: middle; background: rgba(0,0,0,0.15);">93,51%</td><td class="val-col post">93,51%</td>
+              <td class="val-col pre border-left-seg" rowspan="4" style="vertical-align: middle; background: rgba(0,0,0,0.15);">20,27%</td><td class="val-col post">20,27%</td>
+              <td class="val-col pre border-left-seg" rowspan="4" style="vertical-align: middle; background: rgba(0,0,0,0.15);">44,23%</td><td class="val-col post">44,23%</td>
+              <td class="val-col pre border-left-seg" rowspan="4" style="vertical-align: middle; background: rgba(0,0,0,0.15);">80,77%</td><td class="val-col post">80,77%</td>
+              <td class="val-col pre border-left-seg" rowspan="4" style="vertical-align: middle; background: rgba(0,0,0,0.15);">61,48%</td><td class="val-col post">56,42%</td>
+            </tr>
+            <tr class="group-highlight">
+              <td class="cst-trans">01 → 200 (100)</td>
+              <td class="rule-title">Tributação Normal → Reduzida (100)</td>
+              <td class="val-col post">0,35%</td>
+              <td class="val-col post">0,01%</td>
+              <td class="val-col post">0,00%</td>
+              <td class="val-col post">0,00%</td>
+              <td class="val-col post">0,00%</td>
+              <td class="val-col post">0,00%</td>
+              <td class="val-col post">0,91%</td>
+            </tr>
+            <tr class="group-highlight">
+              <td class="cst-trans">01 → 200 (60)</td>
+              <td class="rule-title">Tributação Normal → Reduzida (60)</td>
+              <td class="val-col post">1,73%</td>
+              <td class="val-col post">0,03%</td>
+              <td class="val-col post">0,00%</td>
+              <td class="val-col post">0,00%</td>
+              <td class="val-col post">0,00%</td>
+              <td class="val-col post">0,00%</td>
+              <td class="val-col post">4,15%</td>
+            </tr>
+            <tr class="group-highlight">
+              <td class="cst-trans">01 → 200 (40)</td>
+              <td class="rule-title">Tributação Normal → Reduzida (40)</td>
+              <td class="val-col post">0,91%</td>
+              <td class="val-col post">0,81%</td>
+              <td class="val-col post">0,00%</td>
+              <td class="val-col post">0,00%</td>
+              <td class="val-col post">0,00%</td>
+              <td class="val-col post">0,00%</td>
+              <td class="val-col post">0,00%</td>
+            </tr>
+            <tr>
+              <td class="cst-trans">06 → 200 (100)</td>
+              <td class="rule-title">Alíquota Zero → Reduzida (100)</td>
+              <td class="val-col pre border-left-seg" rowspan="2" style="vertical-align: middle; background: rgba(0,0,0,0.15);">22,90%</td><td class="val-col post">18,14%</td>
+              <td class="val-col pre border-left-seg" rowspan="2" style="vertical-align: middle; background: rgba(0,0,0,0.15);">0,10%</td><td class="val-col post">0,08%</td>
+              <td class="val-col pre border-left-seg" rowspan="2" style="vertical-align: middle; background: rgba(0,0,0,0.15);">0,27%</td><td class="val-col post">0,02%</td>
+              <td class="val-col pre border-left-seg" rowspan="2" style="vertical-align: middle; background: rgba(0,0,0,0.15);">0,47%</td><td class="val-col post">0,21%</td>
+              <td class="val-col pre border-left-seg" rowspan="2" style="vertical-align: middle; background: rgba(0,0,0,0.15);">49,80%</td><td class="val-col post">34,62%</td>
+              <td class="val-col pre border-left-seg" rowspan="2" style="vertical-align: middle; background: rgba(0,0,0,0.15);">1,24%</td><td class="val-col post">0,00%</td>
+              <td class="val-col pre border-left-seg" rowspan="2" style="vertical-align: middle; background: rgba(0,0,0,0.15);">38,08%</td><td class="val-col post">29,73%</td>
+            </tr>
+            <tr>
+              <td class="cst-trans">06 → 000</td>
+              <td class="rule-title">Alíquota Zero → Integral</td>
+              <td class="val-col post">4,76%</td>
+              <td class="val-col post">0,02%</td>
+              <td class="val-col post">0,25%</td>
+              <td class="val-col post">0,26%</td>
+              <td class="val-col post">15,18%</td>
+              <td class="val-col post">1,24%</td>
+              <td class="val-col post">8,35%</td>
+            </tr>
+            <tr>
+              <td class="cst-trans">04 → 200 (60)</td>
+              <td class="rule-title">Monofásico → Reduzida (60)</td>
+              <td class="val-col pre border-left-seg" rowspan="2" style="vertical-align: middle; background: rgba(0,0,0,0.15);">12,20%</td><td class="val-col post">6,19%</td>
+              <td class="val-col pre border-left-seg" rowspan="2" style="vertical-align: middle; background: rgba(0,0,0,0.15);">3,75%</td><td class="val-col post">0,15%</td>
+              <td class="val-col pre border-left-seg" rowspan="2" style="vertical-align: middle; background: rgba(0,0,0,0.15);">4,33%</td><td class="val-col post">0,00%</td>
+              <td class="val-col pre border-left-seg" rowspan="2" style="vertical-align: middle; background: rgba(0,0,0,0.15);">79,26%</td><td class="val-col post">56,45%</td>
+              <td class="val-col pre border-left-seg" rowspan="2" style="vertical-align: middle; background: rgba(0,0,0,0.15);">5,76%</td><td class="val-col post">5,76%</td>
+              <td class="val-col pre border-left-seg" rowspan="2" style="vertical-align: middle; background: rgba(0,0,0,0.15);">16,80%</td><td class="val-col post">11,57%</td>
+              <td class="val-col pre border-left-seg" rowspan="2" style="vertical-align: middle; background: rgba(0,0,0,0.15);">0,04%</td><td class="val-col post">0,04%</td>
+            </tr>
+            <tr>
+              <td class="cst-trans">04 → 000</td>
+              <td class="rule-title">Monofásico → Integral</td>
+              <td class="val-col post">6,01%</td>
+              <td class="val-col post">3,60%</td>
+              <td class="val-col post">4,33%</td>
+              <td class="val-col post">22,81%</td>
+              <td class="val-col post">0,00%</td>
+              <td class="val-col post">5,23%</td>
+              <td class="val-col post">0,00%</td>
+            </tr>
+            <tr>
+              <td class="cst-trans">08/07 → 000</td>
+              <td class="rule-title">Sem Incidência/Isenção → Integral</td>
+              <td class="val-col pre border-left-seg">0,85%</td><td class="val-col post">0,85%</td>
+              <td class="val-col pre border-left-seg">1,67%</td><td class="val-col post">1,51%</td>
+              <td class="val-col pre border-left-seg">1,89%</td><td class="val-col post">1,02%</td>
+              <td class="val-col pre border-left-seg">0,00%</td><td class="val-col post">0,00%</td>
+              <td class="val-col pre border-left-seg">0,20%</td><td class="val-col post">0,20%</td>
+              <td class="val-col pre border-left-seg">1,19%</td><td class="val-col post">1,19%</td>
+              <td class="val-col pre border-left-seg">0,40%</td><td class="val-col post">0,00%</td>
+            </tr>
+            <tr>
+              <td class="cst-trans">- → SEM CST</td>
+              <td class="rule-title">Não Mapeado → Sem CST Novo</td>
+              <td class="val-col pre border-left-seg">0,00%</td><td class="val-col post">0,24%</td>
+              <td class="val-col pre border-left-seg">0,00%</td><td class="val-col post">0,06%</td>
+              <td class="val-col pre border-left-seg">0,00%</td><td class="val-col post">0,87%</td>
+              <td class="val-col pre border-left-seg">0,00%</td><td class="val-col post">0,00%</td>
+              <td class="val-col pre border-left-seg">0,00%</td><td class="val-col post">0,07%</td>
+              <td class="val-col pre border-left-seg">0,00%</td><td class="val-col post">0,57%</td>
+              <td class="val-col pre border-left-seg">0,00%</td><td class="val-col post">1,79%</td>
+            </tr>
+            <tr class="total-row">
+              <td class="cst-trans">TOTAL</td>
+              <td class="rule-title">TOTAL DISTRIBUIÇÃO FISCAL</td>
+              <td class="val-col border-left-seg">100%</td><td class="val-col">100%</td>
+              <td class="val-col border-left-seg">100%</td><td class="val-col">100%</td>
+              <td class="val-col border-left-seg">100%</td><td class="val-col">100%</td>
+              <td class="val-col border-left-seg">100%</td><td class="val-col">100%</td>
+              <td class="val-col border-left-seg">100%</td><td class="val-col">100%</td>
+              <td class="val-col border-left-seg">100%</td><td class="val-col">100%</td>
+              <td class="val-col border-left-seg">100%</td><td class="val-col">100%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- GRÁFICOS SEPARADOS POR SEGMENTO -->
+    <div class="summary-comparison">
+      <div class="section-title">Comparativo de Percentuais por Regra Fiscal Separados por Segmento (Pré vs Pós)</div>
+      <div class="seg-grid">
+        
+        <!-- MAGAZAN -->
+        <div class="seg-card">
+          <div class="seg-title">Magazan</div>
+          <div class="model-block">
+            <div class="model-header pre"><span>Modelo Antigo</span><span>100%</span></div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 01 Normal</span><b>94,48%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-pre" style="width: 94.48%;"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 04 Monof.</span><b>3,75%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-pre" style="width: 3.75%;"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-info"><span>Outros (08/06)</span><b>1,77%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-pre" style="width: 1.77%;"></div></div>
+            </div>
+          </div>
+          <div class="model-block">
+            <div class="model-header post"><span>Modelo Novo</span><span>100%</span></div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 000 Integral</span><b>98,76%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-post" style="width: 98.76%;"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 410 Imun.</span><b>0,81%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-post" style="width: 0.81%;"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 200 (40/60)</span><b>0,37%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-post" style="width: 0.37%;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOME CENTER -->
+        <div class="seg-card">
+          <div class="seg-title">Home Center</div>
+          <div class="model-block">
+            <div class="model-header pre"><span>Modelo Antigo</span><span>100%</span></div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 01 Normal</span><b>93,51%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-pre" style="width: 93.51%;"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 04 Monof.</span><b>4,33%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-pre" style="width: 4.33%;"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-info"><span>Outros (08/06)</span><b>2,16%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-pre" style="width: 2.16%;"></div></div>
+            </div>
+          </div>
+          <div class="model-block">
+            <div class="model-header post"><span>Modelo Novo</span><span>100%</span></div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 000 Integral</span><b>99,12%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-post" style="width: 99.12%;"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-info"><span>Não Mapeado</span><b>0,87%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-post" style="width: 0.87%;"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 200 (100)</span><b>0,02%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-post" style="width: 0.02%;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FARMÁCIA -->
+        <div class="seg-card">
+          <div class="seg-title">Farmácia</div>
+          <div class="model-block">
+            <div class="model-header pre"><span>Modelo Antigo</span><span>100%</span></div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 04 Monof.</span><b>79,26%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-pre" style="width: 79.26%;"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 01 Normal</span><b>20,27%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-pre" style="width: 20.27%;"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 06 Zero</span><b>0,47%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-pre" style="width: 0.47%;"></div></div>
+            </div>
+          </div>
+          <div class="model-block">
+            <div class="model-header post"><span>Modelo Novo</span><span>100%</span></div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 200 (60)</span><b>56,45%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-post" style="width: 56.45%;"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 000 Integral</span><b>43,30%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-post" style="width: 43.30%;"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 200 (100)</span><b>0,21%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-post" style="width: 0.21%;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUPERMERCADO -->
+        <div class="seg-card">
+          <div class="seg-title">Supermercado</div>
+          <div class="model-block">
+            <div class="model-header pre"><span>Modelo Antigo</span><span>100%</span></div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 06 Zero</span><b>49,80%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-pre" style="width: 49.80%;"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 01 Normal</span><b>44,23%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-pre" style="width: 44.23%;"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 04 Monof.</span><b>5,76%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-pre" style="width: 5.76%;"></div></div>
+            </div>
+          </div>
+          <div class="model-block">
+            <div class="model-header post"><span>Modelo Novo</span><span>100%</span></div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 000 Integral</span><b>54,59%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-post" style="width: 54.59%;"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 200 (100)</span><b>34,62%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-post" style="width: 34.62%;"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 200 (60)</span><b>9,30%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-post" style="width: 9.30%;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PETSHOP -->
+        <div class="seg-card">
+          <div class="seg-title">Petshop</div>
+          <div class="model-block">
+            <div class="model-header pre"><span>Modelo Antigo</span><span>100%</span></div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 01 Normal</span><b>80,77%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-pre" style="width: 80.77%;"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 04 Monof.</span><b>16,80%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-pre" style="width: 16.80%;"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-info"><span>Outros (06/08)</span><b>2,43%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-pre" style="width: 2.43%;"></div></div>
+            </div>
+          </div>
+          <div class="model-block">
+            <div class="model-header post"><span>Modelo Novo</span><span>100%</span></div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 000 Integral</span><b>87,82%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-post" style="width: 87.82%;"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 200 (60)</span><b>11,57%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-post" style="width: 11.57%;"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-info"><span>Não Mapeado</span><b>0,57%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-post" style="width: 0.57%;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DEMAIS SEGMENTOS -->
+        <div class="seg-card">
+          <div class="seg-title">Demais Seg.</div>
+          <div class="model-block">
+            <div class="model-header pre"><span>Modelo Antigo</span><span>100%</span></div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 01 Normal</span><b>61,48%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-pre" style="width: 61.48%;"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 06 Zero</span><b>38,08%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-pre" style="width: 38.08%;"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-info"><span>Outros (04/08)</span><b>0,44%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-pre" style="width: 0.44%;"></div></div>
+            </div>
+          </div>
+          <div class="model-block">
+            <div class="model-header post"><span>Modelo Novo</span><span>100%</span></div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 000 Integral</span><b>56,42%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-post" style="width: 56.42%;"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 200 (100)</span><b>30,64%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-post" style="width: 30.64%;"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-info"><span>CST 200 (60)</span><b>7,00%</b></div>
+              <div class="progress-bg"><div class="progress-fill fill-post" style="width: 7.00%;"></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <div class="footnote">
+    <strong>Nota:</strong> Largura das colunas de texto da tabela otimizada (compactada) e fontes gerais ajustadas para 11px para melhorar a legibilidade e proporção dos dados.
+  </div>
+
+  <footer class="footer"><span>Grupo Lider · Controladoria</span><strong>REFORMA TRIBUTÁRIA — POR SEGMENTO</strong><span>19/19</span></footer>
+</div>
+
+</body>
+</html>

@@ -5,13 +5,132 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Grupo Lider Dashboard</title>
     <meta name="description" content="Dashboard financeiro do Grupo Lider" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet" />
-    <script type="module" crossorigin src="/assets/index-BUWDpDER.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-ZMxenE92.css">
+    <style>
+      * { box-sizing: border-box; }
+      html, body { margin: 0; min-height: 100%; overflow-x: hidden; background: #071827; }
+      .viewer { min-height: 100vh; padding: 14px; background: #071827; }
+      .viewer-nav { display: flex; gap: 8px; width: min(100%, 1920px); min-width: 0; margin: 0 auto 14px; padding: 5px; overflow-x: auto; overflow-y: hidden; border: 1px solid #234464; border-radius: 8px; background: #102540; }
+      .viewer-toolbar { display: flex; justify-content: flex-end; width: min(100%, 1920px); margin: 0 auto 10px; }
+      .presentation-toggle { min-height: 38px; padding: 0 14px; border: 1px solid #2f5b84; border-radius: 6px; background: #123154; color: #cfe1f3; cursor: pointer; font: 700 .8rem 'Segoe UI', sans-serif; text-transform: uppercase; letter-spacing: .03em; }
+      .presentation-toggle:hover { background: #1b436f; }
+      .viewer-button { flex: 0 0 auto; min-height: 42px; min-width: 130px; border: 0; border-radius: 5px; background: transparent; color: #9bb0c5; cursor: pointer; font: 700 .86rem 'Segoe UI', sans-serif; white-space: nowrap; }
+      .viewer-button span { margin-right: 8px; color: #f5a623; font-size: .72rem; }
+      .viewer-button:hover, .viewer-button.active { background: #f5a623; color: #071827; }
+      .viewer-button:hover span, .viewer-button.active span { color: #071827; }
+      .slide-frame { position: relative; width: min(100%, calc((100vh - 90px) * 1.7778)); height: min(calc(100vw * .5625), calc(100vh - 90px)); margin: 0 auto; overflow: hidden; background: #0a1628; }
+      .slide-frame iframe { position: absolute; top: 0; left: 0; width: 1920px; height: 1080px; border: 0; transform-origin: top left; }
+      body.presentation-mode .viewer { padding: 0; }
+      body.presentation-mode .viewer-nav,
+      body.presentation-mode .viewer-toolbar { display: none; }
+      body.presentation-mode .slide-frame { width: 100vw; height: 100vh; margin: 0; }
+      @media (max-width: 700px) { .viewer { padding: 8px; } }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
+    <main class="viewer">
+      <nav class="viewer-nav" aria-label="Navegação dos slides">
+          <button class="viewer-button active" data-slide="01_capa" type="button"><span>01</span>Capa</button>
+          <button class="viewer-button" data-slide="02_numero_lojas" type="button"><span>02</span>Número de lojas</button>
+          <button class="viewer-button" data-slide="03_modelo_negocio" type="button"><span>03</span>Modelo de negócio</button>
+          <button class="viewer-button" data-slide="04_capa_indicadores_financeiros" type="button"><span>04</span>Indicadores financeiros consolidados</button>
+          <button class="viewer-button" data-slide="05_bp_dre_comparativo" type="button"><span>05</span>BP/DRE comparativo</button>
+          <button class="viewer-button" data-slide="06_principais_indicadores" type="button"><span>06</span>Principais indicadores</button>
+          <button class="viewer-button" data-slide="07_receita_liquida" type="button"><span>07</span>Receita líquida</button>
+          <button class="viewer-button" data-slide="08_lucro_bruto" type="button"><span>08</span>Lucro bruto</button>
+          <button class="viewer-button" data-slide="09_despesas_operacionais" type="button"><span>09</span>Despesas operacionais</button>
+          <button class="viewer-button" data-slide="10_ebitda_pre_ifrs16" type="button"><span>10</span>EBITDA pré IFRS 16</button>
+          <button class="viewer-button" data-slide="11_ciclo_de_caixa" type="button"><span>11</span>Ciclo de caixa</button>
+          <button class="viewer-button" data-slide="12_divida_liquida" type="button"><span>12</span>Dívida líquida</button>
+          <button class="viewer-button" data-slide="13_estrutura_financeira" type="button"><span>13</span>Estrutura financeira</button>
+          <button class="viewer-button" data-slide="14_faturamento_por_loja" type="button"><span>14</span>Faturamento por loja</button>
+          <button class="viewer-button" data-slide="15_margens_e_rentabilidade" type="button"><span>15</span>Margens e rentabilidade</button>
+          <button class="viewer-button" data-slide="16_faturamento_por_segmento" type="button"><span>16</span>Faturamento por segmento</button>
+          <button class="viewer-button" data-slide="17_margens_por_segmento" type="button"><span>17</span>Margens por segmento</button>
+            <button class="viewer-button" data-slide="18_reforma_tributaria_resumo" type="button"><span>18</span>Reforma tributária resumo</button>
+            <button class="viewer-button" data-slide="19_reforma_tributaria_segmento" type="button"><span>19</span>Reforma tributária por segmento</button>
+      </nav>
+          <div class="viewer-toolbar">
+            <button id="presentation-toggle" class="presentation-toggle" type="button">Modo apresentação</button>
+          </div>
+      <section class="slide-frame" id="slide-frame" aria-label="Capa">
+          <iframe id="slide" src="./slides/01_capa.html" title="Capa"></iframe>
+      </section>
+    </main>
+    <script>
+      const frame = document.getElementById('slide-frame');
+      const slide = document.getElementById('slide');
+      const buttons = Array.from(document.querySelectorAll('[data-slide]'));
+      const presentationToggle = document.getElementById('presentation-toggle');
+      let currentIndex = 0;
+
+      const handleNavigationKey = (event) => {
+        if (event.target && ['INPUT', 'TEXTAREA', 'SELECT'].includes(event.target.tagName)) return;
+
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown' || event.key === 'PageDown') {
+          event.preventDefault();
+          goToSlide(Math.min(buttons.length - 1, currentIndex + 1));
+          return;
+        }
+
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowUp' || event.key === 'PageUp') {
+          event.preventDefault();
+          goToSlide(Math.max(0, currentIndex - 1));
+        }
+      };
+
+      const bindSlideKeyboard = () => {
+        try {
+          slide.contentWindow.addEventListener('keydown', handleNavigationKey);
+        } catch {
+          // The viewer still handles keyboard input when focus remains outside the iframe.
+        }
+      };
+
+      const goToSlide = (index) => {
+        if (index < 0 || index >= buttons.length) return;
+        currentIndex = index;
+        const button = buttons[currentIndex];
+        buttons.forEach((item) => item.classList.remove('active'));
+        button.classList.add('active');
+        slide.src = `./slides/${button.dataset.slide}.html`;
+        slide.title = button.textContent.slice(2).trim();
+        frame.setAttribute('aria-label', slide.title);
+      };
+
+      const fitSlide = () => {
+        const scale = Math.min(frame.clientWidth / 1920, frame.clientHeight / 1080);
+        slide.style.transform = `scale(${scale})`;
+        slide.style.left = `${Math.max(0, (frame.clientWidth - (1920 * scale)) / 2)}px`;
+        slide.style.top = `${Math.max(0, (frame.clientHeight - (1080 * scale)) / 2)}px`;
+      };
+
+      const syncPresentationState = () => {
+        const isFullscreen = !!document.fullscreenElement;
+        document.body.classList.toggle('presentation-mode', isFullscreen);
+        presentationToggle.textContent = isFullscreen ? 'Sair da apresentação' : 'Modo apresentação';
+        fitSlide();
+      };
+
+      buttons.forEach((button, index) => button.addEventListener('click', () => goToSlide(index)));
+
+      presentationToggle.addEventListener('click', async () => {
+        try {
+          if (!document.fullscreenElement) {
+            await document.documentElement.requestFullscreen();
+          } else {
+            await document.exitFullscreen();
+          }
+        } catch (error) {
+          console.warn('Não foi possível alternar o modo apresentação.', error);
+        }
+      });
+
+      document.addEventListener('keydown', handleNavigationKey);
+      slide.addEventListener('load', bindSlideKeyboard);
+
+      document.addEventListener('fullscreenchange', syncPresentationState);
+      window.addEventListener('resize', fitSlide);
+      fitSlide();
+    </script>
   </body>
 </html>

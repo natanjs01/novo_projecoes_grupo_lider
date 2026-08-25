@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BP/DRE Comparativo</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bebas+Neue&display=swap');
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #071827; }
+.slide {
+  position: relative; width: 1920px; height: 1080px; overflow: hidden;
+  background: linear-gradient(180deg, #081a2a 0%, #0a1d2f 100%);
+  color: #edf5ff; font-family: Inter, Arial, sans-serif;
+}
+.slide::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(90deg, rgba(0,180,216,0.05), transparent 35%, transparent 65%, rgba(245,166,35,0.06)),
+    repeating-linear-gradient(to right, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 120px);
+}
+.header {
+  position: relative; z-index: 1;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 26px 48px 18px 48px;
+  border-bottom: 1px solid rgba(148,163,184,0.3);
+  background: rgba(9,21,31,0.38);
+}
+.brand {
+  display: flex; align-items: center; gap: 16px;
+}
+.brand-mark {
+  width: 205px; height: 72px; display: grid; place-items: center;
+}
+.brand-mark img { width: 100%; height: 100%; object-fit: contain; }
+.brand-name {
+  color: #d9ebfb; font-size: 17px; letter-spacing: .12em; text-transform: uppercase; font-weight: 700;
+}
+.chapter {
+  color: #f5a623; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; font-weight: 800;
+}
+.title {
+  position: relative; z-index: 1;
+  padding: 18px 48px 0 48px;
+}
+.title h1 {
+  margin: 0;
+  font: 400 38px/1.05 'Bebas Neue', Impact, sans-serif;
+  letter-spacing: .05em; text-transform: uppercase; color: #f5f9ff;
+}
+.main-grid {
+  position: relative; z-index: 1;
+  display: grid;
+  grid-template-columns: 2.15fr 1.05fr;
+  gap: 22px;
+  padding: 22px 48px 24px 48px;
+  height: calc(100% - 168px);
+}
+.bp-panel, .dre-panel {
+  display: flex; flex-direction: column;
+  min-height: 0;
+  border: 1px solid rgba(148,163,184,0.16);
+  border-radius: 2px;
+  overflow: hidden;
+  background: rgba(12,30,45,0.9);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.14);
+}
+.bp-panel-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 16px;
+  background: #0b3d5a;
+  border-bottom: 1px solid rgba(148,163,184,0.22);
+  color: #fff;
+  font-weight: 800;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+.bp-panel-header span:last-child { color: #f5a623; font-size: 11px; letter-spacing: .16em; }
+.bp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  height: 100%;
+  padding: 0 10px 10px;
+}
+.bp-col {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: rgba(8,15,23,0.72);
+  border: 1px solid rgba(148,163,184,0.14);
+}
+.bp-col:first-child { border-right: 1px solid rgba(148,163,184,0.14); }
+.subheader {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 11px 14px;
+  background: #0b3d5a;
+  font-size: 12px; letter-spacing: .16em; text-transform: uppercase;
+  font-weight: 800;
+  color: #dfeafb;
+  border-bottom: 1px solid rgba(148,163,184,0.18);
+}
+.subheader .brand-mini {
+  color: #eaf6ff; font-weight: 800; letter-spacing: .12em;
+}
+.bp-table-wrap {
+  flex: 1;
+  padding: 4px 10px 8px;
+  background: rgba(8,15,23,0.72);
+}
+.bp-table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 14px;
+}
+.bp-table-wrap th,
+.bp-table-wrap td {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+.bp-table-wrap th:first-child,
+.bp-table-wrap td:first-child { width: 56%; }
+.bp-table-wrap th:not(:first-child),
+.bp-table-wrap td:not(:first-child) { width: 14.66%; }
+.bp-table-wrap thead th {
+  color: #dfeafb;
+  background: rgba(17,35,53,0.55);
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 800;
+  padding: 8px 6px;
+  border-bottom: 1px solid rgba(148,163,184,0.2);
+}
+.bp-table-wrap thead th:first-child { text-align: left; }
+.bp-table-wrap thead th:not(:first-child) { text-align: center; }
+.bp-table-wrap tbody td {
+  height: 40px;
+  padding: 8px 6px;
+  border-bottom: 1px solid rgba(148,163,184,0.12);
+  color: #d5e3f2;
+  vertical-align: middle;
+  line-height: 1.5;
+}
+.bp-table-wrap tbody td:first-child {
+  text-align: left;
+  color: #edf5ff;
+  font-weight: 600;
+  font-size: 13px;
+}
+.bp-table-wrap tbody td:not(:first-child) { text-align: center; font-weight: 700; }
+.bp-table-wrap tbody tr:nth-child(odd) { background: rgba(255,255,255,0.01); }
+.bp-table-wrap tbody tr.total td {
+  background: rgba(245,166,35,0.14);
+  border-top: 1px solid rgba(245,166,35,0.38);
+  border-bottom: 1px solid rgba(245,166,35,0.38);
+  color: #fff;
+  font-weight: 800;
+  height: 32px;
+}
+.bp-table-wrap tbody tr.total td:first-child { color: #fff; }
+.bp-table-wrap tbody tr.subtotal td {
+  background: rgba(0,180,216,0.13);
+  border-top: 1px solid rgba(0,180,216,0.28);
+  color: #fff;
+  font-weight: 800;
+  height: 30px;
+}
+.bp-table-wrap tbody tr.spacer td {
+  background: rgba(255,255,255,0.01);
+  color: transparent;
+  height: 28px;
+}
+.bp-table-wrap tbody tr { height: 32px; }
+.num { color: #fff; }
+.pos { color: #52d197; }
+.neg { color: #ff7d7d; }
+.muted { color: #94a3b8; }
+.dre-panel .panel-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 16px;
+  background: linear-gradient(90deg, rgba(245,166,35,0.2), rgba(17,34,49,0.9));
+  border-bottom: 1px solid rgba(148,163,184,0.22);
+  color: #fff;
+  font-weight: 800;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+.dre-panel .panel-header span:last-child { color: #f5a623; font-size: 11px; letter-spacing: .16em; }
+.dre-table-wrap { flex: 1; padding: 8px 12px 10px; background: rgba(10,22,34,0.34); }
+.dre-table-wrap table {
+  width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 15px;
+}
+.dre-table-wrap thead th {
+  color: #dfeafb; background: rgba(17,35,53,0.8); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; font-weight: 800; padding: 9px 6px; border-bottom: 1px solid rgba(148,163,184,0.2);
+}
+.dre-table-wrap thead th:first-child { text-align: left; }
+.dre-table-wrap thead th:not(:first-child) { text-align: center; }
+.dre-table-wrap th:first-child,
+.dre-table-wrap td:first-child { width: 53%; }
+.dre-table-wrap th:not(:first-child),
+.dre-table-wrap td:not(:first-child) { width: 15.66%; }
+.dre-table-wrap tbody td {
+  height: 44px; padding: 8px 6px; border-bottom: 1px solid rgba(148,163,184,0.12); color: #d5e3f2; vertical-align: middle; line-height: 1.5; white-space: normal; overflow: visible; text-overflow: clip;
+}
+.dre-table-wrap tbody td:first-child { text-align: left; color: #edf5ff; font-weight: 600; font-size: 14px; line-height: 1.5; }
+.dre-table-wrap tbody td:not(:first-child) { text-align: center; font-weight: 700; }
+.dre-table-wrap tbody tr:nth-child(odd) { background: rgba(255,255,255,0.01); }
+.footer {
+  position: absolute; left: 48px; right: 48px; bottom: 18px;
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 12px; border-top: 1px solid rgba(148,163,184,0.2);
+  color: #8ea3bb; font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+}
+.footer strong { color: #f5a623; font-weight: 800; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <header class="header">
+    <div class="brand">
+      <div class="brand-mark"><img src="../assets/logo.png?v=2" alt="Grupo Líder"></div>
+      <div class="brand-name">Grupo Líder</div>
+    </div>
+    <div class="chapter">Comparativo estratégico</div>
+  </header>
+
+  <div class="title">
+    <h1>BP/DRE Comparativo</h1>
+  </div>
+
+  <main class="main-grid">
+    <section class="bp-panel">
+      <div class="bp-panel-header">
+        <span>Análise dos saldos</span>
+        <span>R$ em milhões</span>
+      </div>
+
+      <div class="bp-grid">
+        <div class="bp-col">
+          <div class="subheader"><span class="brand-mini">Ativo</span><span>Grupo Líder</span></div>
+          <div class="bp-table-wrap">
+            <table>
+              <thead>
+                <tr><th>Conta</th><th>jun/26</th><th>dez/25</th><th>%</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Caixa e equivalentes</td><td class="num">131</td><td class="num">111</td><td class="pos">18%</td></tr>
+                <tr><td>Contas a receber</td><td class="num">227</td><td class="num">256</td><td class="neg">-11%</td></tr>
+                <tr><td>Estoques</td><td class="num">631</td><td class="num">650</td><td class="neg">-3%</td></tr>
+                <tr><td>Outros</td><td class="num">101</td><td class="num">35</td><td class="pos">189%</td></tr>
+                <tr class="subtotal"><td><strong>Total ativo circulante</strong></td><td class="num"><strong>1.090</strong></td><td class="num"><strong>1.065</strong></td><td class="pos"><strong>2%</strong></td></tr>
+                <tr><td>Imobilizado</td><td class="num">77</td><td class="num">73</td><td class="pos">6%</td></tr>
+                <tr><td>Intangível</td><td class="num">382</td><td class="num">382</td><td class="muted">0%</td></tr>
+                <tr class="subtotal"><td><strong>Total não circulante</strong></td><td class="num"><strong>467</strong></td><td class="num"><strong>473</strong></td><td class="neg"><strong>-1%</strong></td></tr>
+                <tr class="spacer"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                <tr class="total" style="height: 36px;"><td><strong>Total ativo</strong></td><td class="num"><strong>1.558</strong></td><td class="num"><strong>1.539</strong></td><td class="pos"><strong>1%</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="bp-col">
+          <div class="subheader"><span class="brand-mini">Passivo</span><span>Grupo Líder</span></div>
+          <div class="bp-table-wrap">
+            <table>
+              <thead>
+                <tr><th>Conta</th><th>jun/26</th><th>dez/25</th><th>%</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Fornecedores</td><td class="num">555</td><td class="num">613</td><td class="neg">-9%</td></tr>
+                <tr><td>Fornecedores par. relacionadas</td><td class="num">-</td><td class="num">-</td><td class="muted">0%</td></tr>
+                <tr><td>Empréstimos e financiamentos</td><td class="num">38</td><td class="num">29</td><td class="pos">31%</td></tr>
+                <tr><td>Outros</td><td class="num">411</td><td class="num">317</td><td class="pos">30%</td></tr>
+                <tr class="subtotal"><td><strong>Total passivo circulante</strong></td><td class="num"><strong>1.004</strong></td><td class="num"><strong>959</strong></td><td class="pos"><strong>5%</strong></td></tr>
+                <tr><td>Empréstimos e financiamentos NC</td><td class="num">56</td><td class="num">80</td><td class="neg">-30%</td></tr>
+                <tr><td>Tributos</td><td class="num">35</td><td class="num">34</td><td class="pos">3%</td></tr>
+                <tr><td>Outros</td><td class="num">-</td><td class="num">-</td><td class="muted">0%</td></tr>
+                <tr class="subtotal"><td><strong>Total do passivo não circulante</strong></td><td class="num"><strong>91</strong></td><td class="num"><strong>120</strong></td><td class="neg"><strong>-20%</strong></td></tr>
+                <tr class="total" style="height: 36px;"><td><strong>Total do passivo</strong></td><td class="num"><strong>1.095</strong></td><td class="num"><strong>1.079</strong></td><td class="pos"><strong>1%</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="dre-panel">
+      <div class="panel-header"><span>DRE</span><span>R$</span></div>
+      <div class="dre-table-wrap">
+        <table>
+          <thead>
+            <tr><th>Conta</th><th>jun/26</th><th>jun/25</th><th>%</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Receita operacional líquida</td><td class="num">2.434</td><td class="num">2.276</td><td class="pos">7%</td></tr>
+            <tr class="subtotal"><td><strong>Lucro operacional bruto</strong></td><td class="num"><strong>682</strong></td><td class="num"><strong>651</strong></td><td class="pos"><strong>5%</strong></td></tr>
+            <tr><td>Despesas gerais e administrativas</td><td class="num">(640)</td><td class="num">(617)</td><td class="neg">4%</td></tr>
+            <tr><td>Despesas comerciais</td><td class="num">(7)</td><td class="num">(11)</td><td class="pos">-36%</td></tr>
+            <tr><td>Despesas tributárias</td><td class="num">(5)</td><td class="num">(3)</td><td class="neg">66%</td></tr>
+            <tr class="subtotal"><td><strong>Operacionais</strong></td><td class="num"><strong>(637)</strong></td><td class="num"><strong>(612)</strong></td><td class="neg"><strong>4%</strong></td></tr>
+            <tr><td>Receitas financeiras</td><td class="num">6</td><td class="num">10</td><td class="neg">-42%</td></tr>
+            <tr><td>Despesas financeiras</td><td class="num">(8)</td><td class="num">(12)</td><td class="pos">-33%</td></tr>
+            <tr class="subtotal"><td><strong>Resultado financeiro</strong></td><td class="num"><strong>(3)</strong></td><td class="num"><strong>(3)</strong></td><td class="muted"><strong>-89%</strong></td></tr>
+            <tr class="total"><td><strong>Resultado antes dos impostos</strong></td><td class="num"><strong>42</strong></td><td class="num"><strong>36</strong></td><td class="pos"><strong>17%</strong></td></tr>
+            <tr><td>Imposto de renda e contribuição social</td><td class="num">(18)</td><td class="num">(15)</td><td class="neg">20%</td></tr>
+            <tr class="total"><td><strong>Lucro (prejuízo) líquido</strong></td><td class="num"><strong>26</strong></td><td class="num"><strong>21</strong></td><td class="pos"><strong>24%</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </aside>
+  </main>
+
+  <div class="footer">
+    <span>Grupo Líder · Controladoria</span>
+    <strong>BP / DRE</strong>
+    <span>5/19</span>
+  </div>
+</div>
+</body>
+</html>
