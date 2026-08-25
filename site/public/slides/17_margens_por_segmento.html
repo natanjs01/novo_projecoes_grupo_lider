@@ -94,7 +94,7 @@ window.addEventListener('load', function() {
   var mb26Raw = [29.14,26.18,30.52,56.55,25.4,24.88,12.05,17.97,31.14];
   var ml26Raw = [8.43,7.55,8.82,16.32,7.34,7.2,3.23,5.17,8.99];
   var labels = order.map(function(i){ return labelsRaw[i]; });
-  var mb25 = order.map(function(i){ return mb25Raw[i]; });
+  var mb25 = order.map(function(i){ return Math.abs(mb25Raw[i]); });
   var mb26 = order.map(function(i){ return mb26Raw[i]; });
   var ml26 = order.map(function(i){ return ml26Raw[i]; });
   new Chart(document.getElementById('segmentMarginChart').getContext('2d'), {
@@ -119,10 +119,11 @@ window.addEventListener('load', function() {
         chart.getDatasetMeta(di).data.forEach(function(bar, i) {
           var v = Number(ds.data[i]);
           if (!Number.isFinite(v) || v === 0) return;
+          var labelValue = di === 0 ? mb25Raw[order[i]] : v;
           c.save();
           c.fillStyle = di === 2 ? '#FB923C' : (di === 1 ? '#C4B5FD' : '#94A3B8');
           c.font = '700 14px Inter'; c.textAlign = 'left'; c.textBaseline = 'middle';
-          c.fillText(v.toFixed(1) + '%', bar.x + 8, bar.y);
+          c.fillText(labelValue.toFixed(1) + '%', bar.x + 8, bar.y);
           c.restore();
         });
       });

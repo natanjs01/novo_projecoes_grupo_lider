@@ -7,13 +7,13 @@
     <meta name="description" content="Dashboard financeiro do Grupo Lider" />
     <style>
       * { box-sizing: border-box; }
-      html, body { margin: 0; min-height: 100%; background: #071827; }
+      html, body { margin: 0; min-height: 100%; overflow-x: hidden; background: #071827; }
       .viewer { min-height: 100vh; padding: 14px; background: #071827; }
-      .viewer-nav { display: flex; gap: 8px; width: min(100%, 1920px); margin: 0 auto 14px; padding: 5px; border: 1px solid #234464; border-radius: 8px; background: #102540; }
+      .viewer-nav { display: flex; gap: 8px; width: min(100%, 1920px); min-width: 0; margin: 0 auto 14px; padding: 5px; overflow-x: auto; overflow-y: hidden; border: 1px solid #234464; border-radius: 8px; background: #102540; }
       .viewer-toolbar { display: flex; justify-content: flex-end; width: min(100%, 1920px); margin: 0 auto 10px; }
       .presentation-toggle { min-height: 38px; padding: 0 14px; border: 1px solid #2f5b84; border-radius: 6px; background: #123154; color: #cfe1f3; cursor: pointer; font: 700 .8rem 'Segoe UI', sans-serif; text-transform: uppercase; letter-spacing: .03em; }
       .presentation-toggle:hover { background: #1b436f; }
-      .viewer-button { flex: 1; min-height: 42px; border: 0; border-radius: 5px; background: transparent; color: #9bb0c5; cursor: pointer; font: 700 .86rem 'Segoe UI', sans-serif; }
+      .viewer-button { flex: 0 0 auto; min-height: 42px; min-width: 130px; border: 0; border-radius: 5px; background: transparent; color: #9bb0c5; cursor: pointer; font: 700 .86rem 'Segoe UI', sans-serif; white-space: nowrap; }
       .viewer-button span { margin-right: 8px; color: #f5a623; font-size: .72rem; }
       .viewer-button:hover, .viewer-button.active { background: #f5a623; color: #071827; }
       .viewer-button:hover span, .viewer-button.active span { color: #071827; }
@@ -23,7 +23,7 @@
       body.presentation-mode .viewer-nav,
       body.presentation-mode .viewer-toolbar { display: none; }
       body.presentation-mode .slide-frame { width: 100vw; height: 100vh; margin: 0; }
-      @media (max-width: 700px) { .viewer { padding: 8px; } .viewer-nav { overflow-x: auto; } .viewer-button { min-width: 130px; } }
+      @media (max-width: 700px) { .viewer { padding: 8px; } }
     </style>
   </head>
   <body>
@@ -63,6 +63,29 @@
       const presentationToggle = document.getElementById('presentation-toggle');
       let currentIndex = 0;
 
+      const handleNavigationKey = (event) => {
+        if (event.target && ['INPUT', 'TEXTAREA', 'SELECT'].includes(event.target.tagName)) return;
+
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown' || event.key === 'PageDown') {
+          event.preventDefault();
+          goToSlide(Math.min(buttons.length - 1, currentIndex + 1));
+          return;
+        }
+
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowUp' || event.key === 'PageUp') {
+          event.preventDefault();
+          goToSlide(Math.max(0, currentIndex - 1));
+        }
+      };
+
+      const bindSlideKeyboard = () => {
+        try {
+          slide.contentWindow.addEventListener('keydown', handleNavigationKey);
+        } catch {
+          // The viewer still handles keyboard input when focus remains outside the iframe.
+        }
+      };
+
       const goToSlide = (index) => {
         if (index < 0 || index >= buttons.length) return;
         currentIndex = index;
@@ -91,28 +114,19 @@
       buttons.forEach((button, index) => button.addEventListener('click', () => goToSlide(index)));
 
       presentationToggle.addEventListener('click', async () => {
-        if (!document.fullscreenElement) {
-          await document.documentElement.requestFullscreen();
-          return;
-        }
-        await document.exitFullscreen();
-      });
-
-      document.addEventListener('keydown', (event) => {
-        const blockedTag = event.target && event.target.tagName;
-        if (blockedTag === 'INPUT' || blockedTag === 'TEXTAREA') return;
-
-        if (event.key === 'ArrowRight' || event.key === 'ArrowDown' || event.key === 'PageDown') {
-          event.preventDefault();
-          goToSlide(Math.min(buttons.length - 1, currentIndex + 1));
-          return;
-        }
-
-        if (event.key === 'ArrowLeft' || event.key === 'ArrowUp' || event.key === 'PageUp') {
-          event.preventDefault();
-          goToSlide(Math.max(0, currentIndex - 1));
+        try {
+          if (!document.fullscreenElement) {
+            await document.documentElement.requestFullscreen();
+          } else {
+            await document.exitFullscreen();
+          }
+        } catch (error) {
+          console.warn('Não foi possível alternar o modo apresentação.', error);
         }
       });
+
+      document.addEventListener('keydown', handleNavigationKey);
+      slide.addEventListener('load', bindSlideKeyboard);
 
       document.addEventListener('fullscreenchange', syncPresentationState);
       window.addEventListener('resize', fitSlide);

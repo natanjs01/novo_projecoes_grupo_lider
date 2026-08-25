@@ -112,10 +112,10 @@
 <script>
 window.addEventListener('load', function() {
   lucide.createIcons();
-  var labels = ['L24 Quintino','L03 Doca','L18 C.Nova','L31 Barcarena','L28 Independencia','L07 Pca Brasil','L12 Br','L40 Marambaia','L32 Maraba','L33 Augusto Montenegro','L54 Duque','L17 Canudos','L38 Abaetetuba','L37 Capanema','L42 Salinopolis','L50 Estrela','L09 Humaita','L02 Alcindo Cacela','L44 Guama','L36 Paragominas','L48 Sao Francisco','L08 Batista Campos','L11 Icoaraci','L27 Pedreira','L05 Castanheira','L10 Castanhal','L04 Obidos','L01 Condor','L06 Mag Castanheira','L19 Mag Castanhal','L41 Magazan Casa','L29 Fazenda Tres Marias I','L55 Mosqueiro'];
-  var mb26 = [30.13,30.43,28.95,30.1,30.63,29.98,30.75,29.87,31.67,29.58,32.19,28.72,29.75,29.13,30.18,31.25,31.47,31.55,27.42,29.99,31.96,33.07,29.24,29.69,32.55,32.15,28.92,27.05,26.11,26.06,30.85,100.0,0];
-  var ml26 = [8.7,8.8,8.36,8.7,8.85,8.66,8.88,8.63,9.15,8.54,9.3,8.3,8.6,8.42,8.76,9.03,9.09,9.12,7.92,8.66,9.24,9.56,8.45,8.58,9.4,9.29,8.35,7.82,7.54,7.52,8.93,28.98,0];
-  var mb25 = [29.88,30.35,28.31,29.47,29.6,28.92,30.13,29.88,32.48,29.32,31.06,28.75,28.84,26.85,30.19,30.71,30.69,31.01,27.37,29.29,31.49,31.9,27.51,28.06,31.72,30.41,27.6,26.04,26.19,26.41,33.24,100.0,0];
+  var labels = ['L29 Fazenda Tres Marias I','L08 Batista Campos','L05 Castanheira','L54 Duque','L10 Castanhal','L48 Sao Francisco','L32 Maraba','L02 Alcindo Cacela','L09 Humaita','L50 Estrela','L41 Magazan Casa','L12 Br','L28 Independencia','L03 Doca','L42 Salinopolis','L24 Quintino','L31 Barcarena','L36 Paragominas','L07 Pca Brasil','L40 Marambaia','L38 Abaetetuba','L27 Pedreira','L33 Augusto Montenegro','L11 Icoaraci','L37 Capanema','L18 C.Nova','L04 Obidos','L17 Canudos','L44 Guama','L01 Condor','L06 Mag Castanheira','L19 Mag Castanhal','L55 Mosqueiro'];
+  var mb26 = [100.0,33.07,32.55,32.19,32.15,31.96,31.67,31.55,31.47,31.25,30.85,30.75,30.63,30.43,30.18,30.13,30.1,29.99,29.98,29.87,29.75,29.69,29.58,29.24,29.13,28.95,28.92,28.72,27.42,27.05,26.11,26.06,0];
+  var ml26 = [28.98,9.56,9.4,9.3,9.29,9.24,9.15,9.12,9.09,9.03,8.93,8.88,8.85,8.8,8.76,8.7,8.7,8.66,8.66,8.63,8.6,8.58,8.54,8.45,8.42,8.36,8.35,8.3,7.92,7.82,7.54,7.52,0];
+  var mb25 = [100.0,31.9,31.72,31.06,30.41,31.49,32.48,31.01,30.69,30.71,33.24,30.13,29.6,30.35,30.19,29.88,29.47,29.29,28.92,29.88,28.84,28.06,29.32,27.51,26.85,28.31,27.6,28.75,27.37,26.04,26.19,26.41,0];
   new Chart(document.getElementById('marginChart').getContext('2d'), {
     type: 'bar',
     data: { labels: labels, datasets: [
