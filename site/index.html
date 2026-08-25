@@ -10,12 +10,19 @@
       html, body { margin: 0; min-height: 100%; background: #071827; }
       .viewer { min-height: 100vh; padding: 14px; background: #071827; }
       .viewer-nav { display: flex; gap: 8px; width: min(100%, 1920px); margin: 0 auto 14px; padding: 5px; border: 1px solid #234464; border-radius: 8px; background: #102540; }
+      .viewer-toolbar { display: flex; justify-content: flex-end; width: min(100%, 1920px); margin: 0 auto 10px; }
+      .presentation-toggle { min-height: 38px; padding: 0 14px; border: 1px solid #2f5b84; border-radius: 6px; background: #123154; color: #cfe1f3; cursor: pointer; font: 700 .8rem 'Segoe UI', sans-serif; text-transform: uppercase; letter-spacing: .03em; }
+      .presentation-toggle:hover { background: #1b436f; }
       .viewer-button { flex: 1; min-height: 42px; border: 0; border-radius: 5px; background: transparent; color: #9bb0c5; cursor: pointer; font: 700 .86rem 'Segoe UI', sans-serif; }
       .viewer-button span { margin-right: 8px; color: #f5a623; font-size: .72rem; }
       .viewer-button:hover, .viewer-button.active { background: #f5a623; color: #071827; }
       .viewer-button:hover span, .viewer-button.active span { color: #071827; }
       .slide-frame { position: relative; width: min(100%, calc((100vh - 90px) * 1.7778)); height: min(calc(100vw * .5625), calc(100vh - 90px)); margin: 0 auto; overflow: hidden; background: #0a1628; }
       .slide-frame iframe { position: absolute; top: 0; left: 0; width: 1920px; height: 1080px; border: 0; transform-origin: top left; }
+      body.presentation-mode .viewer { padding: 0; }
+      body.presentation-mode .viewer-nav,
+      body.presentation-mode .viewer-toolbar { display: none; }
+      body.presentation-mode .slide-frame { width: 100vw; height: 100vh; margin: 0; }
       @media (max-width: 700px) { .viewer { padding: 8px; } .viewer-nav { overflow-x: auto; } .viewer-button { min-width: 130px; } }
     </style>
   </head>
@@ -42,6 +49,9 @@
             <button class="viewer-button" data-slide="18_reforma_tributaria_resumo" type="button"><span>18</span>Reforma tributária resumo</button>
             <button class="viewer-button" data-slide="19_reforma_tributaria_segmento" type="button"><span>19</span>Reforma tributária por segmento</button>
       </nav>
+          <div class="viewer-toolbar">
+            <button id="presentation-toggle" class="presentation-toggle" type="button">Modo apresentação</button>
+          </div>
       <section class="slide-frame" id="slide-frame" aria-label="Capa">
           <iframe id="slide" src="./slides/01_capa.html" title="Capa"></iframe>
       </section>
@@ -49,17 +59,62 @@
     <script>
       const frame = document.getElementById('slide-frame');
       const slide = document.getElementById('slide');
-      const buttons = document.querySelectorAll('[data-slide]');
-      const fitSlide = () => {
-        slide.style.transform = `scale(${Math.min(frame.clientWidth / 1920, frame.clientHeight / 1080)})`;
-      };
-      buttons.forEach((button) => button.addEventListener('click', () => {
+      const buttons = Array.from(document.querySelectorAll('[data-slide]'));
+      const presentationToggle = document.getElementById('presentation-toggle');
+      let currentIndex = 0;
+
+      const goToSlide = (index) => {
+        if (index < 0 || index >= buttons.length) return;
+        currentIndex = index;
+        const button = buttons[currentIndex];
         buttons.forEach((item) => item.classList.remove('active'));
         button.classList.add('active');
         slide.src = `./slides/${button.dataset.slide}.html`;
         slide.title = button.textContent.slice(2).trim();
         frame.setAttribute('aria-label', slide.title);
-      }));
+      };
+
+      const fitSlide = () => {
+        const scale = Math.min(frame.clientWidth / 1920, frame.clientHeight / 1080);
+        slide.style.transform = `scale(${scale})`;
+        slide.style.left = `${Math.max(0, (frame.clientWidth - (1920 * scale)) / 2)}px`;
+        slide.style.top = `${Math.max(0, (frame.clientHeight - (1080 * scale)) / 2)}px`;
+      };
+
+      const syncPresentationState = () => {
+        const isFullscreen = !!document.fullscreenElement;
+        document.body.classList.toggle('presentation-mode', isFullscreen);
+        presentationToggle.textContent = isFullscreen ? 'Sair da apresentação' : 'Modo apresentação';
+        fitSlide();
+      };
+
+      buttons.forEach((button, index) => button.addEventListener('click', () => goToSlide(index)));
+
+      presentationToggle.addEventListener('click', async () => {
+        if (!document.fullscreenElement) {
+          await document.documentElement.requestFullscreen();
+          return;
+        }
+        await document.exitFullscreen();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        const blockedTag = event.target && event.target.tagName;
+        if (blockedTag === 'INPUT' || blockedTag === 'TEXTAREA') return;
+
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown' || event.key === 'PageDown') {
+          event.preventDefault();
+          goToSlide(Math.min(buttons.length - 1, currentIndex + 1));
+          return;
+        }
+
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowUp' || event.key === 'PageUp') {
+          event.preventDefault();
+          goToSlide(Math.max(0, currentIndex - 1));
+        }
+      });
+
+      document.addEventListener('fullscreenchange', syncPresentationState);
       window.addEventListener('resize', fitSlide);
       fitSlide();
     </script>
