@@ -97,7 +97,7 @@
       <div class="rounded-xl p-4" style="background:#112240;border:1px solid #1E3A5F">
         <p class="text-lg font-bold mb-1" style="color:#94A3B8">DISPERSÃO MB%</p>
         <p class="text-lg" style="color:#fff">Spread: <span style="color:#F5A623">0,0% – 100,0%</span> = 100,0 p.p.</p>
-        <p class="text-lg" style="color:#94A3B8">Acima média (30,3%): <span style="color:#22C55E">15 de 34 filiais</span></p>
+        <p class="text-lg" style="color:#94A3B8">Acima média (29,7%): <span style="color:#22C55E">21 de 33 filiais</span></p>
       </div>
     </div>
   </div>
@@ -112,10 +112,10 @@
 <script>
 window.addEventListener('load', function() {
   lucide.createIcons();
-  var labels = ['L01 Condor','L02 Alcindo Cacela','L03 Doca','L04 Obidos','L05 Castanheira','L06 Mag Castanheira','L07 Pca Brasil','L08 Batista Campos','L09 Humaita','L10 Castanhal','L11 Icoaraci','L12 Br','L17 Canudos','L18 C.Nova','L19 Mag Castanhal','L24 Quintino','L27 Pedreira','L28 Independencia','L29 Fazenda Tres Marias I','L31 Barcarena','L32 Maraba','L33 Augusto Montenegro','L36 Paragominas','L37 Capanema','L38 Abaetetuba','L40 Marambaia','L41 Magazan Casa','L42 Salinopolis','L44 Guama','L47 14 De Marco','L48 Sao Francisco','L50 Estrela','L54 Duque','L55 Mosqueiro'];
-  var mb26 = [27.05,31.55,30.43,28.92,32.55,26.11,29.98,33.07,31.47,32.15,29.24,30.75,28.72,28.95,26.06,30.13,29.69,30.63,100.0,30.1,31.67,29.58,29.99,29.13,29.75,29.87,30.85,30.18,27.42,32.03,31.96,31.25,32.19,0];
-  var ml26 = [7.82,9.12,8.8,8.35,9.4,7.54,8.66,9.56,9.09,9.29,8.45,8.88,8.3,8.36,7.52,8.7,8.58,8.85,28.98,8.7,9.15,8.54,8.66,8.42,8.6,8.63,8.93,8.76,7.92,9.24,9.24,9.03,9.3,0];
-  var mb25 = [26.04,31.01,30.35,27.6,31.72,26.19,28.92,31.9,30.69,30.41,27.51,30.13,28.75,28.31,26.41,29.88,28.06,29.6,100.0,29.47,32.48,29.32,29.29,26.85,28.84,29.88,33.24,30.19,27.37,0,31.49,30.71,31.06,0];
+  var labels = ['L24 Quintino','L03 Doca','L18 C.Nova','L31 Barcarena','L28 Independencia','L07 Pca Brasil','L12 Br','L40 Marambaia','L32 Maraba','L33 Augusto Montenegro','L54 Duque','L17 Canudos','L38 Abaetetuba','L37 Capanema','L42 Salinopolis','L50 Estrela','L09 Humaita','L02 Alcindo Cacela','L44 Guama','L36 Paragominas','L48 Sao Francisco','L08 Batista Campos','L11 Icoaraci','L27 Pedreira','L05 Castanheira','L10 Castanhal','L04 Obidos','L01 Condor','L06 Mag Castanheira','L19 Mag Castanhal','L41 Magazan Casa','L29 Fazenda Tres Marias I','L55 Mosqueiro'];
+  var mb26 = [30.13,30.43,28.95,30.1,30.63,29.98,30.75,29.87,31.67,29.58,32.19,28.72,29.75,29.13,30.18,31.25,31.47,31.55,27.42,29.99,31.96,33.07,29.24,29.69,32.55,32.15,28.92,27.05,26.11,26.06,30.85,100.0,0];
+  var ml26 = [8.7,8.8,8.36,8.7,8.85,8.66,8.88,8.63,9.15,8.54,9.3,8.3,8.6,8.42,8.76,9.03,9.09,9.12,7.92,8.66,9.24,9.56,8.45,8.58,9.4,9.29,8.35,7.82,7.54,7.52,8.93,28.98,0];
+  var mb25 = [29.88,30.35,28.31,29.47,29.6,28.92,30.13,29.88,32.48,29.32,31.06,28.75,28.84,26.85,30.19,30.71,30.69,31.01,27.37,29.29,31.49,31.9,27.51,28.06,31.72,30.41,27.6,26.04,26.19,26.41,33.24,100.0,0];
   new Chart(document.getElementById('marginChart').getContext('2d'), {
     type: 'bar',
     data: { labels: labels, datasets: [
