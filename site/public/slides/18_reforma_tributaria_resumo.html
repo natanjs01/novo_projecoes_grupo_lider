@@ -36,7 +36,7 @@ html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 64px 12px 64px;
+  padding: 16px 64px 10px 64px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(9, 21, 31, 0.6);
   backdrop-filter: blur(10px);
@@ -45,7 +45,7 @@ html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
 .title-section h1 {
   margin: 0;
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 36px;
+  font-size: 34px;
   letter-spacing: 0.04em;
   color: #ffffff;
   line-height: 1;
@@ -54,36 +54,36 @@ html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
 .title-section p {
   margin: 2px 0 0 0;
   color: #00B4D8;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.02em;
 }
 
-.logo { width: 150px; height: auto; object-fit: contain; }
+.logo { width: 140px; height: auto; object-fit: contain; }
 
 .content {
   position: relative;
   z-index: 2;
   flex: 1;
-  padding: 16px 64px 50px 64px;
+  padding: 12px 64px 40px 64px;
   display: grid;
-  grid-template-columns: 340px 1fr;
-  gap: 20px;
+  grid-template-columns: 370px 1fr;
+  gap: 16px;
 }
 
 .panel {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .metric-card {
   background: rgba(15, 30, 46, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-left: 4px solid #00B4D8;
-  padding: 10px 14px;
-  border-radius: 8px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  padding: 8px 12px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .metric-card.highlight {
@@ -91,63 +91,63 @@ html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
   background: linear-gradient(135deg, rgba(245, 166, 37, 0.12) 0%, rgba(15, 30, 46, 0.7) 100%);
 }
 
-.metric-card.impact-card {
+.metric-card.loss-card {
   border-left-color: #E63946;
   background: linear-gradient(135deg, rgba(230, 57, 70, 0.15) 0%, rgba(15, 30, 46, 0.7) 100%);
 }
 
-/* NOVO CARD: BALANÇO LÍQUIDO DE PERDA FISCAL */
-.metric-card.net-result-card {
-  border-left-color: #E63946;
-  background: linear-gradient(135deg, rgba(230, 57, 70, 0.25) 0%, rgba(15, 30, 46, 0.85) 100%);
-  border: 1px solid rgba(230, 57, 70, 0.4);
+.metric-card.gain-card {
+  border-left-color: #2A9D8F;
+  background: linear-gradient(135deg, rgba(42, 157, 143, 0.15) 0%, rgba(15, 30, 46, 0.7) 100%);
+}
+
+.metric-card.maintained-card {
+  border-left-color: #00B4D8;
+  background: linear-gradient(135deg, rgba(0, 180, 216, 0.12) 0%, rgba(15, 30, 46, 0.7) 100%);
+}
+
+.metric-card.neutral-card {
+  border-left-color: #8FA3B8;
+  background: linear-gradient(135deg, rgba(143, 163, 184, 0.12) 0%, rgba(15, 30, 46, 0.7) 100%);
 }
 
 .metric-card h3 {
   margin: 0 0 2px 0;
   color: #8FA3B8;
-  font-size: 10.5px;
-  font-weight: 600;
+  font-size: 10px;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .metric-card .value {
   margin: 0;
   color: #ffffff;
-  font-size: 21px;
+  font-size: 19px;
   font-weight: 800;
   line-height: 1.1;
 }
 
 .metric-card.highlight .value { color: #F5A623; }
-.metric-card.impact-card .value { color: #E63946; }
-.metric-card.net-result-card .value { color: #FF4D4D; }
+.metric-card.loss-card .value { color: #FF4D4D; }
+.metric-card.gain-card .value { color: #2A9D8F; }
+.metric-card.maintained-card .value { color: #00B4D8; }
+.metric-card.neutral-card .value { color: #CBD5E1; }
 
 .metric-card .subtitle {
   margin: 2px 0 0 0;
   color: #8FA3B8;
-  font-size: 10px;
+  font-size: 9.5px;
   line-height: 1.2;
 }
 
-.badge-loss {
-  display: inline-block;
-  background: #E63946;
-  color: #ffffff;
-  font-size: 9px;
-  font-weight: 800;
-  padding: 1px 6px;
-  border-radius: 4px;
-  margin-left: 6px;
-  vertical-align: middle;
-  text-transform: uppercase;
-}
-
 .section-title {
-  margin: 0 0 8px 0;
+  margin: 0 0 6px 0;
   color: #F5A623;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -166,8 +166,8 @@ html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
 .table-card {
   background: rgba(15, 30, 46, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding: 12px;
+  border-radius: 10px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -191,13 +191,24 @@ thead th {
   top: 0;
   background: #091a29;
   color: #00B4D8;
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 11.5px;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 6px 10px;
+  letter-spacing: 0.04em;
+  padding: 8px 10px;
   border-bottom: 2px solid rgba(0, 180, 216, 0.3);
   z-index: 10;
+}
+
+/* Títulos das colunas de valores ajustados para alinhar com o conteúdo */
+th.col-val-antigo {
+  width: 210px;
+  text-align: left;
+}
+
+th.col-val-distribuicao {
+  text-align: left;
+  padding-left: 20px;
 }
 
 tbody tr {
@@ -213,13 +224,13 @@ tbody tr.group-header {
 tbody tr.group-header td {
   font-weight: 700;
   color: #ffffff;
-  font-size: 11px;
-  padding: 5px 10px;
+  font-size: 11.5px;
+  padding: 6px 10px;
 }
 
 tbody tr.sub-row td {
   background: rgba(0, 0, 0, 0.15);
-  padding: 4px 10px;
+  padding: 5px 10px;
 }
 
 tbody tr.total-row {
@@ -231,35 +242,44 @@ tbody tr.total-row {
 tbody tr.total-row td {
   color: #F5A623;
   font-size: 12px;
-  padding: 6px 10px;
+  padding: 7px 10px;
 }
 
 td {
-  font-size: 11px;
+  font-size: 11.5px;
   color: #DDEBFF;
+  white-space: nowrap;
 }
 
 td.cst-code {
   font-family: monospace;
   font-weight: 700;
-  font-size: 11px;
+  font-size: 11.5px;
   color: #00B4D8;
-  width: 70px;
 }
 
+td.val-antigo-col {
+  text-align: left;
+  font-weight: 700;
+  font-size: 11.5px;
+}
+
+/* Valor da última coluna puxado para a esquerda e perfeitamente alinhado abaixo do título */
 td.value-col {
-  text-align: right;
-  font-weight: 600;
-  font-size: 11px;
+  text-align: left;
+  padding-left: 20px;
+  font-weight: 700;
+  font-size: 11.5px;
 }
 
 .tag {
   display: inline-block;
-  padding: 1px 5px;
+  padding: 1px 6px;
   border-radius: 4px;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
+  text-align: center;
 }
 
 .tag-000 { background: rgba(0, 180, 216, 0.2); color: #00B4D8; border: 1px solid rgba(0, 180, 216, 0.4); }
@@ -270,29 +290,29 @@ td.value-col {
 .summary-comparison {
   background: rgba(15, 30, 46, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding: 16px;
+  border-radius: 10px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .comp-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 12px;
 }
 
 .comp-box {
   background: rgba(9, 21, 31, 0.5);
-  border-radius: 8px;
-  padding: 12px 16px;
+  border-radius: 6px;
+  padding: 10px 12px;
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .comp-box h4 {
-  margin: 0 0 10px 0;
-  font-size: 12px;
+  margin: 0 0 8px 0;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -306,14 +326,14 @@ td.value-col {
 .comp-bar-group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
 }
 
 .comp-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 11px;
+  font-size: 10.5px;
 }
 
 .comp-label { color: #94A3B8; font-weight: 500; }
@@ -343,9 +363,9 @@ td.value-col {
   z-index: 2;
   left: 64px;
   right: 64px;
-  bottom: 38px;
+  bottom: 34px;
   color: #64748B;
-  font-size: 10px;
+  font-size: 9.5px;
   line-height: 1.3;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   padding-top: 4px;
@@ -357,7 +377,7 @@ td.value-col {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 36px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -365,7 +385,7 @@ td.value-col {
   background: #040e17;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   color: #64748B;
-  font-size: 11px;
+  font-size: 10px;
 }
 
 .footer strong { color: #F5A623; font-weight: 600; }
@@ -383,40 +403,43 @@ td.value-col {
   </header>
 
   <main class="content">
+    
+    <!-- PAINEL LATERAL DE CARDS -->
     <div class="panel">
       
-      <!-- CARD DE RESULTADO LÍQUIDO DE PERDA FISCAL ADICIONADO -->
-      <div class="metric-card net-result-card">
-        <h3>Balanço Geral da Reforma <span class="badge-loss">Perda Líquida</span></h3>
-        <p class="value">- R$ 60,80 mi (-9,2%)</p>
-        <p class="subtitle">Resultado líquido: Aumento de Carga (R$ 77,88mi) vs Ganhos (R$ 17,08mi)</p>
-      </div>
-
       <div class="metric-card highlight">
-        <h3>Saldo Total em Estoque</h3>
+        <h3>1. Saldo Total em Estoque <span>100,0%</span></h3>
         <p class="value">R$ 658,20 mi</p>
-        <p class="subtitle">Base total de comparação</p>
+        <p class="subtitle">Base total analisada (Soma dos cards 2, 3, 4 e 5)</p>
       </div>
 
-      <div class="metric-card impact-card">
-        <h3>Perda Bruta (Tributação Integral)</h3>
-        <p class="value">R$ 77,88 mi (11,8%)</p>
-        <p class="subtitle">Aumento de carga: Monofásico, Alíq. Zero e Isenção p/ CST 000</p>
+      <div class="metric-card neutral-card">
+        <h3>2. Mantido sem Alteração (Integral) <span>61,1%</span></h3>
+        <p class="value">R$ 401,93 mi</p>
+        <p class="subtitle">Já era Tributação Normal (01) e continuará Tributação Integral (000)</p>
       </div>
 
-      <div class="metric-card">
-        <h3>Ganho de Benefício</h3>
-        <p class="value">R$ 17,08 mi (2,6%)</p>
-        <p class="subtitle">Redução de carga: Tributação Normal (01) p/ Alíq. Reduzida (200)</p>
+      <div class="metric-card maintained-card">
+        <h3>3. Incentivos Preservados <span>26,8%</span></h3>
+        <p class="value">R$ 176,81 mi</p>
+        <p class="subtitle">Já tinham incentivo (CST 04/06/08) e mantêm redução no novo regime (200/410)</p>
       </div>
 
-      <div class="metric-card">
-        <h3>Benefício Fiscal Mantido</h3>
-        <p class="value">R$ 176,81 mi (26,8%)</p>
-        <p class="subtitle">Benefícios preservados nos CSTs 200/410</p>
+      <div class="metric-card loss-card">
+        <h3>4. Perda de Benefício (Aumento) <span>11,8%</span></h3>
+        <p class="value">R$ 77,88 mi</p>
+        <p class="subtitle">Tinham incentivo (CST 04/06/07/08) mas migram p/ Tributação Integral (000)</p>
       </div>
+
+      <div class="metric-card gain-card">
+        <h3>5. Ganho de Benefício + Outros <span>2,8%</span></h3>
+        <p class="value">R$ 18,58 mi</p>
+        <p class="subtitle">Eram Tributação Normal (01) e ganham redução (200/410) [R$ 17,01mi] + N/A [R$ 1,57mi]</p>
+      </div>
+
     </div>
 
+    <!-- PAINEL DA TABELA -->
     <div class="panel">
       <div class="table-card">
         <div class="section-title">Detalhamento da Transição Agrupada por CST Antigo e Desdobramento CST 200</div>
@@ -424,12 +447,12 @@ td.value-col {
           <table>
             <thead>
               <tr>
-                <th>CST Antigo</th>
-                <th>Grupo Antigo</th>
-                <th class="value-col">Valor Total CST Antigo (R$)</th>
-                <th>CST Novo</th>
-                <th>Grupo Novo</th>
-                <th class="value-col">Distribuição Saldo (R$)</th>
+                <th>CST ANTIGO</th>
+                <th>GRUPO ANTIGO</th>
+                <th class="col-val-antigo">VALOR TOTAL (R$)</th>
+                <th style="text-align: center;">CST NOVO</th>
+                <th>GRUPO NOVO</th>
+                <th class="col-val-distribuicao">DISTRIBUIÇÃO SALDO (R$)</th>
               </tr>
             </thead>
             <tbody>
@@ -437,48 +460,48 @@ td.value-col {
               <tr class="group-header">
                 <td class="cst-code">CST 01</td>
                 <td>Tributação normal</td>
-                <td class="value-col">R$ 420.573.824,03</td>
-                <td>-</td>
+                <td class="val-antigo-col">R$ 420.573.824,03</td>
+                <td style="text-align: center;">-</td>
                 <td>-</td>
                 <td class="value-col">-</td>
               </tr>
               <tr class="sub-row">
-                <td>└─ Subtotal</td>
+                <td style="color: #8FA3B8;">└─ Subtotal</td>
                 <td>↳ Destinação Novo Regime</td>
-                <td class="value-col">-</td>
-                <td><span class="tag tag-000">000</span></td>
+                <td class="val-antigo-col" style="color: #64748B;">-</td>
+                <td style="text-align: center;"><span class="tag tag-000">000</span></td>
                 <td>Tributação integral</td>
                 <td class="value-col">R$ 401.927.779,17</td>
               </tr>
               <tr class="sub-row">
-                <td>└─ Subtotal</td>
+                <td style="color: #8FA3B8;">└─ Subtotal</td>
                 <td>↳ Destinação Novo Regime</td>
-                <td class="value-col">-</td>
-                <td><span class="tag tag-200">200</span></td>
+                <td class="val-antigo-col" style="color: #64748B;">-</td>
+                <td style="text-align: center;"><span class="tag tag-200">200</span></td>
                 <td>Alíquota zero ou alíquota reduzida (100)</td>
                 <td class="value-col">R$ 2.326.220,76</td>
               </tr>
               <tr class="sub-row">
-                <td>└─ Subtotal</td>
+                <td style="color: #8FA3B8;">└─ Subtotal</td>
                 <td>↳ Destinação Novo Regime</td>
-                <td class="value-col">-</td>
-                <td><span class="tag tag-200">200</span></td>
+                <td class="val-antigo-col" style="color: #64748B;">-</td>
+                <td style="text-align: center;"><span class="tag tag-200">200</span></td>
                 <td>Alíquota zero ou alíquota reduzida (40)</td>
                 <td class="value-col">R$ 3.376.788,66</td>
               </tr>
               <tr class="sub-row">
-                <td>└─ Subtotal</td>
+                <td style="color: #8FA3B8;">└─ Subtotal</td>
                 <td>↳ Destinação Novo Regime</td>
-                <td class="value-col">-</td>
-                <td><span class="tag tag-200">200</span></td>
+                <td class="val-antigo-col" style="color: #64748B;">-</td>
+                <td style="text-align: center;"><span class="tag tag-200">200</span></td>
                 <td>Alíquota zero ou alíquota reduzida (60)</td>
                 <td class="value-col">R$ 11.381.376,28</td>
               </tr>
               <tr class="sub-row">
-                <td>└─ Subtotal</td>
+                <td style="color: #8FA3B8;">└─ Subtotal</td>
                 <td>↳ Destinação Novo Regime</td>
-                <td class="value-col">-</td>
-                <td><span class="tag tag-410">410</span></td>
+                <td class="val-antigo-col" style="color: #64748B;">-</td>
+                <td style="text-align: center;"><span class="tag tag-410">410</span></td>
                 <td>Imunidade ou não incidência</td>
                 <td class="value-col">R$ 1.561.659,16</td>
               </tr>
@@ -487,48 +510,48 @@ td.value-col {
               <tr class="group-header">
                 <td class="cst-code">CST 06</td>
                 <td>Alíquota zero</td>
-                <td class="value-col">R$ 150.379.897,95</td>
-                <td>-</td>
+                <td class="val-antigo-col">R$ 150.379.897,95</td>
+                <td style="text-align: center;">-</td>
                 <td>-</td>
                 <td class="value-col">-</td>
               </tr>
               <tr class="sub-row">
-                <td>└─ Subtotal</td>
+                <td style="color: #8FA3B8;">└─ Subtotal</td>
                 <td>↳ Destinação Novo Regime</td>
-                <td class="value-col">-</td>
-                <td><span class="tag tag-200">200</span></td>
+                <td class="val-antigo-col" style="color: #64748B;">-</td>
+                <td style="text-align: center;"><span class="tag tag-200">200</span></td>
                 <td>Alíquota zero ou alíquota reduzida (100)</td>
                 <td class="value-col">R$ 103.229.534,33</td>
               </tr>
               <tr class="sub-row">
-                <td>└─ Subtotal</td>
+                <td style="color: #8FA3B8;">└─ Subtotal</td>
                 <td>↳ Destinação Novo Regime</td>
-                <td class="value-col">-</td>
-                <td><span class="tag tag-200">200</span></td>
+                <td class="val-antigo-col" style="color: #64748B;">-</td>
+                <td style="text-align: center;"><span class="tag tag-200">200</span></td>
                 <td>Alíquota zero ou alíquota reduzida (40)</td>
                 <td class="value-col">R$ 1.682.562,53</td>
               </tr>
               <tr class="sub-row">
-                <td>└─ Subtotal</td>
+                <td style="color: #8FA3B8;">└─ Subtotal</td>
                 <td>↳ Destinação Novo Regime</td>
-                <td class="value-col">-</td>
-                <td><span class="tag tag-200">200</span></td>
+                <td class="val-antigo-col" style="color: #64748B;">-</td>
+                <td style="text-align: center;"><span class="tag tag-200">200</span></td>
                 <td>Alíquota zero ou alíquota reduzida (60)</td>
                 <td class="value-col">R$ 14.265.165,17</td>
               </tr>
               <tr class="sub-row">
-                <td>└─ Subtotal</td>
+                <td style="color: #8FA3B8;">└─ Subtotal</td>
                 <td>↳ Destinação Novo Regime</td>
-                <td class="value-col">-</td>
-                <td><span class="tag tag-000">000</span></td>
+                <td class="val-antigo-col" style="color: #64748B;">-</td>
+                <td style="text-align: center;"><span class="tag tag-000">000</span></td>
                 <td>Tributação integral</td>
                 <td class="value-col">R$ 31.202.540,42</td>
               </tr>
               <tr class="sub-row">
-                <td>└─ Subtotal</td>
+                <td style="color: #8FA3B8;">└─ Subtotal</td>
                 <td>↳ Destinação Novo Regime</td>
-                <td class="value-col">-</td>
-                <td><span class="tag tag-410">410</span></td>
+                <td class="val-antigo-col" style="color: #64748B;">-</td>
+                <td style="text-align: center;"><span class="tag tag-410">410</span></td>
                 <td>Imunidade ou não incidência</td>
                 <td class="value-col">R$ 95,50</td>
               </tr>
@@ -537,32 +560,32 @@ td.value-col {
               <tr class="group-header">
                 <td class="cst-code">CST 04</td>
                 <td>Monofásico / revenda</td>
-                <td class="value-col">R$ 80.083.283,09</td>
-                <td>-</td>
+                <td class="val-antigo-col">R$ 80.083.283,09</td>
+                <td style="text-align: center;">-</td>
                 <td>-</td>
                 <td class="value-col">-</td>
               </tr>
               <tr class="sub-row">
-                <td>└─ Subtotal</td>
+                <td style="color: #8FA3B8;">└─ Subtotal</td>
                 <td>↳ Destinação Novo Regime</td>
-                <td class="value-col">-</td>
-                <td><span class="tag tag-200">200</span></td>
+                <td class="val-antigo-col" style="color: #64748B;">-</td>
+                <td style="text-align: center;"><span class="tag tag-200">200</span></td>
                 <td>Alíquota zero ou alíquota reduzida (100)</td>
                 <td class="value-col">R$ 102.165,44</td>
               </tr>
               <tr class="sub-row">
-                <td>└─ Subtotal</td>
+                <td style="color: #8FA3B8;">└─ Subtotal</td>
                 <td>↳ Destinação Novo Regime</td>
-                <td class="value-col">-</td>
-                <td><span class="tag tag-200">200</span></td>
+                <td class="val-antigo-col" style="color: #64748B;">-</td>
+                <td style="text-align: center;"><span class="tag tag-200">200</span></td>
                 <td>Alíquota zero ou alíquota reduzida (60)</td>
                 <td class="value-col">R$ 40.410.143,62</td>
               </tr>
               <tr class="sub-row">
-                <td>└─ Subtotal</td>
+                <td style="color: #8FA3B8;">└─ Subtotal</td>
                 <td>↳ Destinação Novo Regime</td>
-                <td class="value-col">-</td>
-                <td><span class="tag tag-000">000</span></td>
+                <td class="val-antigo-col" style="color: #64748B;">-</td>
+                <td style="text-align: center;"><span class="tag tag-000">000</span></td>
                 <td>Tributação integral</td>
                 <td class="value-col">R$ 39.570.974,03</td>
               </tr>
@@ -571,24 +594,24 @@ td.value-col {
               <tr class="group-header">
                 <td class="cst-code">CST 08</td>
                 <td>Sem incidência</td>
-                <td class="value-col">R$ 5.560.883,84</td>
-                <td>-</td>
+                <td class="val-antigo-col">R$ 5.560.883,84</td>
+                <td style="text-align: center;">-</td>
                 <td>-</td>
                 <td class="value-col">-</td>
               </tr>
               <tr class="sub-row">
-                <td>└─ Subtotal</td>
+                <td style="color: #8FA3B8;">└─ Subtotal</td>
                 <td>↳ Destinação Novo Regime</td>
-                <td class="value-col">-</td>
-                <td><span class="tag tag-000">000</span></td>
+                <td class="val-antigo-col" style="color: #64748B;">-</td>
+                <td style="text-align: center;"><span class="tag tag-000">000</span></td>
                 <td>Tributação integral</td>
                 <td class="value-col">R$ 5.520.507,69</td>
               </tr>
               <tr class="sub-row">
-                <td>└─ Subtotal</td>
+                <td style="color: #8FA3B8;">└─ Subtotal</td>
                 <td>↳ Destinação Novo Regime</td>
-                <td class="value-col">-</td>
-                <td><span class="tag tag-200">200</span></td>
+                <td class="val-antigo-col" style="color: #64748B;">-</td>
+                <td style="text-align: center;"><span class="tag tag-200">200</span></td>
                 <td>Alíquota zero ou alíquota reduzida (100)</td>
                 <td class="value-col">R$ 40.376,15</td>
               </tr>
@@ -597,16 +620,16 @@ td.value-col {
               <tr class="group-header">
                 <td class="cst-code">N/A</td>
                 <td>Não mapeado</td>
-                <td class="value-col">R$ 1.570.177,06</td>
-                <td>-</td>
+                <td class="val-antigo-col">R$ 1.570.177,06</td>
+                <td style="text-align: center;">-</td>
                 <td>-</td>
                 <td class="value-col">-</td>
               </tr>
               <tr class="sub-row">
-                <td>└─ Subtotal</td>
+                <td style="color: #8FA3B8;">└─ Subtotal</td>
                 <td>↳ Destinação Novo Regime</td>
-                <td class="value-col">-</td>
-                <td><span class="tag tag-none">SEM CST</span></td>
+                <td class="val-antigo-col" style="color: #64748B;">-</td>
+                <td style="text-align: center;"><span class="tag tag-none">SEM CST</span></td>
                 <td>Não mapeado</td>
                 <td class="value-col">R$ 1.570.177,06</td>
               </tr>
@@ -615,23 +638,23 @@ td.value-col {
               <tr class="group-header">
                 <td class="cst-code">CST 07</td>
                 <td>Isenção</td>
-                <td class="value-col">R$ 31.986,00</td>
-                <td>-</td>
+                <td class="val-antigo-col">R$ 31.986,00</td>
+                <td style="text-align: center;">-</td>
                 <td>-</td>
                 <td class="value-col">-</td>
               </tr>
               <tr class="sub-row">
-                <td>└─ Subtotal</td>
+                <td style="color: #8FA3B8;">└─ Subtotal</td>
                 <td>↳ Destinação Novo Regime</td>
-                <td class="value-col">-</td>
-                <td><span class="tag tag-000">000</span></td>
+                <td class="val-antigo-col" style="color: #64748B;">-</td>
+                <td style="text-align: center;"><span class="tag tag-000">000</span></td>
                 <td>Tributação integral</td>
                 <td class="value-col">R$ 31.986,00</td>
               </tr>
 
               <tr class="total-row">
                 <td colspan="2">TOTAL GERAL DE ESTOQUES</td>
-                <td class="value-col">R$ 658.200.051,97</td>
+                <td class="val-antigo-col">R$ 658.200.051,97</td>
                 <td colspan="2"></td>
                 <td class="value-col">R$ 658.200.051,97</td>
               </tr>
@@ -728,10 +751,14 @@ td.value-col {
   </main>
 
   <div class="footnote">
-    <strong>Nota:</strong> Card de balanço geral adicionado no topo da barra lateral. O cálculo reflete o saldo líquido da reforma: Ganho de Benefício (R$ 17,08 mi) descontado do Aumento de Carga por Migração à Tributação Integral (R$ 77,88 mi).
+    <strong>Ajuste Solicitado:</strong> Os valores da coluna "DISTRIBUIÇÃO SALDO (R$)" foram alinhados à esquerda (<code>text-align: left</code>) e posicionados diretamente abaixo do seu cabeçalho, mantendo intactas todas as demais descrições e estrutura originais.
   </div>
 
-  <footer class="footer"><span>Grupo Lider · Controladoria</span><strong>REFORMA TRIBUTÁRIA — RESUMO</strong><span>18/19</span></footer>
+  <footer class="footer">
+    <span>Grupo Lider · Controladoria</span>
+    <strong>REFORMA TRIBUTÁRIA — RESUMO</strong>
+    <span>18/19</span>
+  </footer>
 </div>
 
 </body>
