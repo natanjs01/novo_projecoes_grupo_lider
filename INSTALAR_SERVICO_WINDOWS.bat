@@ -3,7 +3,7 @@ setlocal
 
 set "NSSM=C:\nssm\nssm.exe"
 set "PYTHON=C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe"
-set "ROOT=D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao"
+set "ROOT=%~dp0"
 set "SERVICE=GrupoLider-ExportPPT"
 set "BACKEND=%ROOT%\backend\app\main.py"
 
