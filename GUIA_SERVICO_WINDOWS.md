@@ -40,24 +40,17 @@ C:\nssm\
    Set-Location "D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao"
    ```
 
-3. Libere scripts somente nesta janela do PowerShell:
+3. Execute o instalador nativo do Windows (duplo clique ou pelo PowerShell):
    ```powershell
-   Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+   & ".\INSTALAR_SERVICO_WINDOWS.bat"
    ```
 
-4. Execute o script:
-   ```powershell
-   & ".\INSTALAR_SERVICO_WINDOWS.ps1" -PythonPath "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe" -ProjectRoot "D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao"
-   ```
-
-5. Aguarde a instalação concluir
-
-> A opção `-Scope Process` vale somente para a janela atual e não altera permanentemente a política do Windows.
+4. Aguarde a instalação concluir
 
 > Como a instalação está sendo executada diretamente no servidor, use o diretório local `D:`:
 > ```powershell
 > Set-Location "D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao"
-> & ".\INSTALAR_SERVICO_WINDOWS.ps1" -PythonPath "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe" -ProjectRoot "D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao"
+> .\INSTALAR_SERVICO_WINDOWS.bat
 > ```
 
 ### Passo 3: Verificar Instalação
@@ -149,16 +142,10 @@ Stop-Service -Name GrupoLider-ExportPPT -Force
 - Solução: Abra PowerShell como Administrador (não é o bastante clicar em abrir)
 
 ### Erro: "não está assinado digitalmente" ou "UnauthorizedAccess"
-- Execute o PowerShell como Administrador
-- Na pasta do projeto, rode:
+- Use o instalador `.bat`, que não depende da política de execução do PowerShell:
    ```powershell
-   Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
    Set-Location "D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao"
-   & ".\INSTALAR_SERVICO_WINDOWS.ps1" -PythonPath "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe" -ProjectRoot "D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao"
-   ```
-- Alternativamente, execute diretamente:
-   ```powershell
-   powershell.exe -ExecutionPolicy Bypass -File "D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao\INSTALAR_SERVICO_WINDOWS.ps1" -PythonPath "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe" -ProjectRoot "D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao"
+   .\INSTALAR_SERVICO_WINDOWS.bat
    ```
 
 ### Erro: "NSSM não encontrado"
