@@ -42,7 +42,7 @@ C:\nssm\
 
 3. Execute o script:
    ```powershell
-   .\INSTALAR_SERVICO_WINDOWS.ps1
+   .\INSTALAR_SERVICO_WINDOWS.ps1 -PythonPath "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe"
    ```
 
 4. Aguarde a instalação concluir
@@ -59,6 +59,12 @@ Serviço instalado e executando:
   Porta: 127.0.0.1:5000
 ```
 
+Antes da instalação, no PowerShell, instale as dependências com:
+
+```powershell
+Set-Location "\\10.15.4.252\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao"
+& "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe" -m pip install -r ".\backend\requirements.txt"
+```
 ---
 
 ## 🔧 Gerenciando o Serviço
