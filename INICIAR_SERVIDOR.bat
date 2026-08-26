@@ -37,7 +37,7 @@ if %errorlevel% neq 0 (
 echo.
 echo ✅ Tudo preparado!
 echo.
-echo Iniciando servidor em http://127.0.0.1:5000
+echo Iniciando servidor em http://127.0.0.1:5001
 echo.
 echo Dicas:
 echo   - Abra a apresentacao no navegador

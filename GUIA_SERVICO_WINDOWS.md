@@ -62,7 +62,7 @@ Após a instalação, o script mostrará:
 Serviço instalado e executando:
   Status: Running
   Tipo: Automatic
-  Porta: 127.0.0.1:5000
+   Porta: 127.0.0.1:5001
 ```
 
 Antes da instalação, no PowerShell, instale as dependências com:
@@ -123,16 +123,17 @@ Get-Service -Name GrupoLider-ExportPPT
 
 3. O arquivo será baixado automaticamente
 
-### Verificar Porta 5000
+### Verificar Porta 5001
 
-Se tiver erro de porta em uso:
+Para confirmar que a API da apresentação está ativa:
 ```powershell
-# Encontrar processo usando porta 5000
-netstat -ano | findstr :5000
+# Encontrar processo usando porta 5001
+netstat -ano | findstr :5001
 
-# Se NSSM estiver usando, pode parar assim:
-Stop-Service -Name GrupoLider-ExportPPT -Force
+Invoke-WebRequest "http://127.0.0.1:5001/api/health" -UseBasicParsing
 ```
+
+A porta `5000` pertence a outro sistema e não deve ser alterada.
 
 ---
 
@@ -152,10 +153,9 @@ Stop-Service -Name GrupoLider-ExportPPT -Force
 - Verifique se NSSM está em: `C:\nssm\nssm.exe`
 - Baixe em: https://nssm.cc/download
 
-### Erro: "Porta 5000 já em uso"
-- Outro serviço está usando a porta
-- Verifique com: `netstat -ano | findstr :5000`
-- Mude a porta em: `backend/app/main.py` (última linha)
+### Erro: "Porta 5001 já em uso"
+- Verifique com: `netstat -ano | findstr :5001`
+- Não altere a porta 5000, pois ela pertence a outro sistema.
 
 ### Serviço instalado, mas permanece parado
 - O serviço usa um launcher CMD para preservar os caminhos com espaços. Reinstale somente este serviço executando o instalador:

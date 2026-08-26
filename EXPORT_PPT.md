@@ -17,7 +17,7 @@ python backend/app/main.py
 **Esperado:**
 ```
 WARNING in app.run_simple
- * Running on http://127.0.0.1:5000
+ * Running on http://127.0.0.1:5001
 ```
 
 ### 3. Usar o Botão na Apresentação
@@ -49,7 +49,7 @@ python scripts/export_to_ppt.py
 python backend/app/main.py
 ```
 
-Servidor rodará em `http://127.0.0.1:5000`
+Servidor rodará em `http://127.0.0.1:5001`
 
 ### Frontend (`site/index.html`)
 - Botão "📊 Exportar PPT" na toolbar
@@ -67,7 +67,7 @@ Servidor rodará em `http://127.0.0.1:5000`
 **Solução:**
 1. Abra um terminal nova
 2. Execute: `python backend/app/main.py`
-3. Você deve ver: `Running on http://127.0.0.1:5000`
+3. Você deve ver: `Running on http://127.0.0.1:5001`
 4. Tente novamente no navegador
 
 ### Erro: "Module not found"
@@ -79,13 +79,13 @@ pip install -r backend/requirements.txt
 ```
 
 ### Servidor não inicia
-**Causa:** Porta 5000 já em uso
+**Causa:** Porta 5001 já em uso
 
 **Solução:**
 ```bash
-# Opção 1: Liberar porta 5000 (encerre outros processos)
-# Opção 2: Mudar porta no código (main.py, linha final)
-python backend/app/main.py  # Padrão: 5000
+# Verificar o processo que usa a porta 5001
+netstat -ano | findstr :5001
+python backend/app/main.py  # Padrão: 5001
 ```
 
 ---
