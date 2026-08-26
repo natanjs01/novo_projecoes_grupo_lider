@@ -206,7 +206,7 @@ if ($service.Status -eq 'Running') {
     Write-Host ""
     Write-Host "Próximos passos:" -ForegroundColor Yellow
     Write-Host "  1. Abra a apresentação no navegador" -ForegroundColor White
-    Write-Host "  2. Clique em '📊 Exportar PPT'" -ForegroundColor White
+    Write-Host "  2. Clique no botao Exportar PPT" -ForegroundColor White
     Write-Host "  3. Arquivo será baixado automaticamente" -ForegroundColor White
     Write-Host ""
 }
