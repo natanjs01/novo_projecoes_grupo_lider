@@ -11,6 +11,8 @@ __pycache__/
 .DS_Store
 *.xlsx
 *.pdf
+*.ppt
+*.pptx
 logs/
 site/logs/
 informacoes_adicionais.md
