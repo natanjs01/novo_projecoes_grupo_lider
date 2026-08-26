@@ -23,7 +23,6 @@ def get_slide_files(first: int, last: int) -> list[Path]:
             files.append(path)
     return sorted(files, key=lambda path: int(path.stem.split("_", 1)[0]))
 
-
 def export_pdf(output_path: Path, first: int, last: int) -> None:
     slide_files = get_slide_files(first, last)
     if not slide_files:
@@ -33,7 +32,7 @@ def export_pdf(output_path: Path, first: int, last: int) -> None:
     with tempfile.TemporaryDirectory(prefix="slides_pdf_") as temp_dir:
         with sync_playwright() as playwright:
             browser = playwright.chromium.launch()
-            page = browser.new_page(viewport={"width": 1920, "height": 1080}, device_scale_factor=1)
+            page = browser.new_page(viewport={"width": 1920, "height": 1080}, device_scale_factor=2)
             page.emulate_media(media="screen")
 
             for index, slide_file in enumerate(slide_files, start=1):
@@ -51,7 +50,7 @@ def export_pdf(output_path: Path, first: int, last: int) -> None:
     images[0].save(
         output_path,
         "PDF",
-        resolution=144.0,
+        dpi=(144.0, 144.0),
         save_all=True,
         append_images=images[1:],
     )

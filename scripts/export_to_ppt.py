@@ -1,109 +1,85 @@
 #!/usr/bin/env python3
-"""
-Exporta slides HTML para PowerPoint (.pptx)
-Lê arquivos HTML da pasta public/slides e cria uma apresentação
-"""
+from __future__ import annotations
 
-import os
-import re
-from pathlib import Path
-from pptx import Presentation
-from pptx.util import Inches, Pt
-from pptx.enum.text import PP_ALIGN
-from pptx.dml.color import RGBColor
-from bs4 import BeautifulSoup
+import argparse
+import tempfile
 from datetime import datetime
+from pathlib import Path
 
-def get_slide_files():
-    """Retorna lista de arquivos de slide em ordem"""
-    slides_dir = Path(__file__).parent.parent / "site" / "public" / "slides"
-    files = sorted(slides_dir.glob("*.html"), key=lambda x: int(x.stem.split("_")[0]))
-    return files
+from PIL import Image
+from playwright.sync_api import sync_playwright
+from pptx import Presentation
+from pptx.util import Inches
 
-def extract_text_from_html(html_content):
-    """Extrai texto do HTML de forma legível"""
-    soup = BeautifulSoup(html_content, 'html.parser')
-    
-    # Remove scripts e styles
-    for tag in soup(['script', 'style']):
-        tag.decompose()
-    
-    # Get text
-    text = soup.get_text(separator=' ', strip=True)
-    
-    # Clean up multiple spaces
-    text = re.sub(r'\s+', ' ', text).strip()
-    
-    return text[:500]  # Limit to 500 chars per slide
+ROOT = Path(__file__).resolve().parent.parent
+SLIDES_DIR = ROOT / "site" / "public" / "slides"
+OUTPUT_DIR = ROOT / "site" / "public"
 
-def export_to_pptx(output_path=None):
-    """
-    Exporta todos os slides HTML para PowerPoint
-    """
+
+def get_slide_files(first: int, last: int) -> list[Path]:
+    files = []
+    for path in SLIDES_DIR.glob("*.html"):
+        prefix = path.name.split("_")[0]
+        if prefix.isdigit() and first <= int(prefix) <= last:
+            files.append(path)
+    return sorted(files, key=lambda path: int(path.name.split("_")[0]))
+
+
+def export_to_pptx(output_path: Path | None = None, first: int = 1, last: int = 20) -> str:
+    slide_files = get_slide_files(first, last)
+    if not slide_files:
+        raise SystemExit("Nenhum slide encontrado no intervalo informado.")
+
     if output_path is None:
-        output_dir = Path(__file__).parent.parent / "site" / "public"
-        output_dir.mkdir(exist_ok=True)
-        output_path = output_dir / f"Apresentacao_Grupo_Lider_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pptx"
-    
-    # Create presentation
+        OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+        output_path = OUTPUT_DIR / f"Apresentacao_Grupo_Lider_{datetime.now():%Y%m%d_%H%M%S}.pptx"
+
     prs = Presentation()
-    prs.slide_width = Inches(10)
+    prs.slide_width = Inches(13.333)
     prs.slide_height = Inches(7.5)
-    
-    slide_files = get_slide_files()
-    
-    for slide_file in slide_files:
-        try:
-            with open(slide_file, 'r', encoding='utf-8') as f:
-                html_content = f.read()
-            
-            # Extract info from HTML
-            soup = BeautifulSoup(html_content, 'html.parser')
-            title_tag = soup.find('title')
-            title = title_tag.text if title_tag else slide_file.stem
-            
-            # Extract main text/heading
-            h1 = soup.find('h1')
-            heading = h1.text if h1 else title
-            
-            # Create slide
-            slide = prs.slides.add_slide(prs.slide_layouts[6])  # Blank layout
-            
-            # Add background color
-            background = slide.background
-            fill = background.fill
-            fill.solid()
-            fill.fore_color.rgb = RGBColor(7, 24, 39)  # #071827
-            
-            # Add title
-            title_box = slide.shapes.add_textbox(Inches(0.5), Inches(0.5), Inches(9), Inches(1))
-            title_frame = title_box.text_frame
-            title_frame.word_wrap = True
-            p = title_frame.paragraphs[0]
-            p.text = heading[:100]
-            p.font.size = Pt(44)
-            p.font.bold = True
-            p.font.color.rgb = RGBColor(255, 255, 255)
-            
-            # Add slide number and source
-            info_box = slide.shapes.add_textbox(Inches(0.5), Inches(6.8), Inches(9), Inches(0.5))
-            info_frame = info_box.text_frame
-            info_frame.word_wrap = True
-            p = info_frame.paragraphs[0]
-            p.text = f"Grupo Líder Supermercados | Controladoria | {slide_file.stem}"
-            p.font.size = Pt(10)
-            p.font.color.rgb = RGBColor(100, 116, 139)
-            
-            print(f"✓ Slide criado: {slide_file.name}")
-            
-        except Exception as e:
-            print(f"✗ Erro ao processar {slide_file.name}: {e}")
-            continue
-    
-    # Save presentation
+    blank_layout = prs.slide_layouts[6]
+
+    with tempfile.TemporaryDirectory(prefix="slides_pptx_") as temp_dir:
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch()
+            page = browser.new_page(viewport={"width": 1920, "height": 1080}, device_scale_factor=2)
+            page.emulate_media(media="screen")
+
+            for index, slide_file in enumerate(slide_files, start=1):
+                page.goto(slide_file.resolve().as_uri(), wait_until="networkidle")
+                page.evaluate("document.fonts.ready")
+                page.wait_for_timeout(1200)
+
+                image_path = Path(temp_dir) / f"{index:02d}.png"
+                page.screenshot(path=str(image_path), full_page=False)
+
+                slide = prs.slides.add_slide(blank_layout)
+                slide.shapes.add_picture(
+                    str(image_path),
+                    left=0,
+                    top=0,
+                    width=prs.slide_width,
+                    height=prs.slide_height,
+                )
+                print(f"✓ Slide {slide_file.name} exportado")
+
+            browser.close()
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
     prs.save(str(output_path))
     print(f"\n✅ Apresentação exportada com sucesso: {output_path}")
     return str(output_path)
 
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Exporta slides HTML para PPTX em 16:9.")
+    parser.add_argument("--inicio", type=int, default=1, help="Número do primeiro slide")
+    parser.add_argument("--fim", type=int, default=20, help="Número do último slide")
+    parser.add_argument("--saida", type=Path, help="Caminho do PPTX de saída")
+    args = parser.parse_args()
+
+    export_to_pptx(args.saida, args.inicio, args.fim)
+
+
 if __name__ == "__main__":
-    export_to_pptx()
+    main()
