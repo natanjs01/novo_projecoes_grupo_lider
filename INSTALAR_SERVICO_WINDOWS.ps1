@@ -236,7 +236,7 @@ Write-Host "Status:" -ForegroundColor White
 Write-Host "  Get-Service -Name $ServiceName" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Remover serviço:" -ForegroundColor White
-Write-Host "  & 'C:\nssm\nssm.exe' remove $ServiceName confirm" -ForegroundColor Cyan
+Write-Host "  C:\nssm\nssm.exe remove $ServiceName confirm" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Ver logs:" -ForegroundColor White
 Write-Host "  Abra services.msc pelo Win+R para ver os logs" -ForegroundColor Cyan

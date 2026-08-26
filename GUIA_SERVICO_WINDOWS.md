@@ -54,7 +54,7 @@ C:\nssm\
 
 > A opção `-Scope Process` vale somente para a janela atual e não altera permanentemente a política do Windows.
 
-> Se o prompt estiver em `C:\Users\Idcontroller`, primeiro use o diretório local do projeto:
+> Como a instalação está sendo executada diretamente no servidor, use o diretório local `D:`:
 > ```powershell
 > Set-Location "D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao"
 > & ".\INSTALAR_SERVICO_WINDOWS.ps1" -PythonPath "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe" -ProjectRoot "D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao"
