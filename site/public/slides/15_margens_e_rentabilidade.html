@@ -25,8 +25,8 @@
         <i data-lucide="percent" style="width:20px;height:20px;color:#0A1628"></i>
       </div>
       <div>
-        <h1 class="fb text-5xl leading-none" style="color:#fff">ANÁLISE DE MARGENS E RENTABILIDADE MESMA LOJA</h1>
-        <p class="text-lg" style="color:#94A3B8">MB% e ML% · 1S2025 vs 1S2026 · Média MB 29,5% → 29,7% · Média ML 7,8% → 8,6%</p>
+        <h1 class="fb text-5xl leading-none" style="color:#fff">ANÁLISE DE MARGENS E RENTABILIDADE MESMA LOJA (MERCADORIAS)</h1>
+        <p class="text-lg" style="color:#94A3B8">MB% e ML% · 1S2025 vs 1S2026 · Média MB 29,4% → 29,4% · Média ML 8,5% → 8,5%</p>
       </div>
     </div>
     <div class="flex gap-5">
@@ -112,10 +112,10 @@
 <script>
 window.addEventListener('load', function() {
   lucide.createIcons();
-  var labels = ['L29 Fazenda Tres Marias I','L08 Batista Campos','L05 Castanheira','L54 Duque','L10 Castanhal','L48 Sao Francisco','L32 Maraba','L02 Alcindo Cacela','L09 Humaita','L50 Estrela','L41 Magazan Casa','L12 Br','L28 Independencia','L03 Doca','L42 Salinopolis','L24 Quintino','L31 Barcarena','L36 Paragominas','L07 Pca Brasil','L40 Marambaia','L38 Abaetetuba','L27 Pedreira','L33 Augusto Montenegro','L11 Icoaraci','L37 Capanema','L18 C.Nova','L04 Obidos','L17 Canudos','L44 Guama','L01 Condor','L06 Mag Castanheira','L19 Mag Castanhal','L55 Mosqueiro'];
-  var mb26 = [100.0,33.07,32.55,32.19,32.15,31.96,31.67,31.55,31.47,31.25,30.85,30.75,30.63,30.43,30.18,30.13,30.1,29.99,29.98,29.87,29.75,29.69,29.58,29.24,29.13,28.95,28.92,28.72,27.42,27.05,26.11,26.06,0];
-  var ml26 = [28.98,9.56,9.4,9.3,9.29,9.24,9.15,9.12,9.09,9.03,8.93,8.88,8.85,8.8,8.76,8.7,8.7,8.66,8.66,8.63,8.6,8.58,8.54,8.45,8.42,8.36,8.35,8.3,7.92,7.82,7.54,7.52,0];
-  var mb25 = [100.0,31.9,31.72,31.06,30.41,31.49,32.48,31.01,30.69,30.71,33.24,30.13,29.6,30.35,30.19,29.88,29.47,29.29,28.92,29.88,28.84,28.06,29.32,27.51,26.85,28.31,27.6,28.75,27.37,26.04,26.19,26.41,0];
+  var labelsRaw = ["L10 Castanhal","L08 Batista Campos","L32 Maraba","L54 Duque","L05 Castanheira","L50 Estrela","L02 Alcindo Cacela","L09 Humaita","L48 Sao Francisco","L36 Paragominas","L31 Barcarena","L38 Abaetetuba","L42 Salinopolis","L28 Independencia","L12 Br","L40 Marambaia","L03 Doca","L27 Pedreira","L11 Icoaraci","L33 Augusto Montenegro","L07 Pca Brasil","L24 Quintino","L37 Capanema","L18 C.Nova","L17 Canudos","L04 Obidos","L01 Condor","L44 Guama","L55 Mosqueiro"];
+  var mb26Raw = [31.25,31.24,30.85,30.83,30.56,30.44,30.32,30.21,30.18,29.99,29.85,29.75,29.69,29.61,29.52,29.13,29.02,28.93,28.89,28.88,28.83,28.76,28.52,28.3,28.29,27.92,27.05,26.88,0];
+  var ml26Raw = [9.03,9.03,8.92,8.91,8.85,8.79,8.76,8.73,8.72,8.66,8.63,8.6,8.62,8.56,8.54,8.42,8.39,8.36,8.34,8.34,8.34,8.31,8.24,8.17,8.17,8.07,7.82,7.76,0];
+  var mb25Raw = [30.84,31.84,31.65,31.39,31.69,30.85,30.83,29.97,31.19,29.24,29.68,28.88,30.18,29.94,30.23,29.59,30.68,27.77,28.02,29.26,29.23,29.8,27.19,28.42,28.79,27.88,26.48,27.1,0];
   new Chart(document.getElementById('marginChart').getContext('2d'), {
     type: 'bar',
     data: { labels: labels, datasets: [

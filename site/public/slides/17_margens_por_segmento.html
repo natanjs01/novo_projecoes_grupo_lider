@@ -25,7 +25,7 @@
         <i data-lucide="percent" style="width:20px;height:20px;color:#0A1628"></i>
       </div>
       <div>
-        <h1 class="fb text-5xl leading-none" style="color:#fff">MARGENS POR SEGMENTO MESMA LOJA</h1>
+        <h1 class="fb text-5xl leading-none" style="color:#fff">MARGENS POR SEGMENTO MESMA LOJA (MERCADORIAS)</h1>
         <p class="text-lg" style="color:#94A3B8">MB% e ML% · 1S2025 vs 1S2026 · 9 segmentos</p>
       </div>
     </div>
@@ -88,13 +88,13 @@
 <script>
 window.addEventListener('load', function() {
   lucide.createIcons();
-  var order = [3,8,2,0,1,5,4,7,6];
-  var labelsRaw = ['SUPERMERCADO','MAGAZAN','FARMACIA','RESTAURANTE','HOME CENTER','PETSHOP','OTICA','NUTRILIDER','OUTROS'];
-  var mb25Raw = [27.99,27.66,29.6,54.67,34.24,25.74,23.27,23,-15.42];
-  var mb26Raw = [29.14,26.18,30.52,56.55,25.4,24.88,12.05,17.97,31.14];
-  var ml26Raw = [8.43,7.55,8.82,16.32,7.34,7.2,3.23,5.17,8.99];
+  var order = [0,1,2,3,4,5,6,7,8];
+  var labelsRaw = ["RESTAURANTE","HOME CENTER","FARMACIA","OUTROS","SUPERMERCADO","MAGAZAN","PETSHOP","NUTRILIDER","OTICA"];
+  var mb25Raw = [54.67,34.23,29.58,-17.8,28.03,27.66,25.74,23.0,23.27];
+  var mb26Raw = [56.44,33.25,30.51,30.12,29.28,26.8,24.88,17.97,12.05];
+  var ml26Raw = [16.29,9.6,8.81,8.69,8.46,7.73,7.2,5.17,3.23];
   var labels = order.map(function(i){ return labelsRaw[i]; });
-  var mb25 = order.map(function(i){ return Math.abs(mb25Raw[i]); });
+  var mb25 = order.map(function(i){ return mb25Raw[i]; });
   var mb26 = order.map(function(i){ return mb26Raw[i]; });
   var ml26 = order.map(function(i){ return ml26Raw[i]; });
   new Chart(document.getElementById('segmentMarginChart').getContext('2d'), {
