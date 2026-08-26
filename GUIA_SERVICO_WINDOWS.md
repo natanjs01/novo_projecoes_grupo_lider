@@ -157,6 +157,20 @@ Stop-Service -Name GrupoLider-ExportPPT -Force
 - Verifique com: `netstat -ano | findstr :5000`
 - Mude a porta em: `backend/app/main.py` (última linha)
 
+### Serviço instalado, mas permanece parado
+- Corrija os parâmetros gravados pelo NSSM:
+   ```powershell
+   $root = 'D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao'
+   $backend = "$root\backend\app\main.py"
+   & 'C:\nssm\nssm.exe' set GrupoLider-ExportPPT AppDirectory $root
+   & 'C:\nssm\nssm.exe' set GrupoLider-ExportPPT AppParameters ('"' + $backend + '"')
+   & 'C:\nssm\nssm.exe' restart GrupoLider-ExportPPT
+   ```
+- Confirme que `AppDirectory` não termina com aspas:
+   ```powershell
+   & 'C:\nssm\nssm.exe' get GrupoLider-ExportPPT AppDirectory
+   ```
+
 ### Serviço não inicia
 - Verifique logs em: `Gerenciador de Eventos do Windows`
 - Execute manualmente para ver erro: `python backend/app/main.py`

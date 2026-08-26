@@ -4,6 +4,7 @@ setlocal
 set "NSSM=C:\nssm\nssm.exe"
 set "PYTHON=C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe"
 set "ROOT=%~dp0"
+set "ROOT=%ROOT:~0,-1%"
 set "SERVICE=GrupoLider-ExportPPT"
 set "BACKEND=%ROOT%\backend\app\main.py"
 
