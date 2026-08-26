@@ -26,7 +26,7 @@
       </div>
       <div>
         <h1 class="fb text-5xl leading-none" style="color:#fff">PERFORMANCE MESMA LOJA · FATURAMENTO BRUTO (MERCADORIAS)</h1>
-        <p class="text-lg" style="color:#94A3B8">33 filiais · 1S2025 vs 1S2026 · R$ Mil · Faturamento bruto consolidado</p>
+        <p class="text-lg" style="color:#94A3B8">32 filiais · 1S2025 vs 1S2026 · R$ Mil · Faturamento bruto consolidado</p>
       </div>
     </div>
     <div class="flex gap-5">
@@ -99,7 +99,7 @@
           <p class="text-lg font-bold" style="color:#94A3B8">ESTATÍSTICAS</p>
         </div>
         <div class="flex flex-col gap-2">
-          <div><p class="text-base" style="color:#64748B">Filiais com crescimento</p><p class="text-xl font-bold" style="color:#22C55E">15 de 33 filiais</p></div>
+          <div><p class="text-base" style="color:#64748B">Filiais com crescimento</p><p class="text-xl font-bold" style="color:#22C55E">15 de 32 filiais</p></div>
           <div><p class="text-base" style="color:#64748B">Crescimento consolidado</p><p class="text-xl font-bold" style="color:#00B4D8">+4,8% nominal</p></div>
           <div><p class="text-base" style="color:#64748B">Maior filial (1S26)</p><p class="text-xl font-bold" style="color:#F5A623">L24 Quintino · R$ 172 mi</p></div>
         </div>
@@ -118,9 +118,9 @@
 window.addEventListener('load', function() {
   lucide.createIcons();
   
-  var labels = ['L24 Quintino','L03 Doca','L18 C.Nova','L31 Barcarena','L28 Independencia','L07 Pca Brasil','L12 Br','L40 Marambaia','L32 Maraba','L33 Augusto Montenegro','L54 Duque','L17 Canudos','L38 Abaetetuba','L37 Capanema','L42 Salinopolis','L50 Estrela','L09 Humaita','L02 Alcindo Cacela','L44 Guama','L36 Paragominas','L48 Sao Francisco','L08 Batista Campos','L11 Icoaraci','L27 Pedreira','L05 Castanheira','L10 Castanhal','L04 Obidos','L01 Condor','L06 Mag Castanheira','L19 Mag Castanhal','L41 Magazan Casa','L29 Fazenda Tres Marias I','L55 Mosqueiro'];
-  var d25 = [170103,157369,150616,154228,126226,123505,114460,110440,85633,114838,93414,117515,92281,79988,83949,75384,90642,80817,76746,59631,62325,65850,56259,60728,60588,53865,56686,46164,51448,24659,11270,316,0];
-  var d26 = [171939,157227,154701,149658,127022,119124,117699,110410,107136,106379,104507,103584,93688,88247,85789,85045,84986,78154,75549,72941,70050,67149,62987,59648,59085,57717,51266,45947,45107,21926,3571,223,0];
+  var labels = ['L24 Quintino','L03 Doca','L18 C.Nova','L31 Barcarena','L28 Independencia','L07 Pca Brasil','L12 Br','L40 Marambaia','L32 Maraba','L33 Augusto Montenegro','L54 Duque','L17 Canudos','L38 Abaetetuba','L37 Capanema','L42 Salinopolis','L50 Estrela','L09 Humaita','L02 Alcindo Cacela','L44 Guama','L36 Paragominas','L48 Sao Francisco','L08 Batista Campos','L11 Icoaraci','L27 Pedreira','L05 Castanheira','L10 Castanhal','L04 Obidos','L01 Condor','L06 Mag Castanheira','L19 Mag Castanhal','L41 Magazan Casa','L29 Fazenda Tres Marias I'];
+  var d25 = [170103,157369,150616,154228,126226,123505,114460,110440,85633,114838,93414,117515,92281,79988,83949,75384,90642,80817,76746,59631,62325,65850,56259,60728,60588,53865,56686,46164,51448,24659,11270,316];
+  var d26 = [171939,157227,154701,149658,127022,119124,117699,110410,107136,106379,104507,103584,93688,88247,85789,85045,84986,78154,75549,72941,70050,67149,62987,59648,59085,57717,51266,45947,45107,21926,3571,223];
 
   function formatVal(v) {
     if (v >= 1000) return 'R$ ' + (v / 1000).toFixed(1) + ' Mi';
