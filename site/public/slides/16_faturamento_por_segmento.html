@@ -24,7 +24,7 @@
         <i data-lucide="shopping-bag" style="width:20px;height:20px;color:#0A1628"></i>
       </div>
       <div>
-        <h1 class="fb text-5xl leading-none" style="color:#fff">FATURAMENTO BRUTO POR SEGMENTO MESMA LOJA (MERCADORIAS)</h1>
+        <h1 class="fb text-5xl leading-none" style="color:#fff">FATURAMENTO BRUTO POR SEGMENTO MESMA LOJA</h1>
         <p class="text-lg" style="color:#94A3B8">8 segmentos · 1S2025 vs 1S2026 · R$ Mil · Mercadorias consolidado</p>
       </div>
     </div>
@@ -52,9 +52,9 @@
             <p class="fb text-2xl" style="color:#00B4D8">R$ 2.846 mi</p>
           </div>
           <div class="rounded-lg px-3 py-1 flex flex-col justify-center" style="background:#0A1628;border:1px solid rgba(34,197,94,0.3)">
-          <p class="text-xs" style="color:#94A3B8">CRESCIMENTO</p>
-          <p class="fb text-2xl" style="color:#22C55E">+4,8%</p>
-        </div>
+            <p class="text-xs" style="color:#94A3B8">CRESCIMENTO</p>
+            <p class="fb text-2xl" style="color:#22C55E">+4,8%</p>
+          </div>
         </div>
       </div>
       
@@ -110,9 +110,9 @@ window.addEventListener('load', function() {
   var d25Raw = [1757861,622048,150117,154436,21357,7224,1062,2015];
   var d26Raw = [1825595,641397,158718,178223,31198,7359,1890,1464];
   
-  var labels = order.map(function(i){ return labelsRaw[i]; });
-  var d25 = order.map(function(i){ return d25Raw[i]; });
-  var d26 = order.map(function(i){ return d26Raw[i]; });
+  var mainLabels = order.map(function(i){ return labelsRaw[i]; });
+  var mainD25 = order.map(function(i){ return d25Raw[i]; });
+  var mainD26 = order.map(function(i){ return d26Raw[i]; });
 
   var segmentDrilldown = {
     MAGAZAN: [['L24 Quintino',40086,41275],['L18 C.Nova',40229,39163],['L03 Doca',41975,38592],['L31 Barcarena',41685,38109],['L06 Mag Castanheira',43120,37244],['L33 Augusto Montenegro',35537,32541],['L07 Pca Brasil',27715,26510],['L28 Independencia',27879,24795],['L17 Canudos',27310,24165],['L38 Abaetetuba',23826,23619],['L40 Marambaia',25588,23613],['L42 Salinopolis',21711,22559],['L12 Br',23520,22391],['L19 Mag Castanhal',24599,21890],['L32 Maraba',18935,20908],['L09 Humaita',22518,20721],['L50 Estrela',18565,20522],['L37 Capanema',17195,17920],['L54 Duque',16473,16948],['L02 Alcindo Cacela',18018,16001],['L44 Guama',16398,15657],['L36 Paragominas',13904,14119],['L04 Obidos',14857,13213],['L48 Sao Francisco',10489,10654],['L41 Magazan Casa',2276,2543],['L08 Batista Campos',1444,1465],['L10 Castanhal',1329,1428],['L05 Castanheira',1476,1365],['L11 Icoaraci',1125,1142],['L27 Pedreira',1165,1078],['L01 Condor',665,592]],
@@ -133,7 +133,6 @@ window.addEventListener('load', function() {
   var backButton = document.getElementById('back-to-segments');
   var wrapper = document.getElementById('chart-wrapper');
 
-  // Formatação Inteligente de Valores
   function formatVal(v) {
     if (v >= 1000000) return 'R$ ' + (v / 1000000).toFixed(2) + ' Bi';
     if (v >= 1000) return 'R$ ' + (v / 1000).toFixed(1) + ' Mi';
@@ -145,10 +144,10 @@ window.addEventListener('load', function() {
   var chart = new Chart(document.getElementById('segmentChart').getContext('2d'), {
     type: 'bar',
     data: { 
-      labels: labels, 
+      labels: mainLabels, 
       datasets: [
-        { label: '1S2025', data: d25, backgroundColor: '#1E3A5F', borderColor: '#2D5A8E', borderWidth: 1, borderRadius: 4, barPercentage: 0.8, categoryPercentage: 0.7 },
-        { label: '1S2026', data: d26, backgroundColor: '#00B4D8', borderColor: '#00B4D8', borderWidth: 1, borderRadius: 4, barPercentage: 0.8, categoryPercentage: 0.7 }
+        { label: '1S2025', data: mainD25, backgroundColor: '#1E3A5F', borderColor: '#2D5A8E', borderWidth: 1, borderRadius: 4, barPercentage: 0.8, categoryPercentage: 0.7 },
+        { label: '1S2026', data: mainD26, backgroundColor: '#00B4D8', borderColor: '#00B4D8', borderWidth: 1, borderRadius: 4, barPercentage: 0.8, categoryPercentage: 0.7 }
       ]
     },
     options: {
@@ -157,12 +156,16 @@ window.addEventListener('load', function() {
       maintainAspectRatio: false,
       indexAxis: 'y',
       onClick: function(event) {
-        var points = chart.getElementsAtEventForMode(event, 'nearest', { intersect: false }, true);
-        if (points.length > 0) {
-          var idx = points[0].index;
-          var clickedLabel = chart.data.labels[idx];
-          if (!isDrilldown && segmentDrilldown[clickedLabel]) {
-            showSegment(clickedLabel);
+        if (isDrilldown) return;
+        
+        // Pega a posição Y exata da linha onde o usuário clicou na tela
+        var yVal = chart.scales.y.getValueForPixel(event.y);
+        var index = Math.round(yVal);
+        
+        if (index >= 0 && index < chart.data.labels.length) {
+          var clickedSegment = chart.data.labels[index];
+          if (segmentDrilldown[clickedSegment]) {
+            showSegment(clickedSegment);
           }
         }
       },
@@ -208,11 +211,9 @@ window.addEventListener('load', function() {
           c.save();
           c.font = '500 12px Inter';
           
-          // Rótulo da barra de 2025 (Alinhado à direita da barra 2025)
           c.fillStyle = '#94A3B8';
           c.fillText('25: ' + formatVal(v25), bar25.x + 8, bar25.y + 4);
 
-          // Rótulo da barra de 2026 + Variação (Alinhado à direita da barra 2026)
           c.fillStyle = '#E2E8F0';
           c.fillText('26: ' + formatVal(v26), bar26.x + 8, bar26.y + 4);
 
@@ -234,8 +235,8 @@ window.addEventListener('load', function() {
     chart.data.datasets[0].data = rows.map(function(row){ return row[1]; });
     chart.data.datasets[1].data = rows.map(function(row){ return row[2]; });
     
-    // Ajusta a altura dinamicamente para não encavalar
-    var newHeight = Math.max(740, rows.length * 36 + 60);
+    var rowHeight = segment === 'SUPERMERCADO' ? 44 : 36;
+    var newHeight = Math.max(740, rows.length * rowHeight + 80);
     wrapper.style.height = newHeight + 'px';
 
     chartTitle.textContent = 'FILIAIS DE ' + segment + ' (' + rows.length + ' lojas · R$ MIL)';
@@ -247,9 +248,9 @@ window.addEventListener('load', function() {
 
   backButton.addEventListener('click', function() {
     isDrilldown = false;
-    chart.data.labels = labels;
-    chart.data.datasets[0].data = d25;
-    chart.data.datasets[1].data = d26;
+    chart.data.labels = mainLabels;
+    chart.data.datasets[0].data = mainD25;
+    chart.data.datasets[1].data = mainD26;
     
     wrapper.style.height = '740px';
 
