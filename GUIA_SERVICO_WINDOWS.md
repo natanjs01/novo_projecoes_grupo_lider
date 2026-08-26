@@ -47,12 +47,17 @@ C:\nssm\
 
 4. Execute o script:
    ```powershell
-   .\INSTALAR_SERVICO_WINDOWS.ps1 -PythonPath "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe"
+   & ".\INSTALAR_SERVICO_WINDOWS.ps1" -PythonPath "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe"
    ```
 
 5. Aguarde a instalação concluir
 
 > A opção `-Scope Process` vale somente para a janela atual e não altera permanentemente a política do Windows.
+
+> Se o prompt estiver em `C:\Users\Idcontroller`, use o caminho completo:
+> ```powershell
+> & "\\10.15.4.252\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao\INSTALAR_SERVICO_WINDOWS.ps1" -PythonPath "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe"
+> ```
 
 ### Passo 3: Verificar Instalação
 
@@ -147,11 +152,12 @@ Stop-Service -Name GrupoLider-ExportPPT -Force
 - Na pasta do projeto, rode:
    ```powershell
    Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
-   .\INSTALAR_SERVICO_WINDOWS.ps1 -PythonPath "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe"
+   Set-Location "\\10.15.4.252\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao"
+   & ".\INSTALAR_SERVICO_WINDOWS.ps1" -PythonPath "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe"
    ```
 - Alternativamente, execute diretamente:
    ```powershell
-   powershell.exe -ExecutionPolicy Bypass -File ".\INSTALAR_SERVICO_WINDOWS.ps1" -PythonPath "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe"
+   powershell.exe -ExecutionPolicy Bypass -File "\\10.15.4.252\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao\INSTALAR_SERVICO_WINDOWS.ps1" -PythonPath "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe"
    ```
 
 ### Erro: "NSSM não encontrado"
