@@ -141,14 +141,44 @@
 
       // Export to PowerPoint
       const exportBtn = document.getElementById('export-pptx');
+      const API_URL = 'http://127.0.0.1:5000';
+      
+      const checkServerAvailable = async () => {
+        try {
+          const response = await fetch(`${API_URL}/api/health`, { 
+            method: 'GET',
+            mode: 'cors'
+          });
+          return response.ok;
+        } catch (error) {
+          return false;
+        }
+      };
+      
       exportBtn.addEventListener('click', async () => {
         const originalText = exportBtn.textContent;
         exportBtn.disabled = true;
         exportBtn.classList.add('loading');
-        exportBtn.textContent = '⏳ Exportando...';
+        exportBtn.textContent = '⏳ Verificando...';
         
         try {
-          const response = await fetch('http://127.0.0.1:5000/api/export/pptx', {
+          // Verificar disponibilidade do servidor
+          const serverAvailable = await checkServerAvailable();
+          
+          if (!serverAvailable) {
+            exportBtn.textContent = '❌ Servidor não disponível';
+            alert(`⚠️ SERVIDOR NÃO DISPONÍVEL\n\nPara exportar para PowerPoint, inicie o servidor Flask:\n\n1. Abra um terminal na pasta do projeto\n2. Execute: python backend/app/main.py\n3. Tente novamente\n\nO servidor rodará em http://127.0.0.1:5000`);
+            setTimeout(() => {
+              exportBtn.textContent = originalText;
+              exportBtn.disabled = false;
+              exportBtn.classList.remove('loading');
+            }, 3000);
+            return;
+          }
+          
+          exportBtn.textContent = '⏳ Exportando...';
+          
+          const response = await fetch(`${API_URL}/api/export/pptx`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' }
           });
@@ -170,17 +200,18 @@
           exportBtn.textContent = '✅ Exportado com sucesso!';
           setTimeout(() => {
             exportBtn.textContent = originalText;
+            exportBtn.disabled = false;
+            exportBtn.classList.remove('loading');
           }, 3000);
         } catch (error) {
           console.error('Erro ao exportar:', error);
           exportBtn.textContent = '❌ Erro na exportação';
-          alert(`Erro ao exportar para PowerPoint: ${error.message}`);
+          alert(`❌ Erro ao exportar para PowerPoint:\n\n${error.message}\n\nCertifique-se de que o servidor está rodando:\npython backend/app/main.py`);
           setTimeout(() => {
             exportBtn.textContent = originalText;
+            exportBtn.disabled = false;
+            exportBtn.classList.remove('loading');
           }, 3000);
-        } finally {
-          exportBtn.disabled = false;
-          exportBtn.classList.remove('loading');
         }
       });
     </script>

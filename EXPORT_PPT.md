@@ -2,94 +2,154 @@
 
 Este projeto inclui um sistema para exportar a apresentação de slides para PowerPoint (.pptx).
 
-## Componentes
+## ⚡ Início Rápido
 
-### 1. Script de Exportação (`scripts/export_to_ppt.py`)
+### 1. Instalar Dependências (primeira vez)
+```bash
+pip install -r backend/requirements.txt
+```
+
+### 2. Iniciar o Servidor
+```bash
+python backend/app/main.py
+```
+
+**Esperado:**
+```
+WARNING in app.run_simple
+ * Running on http://127.0.0.1:5000
+```
+
+### 3. Usar o Botão na Apresentação
+1. Abrir a apresentação no navegador
+2. Clicar no botão **"📊 Exportar PPT"**
+3. Arquivo será baixado automaticamente
+
+---
+
+## 📋 Componentes Detalhados
+
+### Script de Exportação (`scripts/export_to_ppt.py`)
 - Lê todos os arquivos HTML da pasta `site/public/slides/`
-- Converte para PowerPoint usando a biblioteca `python-pptx`
-- Salva o arquivo em `site/public/` com timestamp
+- Converte para PowerPoint usando `python-pptx`
+- Salva em `site/public/` com timestamp
 
 **Uso direto:**
 ```bash
 python scripts/export_to_ppt.py
 ```
 
-### 2. Servidor Backend (`backend/app/main.py`)
-- Servidor Flask que expõe um endpoint para exportação
-- Rota: `POST /api/export/pptx`
-- Retorna arquivo .pptx para download
+### Servidor Backend (`backend/app/main.py`)
+- Servidor Flask que expõe endpoints
+- `GET /api/health` - Verificação de saúde
+- `POST /api/export/pptx` - Exporta e retorna arquivo
 
-**Iniciar servidor:**
+**Iniciar:**
 ```bash
-pip install flask flask-cors python-pptx beautifulsoup4
 python backend/app/main.py
 ```
 
-O servidor rodará em `http://127.0.0.1:5000`
+Servidor rodará em `http://127.0.0.1:5000`
 
-### 3. Botão no Frontend
-- Botão "📊 Exportar PPT" adicionado na toolbar do `site/index.html`
-- Faz requisição POST para o servidor backend
-- Faz download automático do arquivo
+### Frontend (`site/index.html`)
+- Botão "📊 Exportar PPT" na toolbar
+- Verifica disponibilidade do servidor
+- Faz download automático
+- Mostra mensagens de erro/sucesso
 
-## Instalação de Dependências
+---
 
+## 🔧 Solução de Problemas
+
+### Erro: "ERR_CONNECTION_REFUSED"
+**Causa:** O servidor Flask não está rodando
+
+**Solução:**
+1. Abra um terminal nova
+2. Execute: `python backend/app/main.py`
+3. Você deve ver: `Running on http://127.0.0.1:5000`
+4. Tente novamente no navegador
+
+### Erro: "Module not found"
+**Causa:** Dependências não instaladas
+
+**Solução:**
 ```bash
-pip install flask flask-cors python-pptx beautifulsoup4
+pip install -r backend/requirements.txt
 ```
 
-## Como Usar
+### Servidor não inicia
+**Causa:** Porta 5000 já em uso
 
-### Opção 1: Via Backend (Recomendado)
-1. Iniciar o servidor:
-   ```bash
-   python backend/app/main.py
-   ```
-
-2. Abrir a apresentação no navegador:
-   ```
-   http://localhost:8000  (ou conforme configurado)
-   ```
-
-3. Clicar no botão "📊 Exportar PPT"
-
-### Opção 2: Via Linha de Comando
+**Solução:**
 ```bash
-python scripts/export_to_ppt.py
+# Opção 1: Liberar porta 5000 (encerre outros processos)
+# Opção 2: Mudar porta no código (main.py, linha final)
+python backend/app/main.py  # Padrão: 5000
 ```
 
-O arquivo será salvo em `site/public/Apresentacao_Grupo_Lider_YYYYMMDD_HHMMSS.pptx`
+---
 
-## Arquitetura
+## 📦 Dependências
+
+| Pacote | Versão | Uso |
+|--------|--------|-----|
+| `flask` | 3.0.0 | Servidor web |
+| `flask-cors` | 4.0.0 | CORS para requisições |
+| `python-pptx` | 0.6.23 | Geração de PowerPoint |
+| `beautifulsoup4` | 4.12.2 | Parse HTML |
+
+---
+
+## 🏗️ Arquitetura
 
 ```
 nova_apresentacao/
-├── scripts/
-│   └── export_to_ppt.py          # Script de exportação
 ├── backend/
-│   └── app/
-│       └── main.py               # Servidor Flask
+│   ├── app/
+│   │   └── main.py              # Servidor Flask
+│   └── requirements.txt          # Dependências
+├── scripts/
+│   └── export_to_ppt.py         # Script de exportação
 ├── site/
-│   ├── index.html                # Frontend com botão
+│   ├── index.html               # Frontend com botão
 │   └── public/
-│       └── slides/               # HTML dos slides
-└── requirements.txt              # Dependências
+│       └── slides/              # HTML dos slides (01-20)
+└── EXPORT_PPT.md                # Esta documentação
 ```
 
-## Notas Técnicas
+---
 
-- A exportação é baseada em texto extraído do HTML
-- Cada slide cria uma página no PowerPoint com:
-  - Título principal extraído do heading
-  - Informações do slide (número, nome)
-  - Fundo e formatação básica
-- Gráficos e imagens complexas não são incluídas (apenas texto)
-- Para apresentações com dados complexos, considere abrir a apresentação web em fullscreen e usar Print to PDF
+## 🚀 Fluxo de Funcionamento
 
-## Melhorias Futuras
+```
+[Usuário clica "Exportar PPT"]
+         ↓
+[Frontend verifica servidor]
+         ↓
+[Servidor está online?]
+    ├─ SIM → [Executa exportação] → [Retorna PPTX] → [Download]
+    └─ NÃO → [Mostra instruções] → [Aguarda inicialização]
+```
 
-- [ ] Incluir imagens dos slides (captura de tela)
+---
+
+## 📝 Notas
+
+- ⚠️ **IMPORTANTE:** Servidor deve estar rodando para usar o botão
+- Exportação cria apresentação básica (texto apenas)
+- Arquivo é salvo em `site/public/` com data/hora
+- Download automático após exportação bem-sucedida
+
+---
+
+## ✨ Melhorias Futuras
+
+- [ ] Incluir screenshots dos slides
 - [ ] Preservar cores e formatação visual
 - [ ] Adicionar notas do apresentador
-- [ ] Suportar múltiplos formatos de exportação (PDF, etc)
-- [ ] Integrar com API de HTML to Image
+- [ ] Suportar PDF export
+- [ ] Interface web para gerenciar exports
+- [ ] Agendamento de exports periódicos
+
+
