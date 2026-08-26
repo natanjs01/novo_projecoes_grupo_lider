@@ -10,6 +10,7 @@ __pycache__/
 *.db
 .DS_Store
 *.xlsx
+*.pdf
 logs/
 site/logs/
 informacoes_adicionais.md
