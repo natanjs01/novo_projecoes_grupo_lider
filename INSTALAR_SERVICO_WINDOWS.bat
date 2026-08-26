@@ -7,7 +7,7 @@ set "ROOT=%~dp0"
 set "ROOT=%ROOT:~0,-1%"
 set "SERVICE=GrupoLider-ExportPPT"
 set "BACKEND=%ROOT%\backend\app\main.py"
-for %%I in ("%BACKEND%") do set "BACKEND_SHORT=%%~sI"
+set "LAUNCHER=%ROOT%\INICIAR_BACKEND_SERVICO.cmd"
 
  echo.
 echo ========================================
@@ -33,9 +33,8 @@ if not exist "%BACKEND%" (
     exit /b 1
 )
 
-if not defined BACKEND_SHORT (
-    echo ERRO: O Windows nao disponibilizou caminho curto para o backend.
-    echo Configure o servico manualmente usando NSSM ou habilite nomes 8.3.
+if not exist "%LAUNCHER%" (
+    echo ERRO: Launcher nao encontrado em %LAUNCHER%
     pause
     exit /b 1
 )
@@ -45,14 +44,14 @@ echo Removendo instalacao anterior, se existir...
 "%NSSM%" remove "%SERVICE%" confirm >nul 2>&1
 
 echo Instalando servico...
-"%NSSM%" install "%SERVICE%" "%PYTHON%"
+"%NSSM%" install "%SERVICE%" "%ComSpec%"
 if errorlevel 1 (
     echo ERRO: Falha ao instalar o servico.
     pause
     exit /b 1
 )
 
-"%NSSM%" set "%SERVICE%" AppParameters "%BACKEND_SHORT%"
+"%NSSM%" set "%SERVICE%" AppParameters "/c INICIAR_BACKEND_SERVICO.cmd"
 "%NSSM%" set "%SERVICE%" AppDirectory "%ROOT%"
 "%NSSM%" set "%SERVICE%" DisplayName "Grupo Lider - Exportacao PPT"
 "%NSSM%" set "%SERVICE%" Description "Servidor Flask para exportacao de apresentacoes em PowerPoint"

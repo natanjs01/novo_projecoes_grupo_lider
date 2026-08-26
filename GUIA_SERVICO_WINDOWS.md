@@ -158,17 +158,15 @@ Stop-Service -Name GrupoLider-ExportPPT -Force
 - Mude a porta em: `backend/app/main.py` (última linha)
 
 ### Serviço instalado, mas permanece parado
-- O log `can't open file D:\\Controladoria` indica que o caminho do backend foi quebrado pelos espaços. Configure o parâmetro usando o caminho curto do Windows:
+- O serviço usa um launcher CMD para preservar os caminhos com espaços. Reinstale somente este serviço executando o instalador:
    ```powershell
-   $root = 'D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao'
-   $backend = "$root\backend\app\main.py"
-   $backendShort = (cmd /c "for %I in (`"$backend`") do @echo %~sI").Trim()
-   & 'C:\nssm\nssm.exe' set GrupoLider-ExportPPT AppDirectory $root
-   & 'C:\nssm\nssm.exe' set GrupoLider-ExportPPT AppParameters $backendShort
-   & 'C:\nssm\nssm.exe' restart GrupoLider-ExportPPT
+   Set-Location 'D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao'
+   .\INSTALAR_SERVICO_WINDOWS.bat
    ```
-- Confirme que `AppDirectory` não termina com aspas:
+- Confirme a configuração do serviço:
    ```powershell
+   & 'C:\nssm\nssm.exe' get GrupoLider-ExportPPT Application
+   & 'C:\nssm\nssm.exe' get GrupoLider-ExportPPT AppParameters
    & 'C:\nssm\nssm.exe' get GrupoLider-ExportPPT AppDirectory
    ```
 
