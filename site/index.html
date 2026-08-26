@@ -141,7 +141,7 @@
 
       // Export to PowerPoint
       const exportBtn = document.getElementById('export-pptx');
-      const API_URL = 'http://127.0.0.1:5000';
+      const API_URL = 'http://127.0.0.1:5001';
       
       const checkServerAvailable = async () => {
         try {
@@ -167,7 +167,7 @@
           
           if (!serverAvailable) {
             exportBtn.textContent = '❌ Servidor não disponível';
-            alert(`⚠️ SERVIDOR NÃO DISPONÍVEL\n\nPara exportar para PowerPoint, inicie o servidor Flask:\n\n1. Abra um terminal na pasta do projeto\n2. Execute: python backend/app/main.py\n3. Tente novamente\n\nO servidor rodará em http://127.0.0.1:5000`);
+            alert(`⚠️ SERVIDOR NÃO DISPONÍVEL\n\nPara exportar para PowerPoint, inicie o servidor Flask:\n\n1. Abra um terminal na pasta do projeto\n2. Execute: python backend/app/main.py\n3. Tente novamente\n\nO servidor rodará em http://127.0.0.1:5001`);
             setTimeout(() => {
               exportBtn.textContent = originalText;
               exportBtn.disabled = false;

@@ -72,7 +72,7 @@ if errorlevel 1 (
 echo.
 echo SUCESSO: servico instalado e iniciado.
 echo Nome: %SERVICE%
-echo Porta: 127.0.0.1:5000
+echo Porta: 127.0.0.1:5001
 echo.
 echo Teste agora o botao Exportar PPT.
 echo.
