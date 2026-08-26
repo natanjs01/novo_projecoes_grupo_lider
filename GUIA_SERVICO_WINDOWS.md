@@ -158,12 +158,13 @@ Stop-Service -Name GrupoLider-ExportPPT -Force
 - Mude a porta em: `backend/app/main.py` (última linha)
 
 ### Serviço instalado, mas permanece parado
-- Corrija os parâmetros gravados pelo NSSM:
+- O log `can't open file D:\\Controladoria` indica que o caminho do backend foi quebrado pelos espaços. Configure o parâmetro usando o caminho curto do Windows:
    ```powershell
    $root = 'D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao'
    $backend = "$root\backend\app\main.py"
+   $backendShort = (cmd /c "for %I in (`"$backend`") do @echo %~sI").Trim()
    & 'C:\nssm\nssm.exe' set GrupoLider-ExportPPT AppDirectory $root
-   & 'C:\nssm\nssm.exe' set GrupoLider-ExportPPT AppParameters ('"' + $backend + '"')
+   & 'C:\nssm\nssm.exe' set GrupoLider-ExportPPT AppParameters $backendShort
    & 'C:\nssm\nssm.exe' restart GrupoLider-ExportPPT
    ```
 - Confirme que `AppDirectory` não termina com aspas:
