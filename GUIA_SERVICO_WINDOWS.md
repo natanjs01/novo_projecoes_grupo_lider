@@ -37,7 +37,7 @@ C:\nssm\
 
 2. Navegue até a pasta do projeto:
    ```powershell
-   cd "\\10.15.4.252\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao"
+   Set-Location "D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao"
    ```
 
 3. Libere scripts somente nesta janela do PowerShell:
@@ -47,16 +47,17 @@ C:\nssm\
 
 4. Execute o script:
    ```powershell
-   & ".\INSTALAR_SERVICO_WINDOWS.ps1" -PythonPath "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe"
+   & ".\INSTALAR_SERVICO_WINDOWS.ps1" -PythonPath "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe" -ProjectRoot "D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao"
    ```
 
 5. Aguarde a instalação concluir
 
 > A opção `-Scope Process` vale somente para a janela atual e não altera permanentemente a política do Windows.
 
-> Se o prompt estiver em `C:\Users\Idcontroller`, use o caminho completo:
+> Se o prompt estiver em `C:\Users\Idcontroller`, primeiro use o diretório local do projeto:
 > ```powershell
-> & "\\10.15.4.252\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao\INSTALAR_SERVICO_WINDOWS.ps1" -PythonPath "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe"
+> Set-Location "D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao"
+> & ".\INSTALAR_SERVICO_WINDOWS.ps1" -PythonPath "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe" -ProjectRoot "D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao"
 > ```
 
 ### Passo 3: Verificar Instalação
@@ -74,7 +75,7 @@ Serviço instalado e executando:
 Antes da instalação, no PowerShell, instale as dependências com:
 
 ```powershell
-Set-Location "\\10.15.4.252\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao"
+Set-Location "D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao"
 & "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe" -m pip install -r ".\backend\requirements.txt"
 ```
 ---
@@ -152,12 +153,12 @@ Stop-Service -Name GrupoLider-ExportPPT -Force
 - Na pasta do projeto, rode:
    ```powershell
    Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
-   Set-Location "\\10.15.4.252\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao"
-   & ".\INSTALAR_SERVICO_WINDOWS.ps1" -PythonPath "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe"
+   Set-Location "D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao"
+   & ".\INSTALAR_SERVICO_WINDOWS.ps1" -PythonPath "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe" -ProjectRoot "D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao"
    ```
 - Alternativamente, execute diretamente:
    ```powershell
-   powershell.exe -ExecutionPolicy Bypass -File "\\10.15.4.252\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao\INSTALAR_SERVICO_WINDOWS.ps1" -PythonPath "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe"
+   powershell.exe -ExecutionPolicy Bypass -File "D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao\INSTALAR_SERVICO_WINDOWS.ps1" -PythonPath "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe" -ProjectRoot "D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao"
    ```
 
 ### Erro: "NSSM não encontrado"

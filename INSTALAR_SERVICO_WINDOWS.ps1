@@ -18,6 +18,7 @@ Requer: NSSM instalado em C:\nssm\nssm.exe
 param(
     [string]$NSsmPath = "C:\nssm\nssm.exe",
     [string]$PythonPath = "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe",
+    [string]$ProjectRoot = "D:\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao",
     [string]$ServiceName = "GrupoLider-ExportPPT",
     [string]$DisplayName = "Grupo Líder - Exportação PPT",
     [string]$StartupType = "Automatic"
@@ -28,12 +29,6 @@ function Test-IsAdmin {
     $currentUser = [Security.Principal.WindowsIdentity]::GetCurrent()
     $principal = New-Object Security.Principal.WindowsPrincipal($currentUser)
     return $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
-}
-
-# ========== FUNÇÃO: Obter caminho do projeto ==========
-function Get-ProjectRoot {
-    $script = Split-Path -Parent $PSCommandPath
-    return Resolve-Path $script
 }
 
 # ========== VALIDAÇÕES INICIAIS ==========
@@ -73,9 +68,14 @@ if (-not (Test-Path $NSsmPath)) {
 
 Write-Host "✓ NSSM encontrado: $NSsmPath" -ForegroundColor Green
 
-# Obter raiz do projeto
-$projectRoot = Get-ProjectRoot
-Write-Host "✓ Projeto: $projectRoot" -ForegroundColor Green
+# Verificar raiz do projeto
+if (-not (Test-Path $ProjectRoot)) {
+    Write-Host "❌ Projeto não encontrado em: $ProjectRoot" -ForegroundColor Red
+    Read-Host "Pressione Enter para sair"
+    exit 1
+}
+
+Write-Host "✓ Projeto: $ProjectRoot" -ForegroundColor Green
 
 # Verificar Python
 if (-not (Test-Path $PythonPath)) {
@@ -87,7 +87,7 @@ if (-not (Test-Path $PythonPath)) {
 Write-Host "✓ Python: $PythonPath" -ForegroundColor Green
 
 # Verificar script de backend
-$backendScript = Join-Path $projectRoot "backend\app\main.py"
+$backendScript = Join-Path $ProjectRoot "backend\app\main.py"
 if (-not (Test-Path $backendScript)) {
     Write-Host "❌ Script não encontrado: $backendScript" -ForegroundColor Red
     Read-Host "Pressione Enter para sair"
@@ -154,9 +154,9 @@ Write-Host "Configurando parâmetros..." -ForegroundColor Yellow
 
 # Diretório de trabalho
 Write-Host "  Definindo diretório de trabalho..." -ForegroundColor White
-& $NSsmPath set $ServiceName AppDirectory $projectRoot
+& $NSsmPath set $ServiceName AppDirectory $ProjectRoot
 if ($LASTEXITCODE -eq 0) {
-    Write-Host "  ✓ Diretório de trabalho: $projectRoot" -ForegroundColor Green
+    Write-Host "  ✓ Diretório de trabalho: $ProjectRoot" -ForegroundColor Green
 }
 
 # Startup type
@@ -239,7 +239,7 @@ Write-Host "Remover serviço:" -ForegroundColor White
 Write-Host "  & 'C:\nssm\nssm.exe' remove $ServiceName confirm" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Ver logs:" -ForegroundColor White
-Write-Host "  services.msc (pressione Win+R, digite 'services.msc')" -ForegroundColor Cyan
+Write-Host "  Abra services.msc pelo Win+R para ver os logs" -ForegroundColor Cyan
 Write-Host ""
 
 Read-Host "Pressione Enter para sair"
