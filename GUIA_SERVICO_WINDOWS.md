@@ -40,12 +40,19 @@ C:\nssm\
    cd "\\10.15.4.252\Controladoria - Automação\Fábrica de sonhos\Natanael_BI_py\Apresentacao_grupo_lider_trimestral\nova_apresentacao"
    ```
 
-3. Execute o script:
+3. Libere scripts somente nesta janela do PowerShell:
+   ```powershell
+   Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+   ```
+
+4. Execute o script:
    ```powershell
    .\INSTALAR_SERVICO_WINDOWS.ps1 -PythonPath "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe"
    ```
 
-4. Aguarde a instalação concluir
+5. Aguarde a instalação concluir
+
+> A opção `-Scope Process` vale somente para a janela atual e não altera permanentemente a política do Windows.
 
 ### Passo 3: Verificar Instalação
 
@@ -134,6 +141,18 @@ Stop-Service -Name GrupoLider-ExportPPT -Force
 
 ### Erro: "Script requer privilégios de Administrador"
 - Solução: Abra PowerShell como Administrador (não é o bastante clicar em abrir)
+
+### Erro: "não está assinado digitalmente" ou "UnauthorizedAccess"
+- Execute o PowerShell como Administrador
+- Na pasta do projeto, rode:
+   ```powershell
+   Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+   .\INSTALAR_SERVICO_WINDOWS.ps1 -PythonPath "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe"
+   ```
+- Alternativamente, execute diretamente:
+   ```powershell
+   powershell.exe -ExecutionPolicy Bypass -File ".\INSTALAR_SERVICO_WINDOWS.ps1" -PythonPath "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe"
+   ```
 
 ### Erro: "NSSM não encontrado"
 - Verifique se NSSM está em: `C:\nssm\nssm.exe`

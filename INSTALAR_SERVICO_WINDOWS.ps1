@@ -17,7 +17,7 @@ Requer: NSSM instalado em C:\nssm\nssm.exe
 
 param(
     [string]$NSsmPath = "C:\nssm\nssm.exe",
-    [string]$PythonPath = "C:\Users\natanaelsilva\AppData\Local\Programs\Python\Python314\python.exe",
+    [string]$PythonPath = "C:\Users\idcontroller\AppData\Local\Programs\Python\Python314\python.exe",
     [string]$ServiceName = "GrupoLider-ExportPPT",
     [string]$DisplayName = "Grupo Líder - Exportação PPT",
     [string]$StartupType = "Automatic"
