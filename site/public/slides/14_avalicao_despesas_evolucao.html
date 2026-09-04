@@ -26,6 +26,16 @@
         .slide-container > main > section:first-child > div { padding: 16px !important; }
         .slide-container > main > section:nth-child(2) { padding: 16px !important; }
         .slide-container > main > section:nth-child(2) .h-64 { height: 210px !important; }
+        .slide-container > main > section:nth-child(3) {
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .slide-container > main > section:nth-child(3) > div.overflow-x-auto {
+            min-height: 0;
+            flex: 1;
+            overflow-y: auto;
+        }
         .slide-container > main > section:nth-child(3) > div:first-child { padding: 14px 16px !important; }
         .slide-container > footer { padding-top: 10px !important; padding-bottom: 10px !important; }
         .custom-scroll::-webkit-scrollbar {
