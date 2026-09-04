@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grupo Líder | Agradecimento</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Bebas+Neue&display=swap');
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #071827;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    .slide-container {
+      width: 1920px;
+      height: 1080px;
+      background: linear-gradient(135deg, #071827 0%, #0a1f35 50%, #0f2d45 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      color: #fff;
+    }
+
+    .header {
+      height: 86px;
+      background: #112240;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 56px;
+      color: #ffffff;
+      position: relative;
+      border-bottom: 2px solid #1E3A5F;
+    }
+
+    .header-title {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 42px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #F5A623;
+    }
+
+    .content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 80px 120px;
+      position: relative;
+    }
+
+    .thank-you-title {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 140px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: #00b4d8;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+    }
+
+    .thank-you-subtitle {
+      font-size: 48px;
+      color: #b6c9db;
+      margin-bottom: 50px;
+      line-height: 1.4;
+      font-weight: 300;
+    }
+
+    .divider {
+      width: 150px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, #F5A623, transparent);
+      margin: 40px auto;
+    }
+
+    .contact-info {
+      margin-top: 60px;
+      font-size: 22px;
+      color: #94a3b8;
+    }
+
+    .contact-info strong {
+      display: block;
+      color: #fff;
+      margin-top: 10px;
+      font-size: 24px;
+    }
+
+    .footer {
+      height: 60px;
+      background: rgba(17, 34, 64, 0.6);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 56px;
+      border-top: 1px solid #1E3A5F;
+      color: #66809a;
+      font-size: 16px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .footer-right {
+      color: #F5A623;
+    }
+
+    .logo-corner {
+      position: absolute;
+      top: 400px;
+      right: 120px;
+      width: 300px;
+      height: 180px;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    .logo-corner img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="header">
+      <div style="width: 100%; height: 86px; display: flex; align-items: center; justify-content: center;">
+        <img src="../assets/logo.png?v=2" alt="Grupo Líder" style="height: 60px; object-fit: contain;">
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="logo-corner">
+        <img src="../assets/logo.png?v=2" alt="Grupo Líder">
+      </div>
+      
+      <div class="thank-you-title">Obrigado</div>
+      
+      <div class="thank-you-subtitle">
+        Obrigado por sua atenção<br>
+        em nossa apresentação de resultados
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="contact-info">
+        Dúvidas e comentários
+        <strong>tiago.controladoria@lidernet.com.br</strong>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>Controladoria · Uso gerencial</span>
+      <span class="footer-right">Resultados 1º Semestre 2026</span>
+    </div>
+  </div>
+</body>
+</html>

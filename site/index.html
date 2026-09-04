@@ -46,14 +46,16 @@
           <button class="viewer-button" data-slide="10_ebitda_pre_ifrs16" type="button"><span>10</span>EBITDA pré IFRS 16</button>
           <button class="viewer-button" data-slide="11_ciclo_de_caixa" type="button"><span>11</span>Ciclo de caixa</button>
           <button class="viewer-button" data-slide="12_divida_liquida" type="button"><span>12</span>Dívida líquida</button>
-          <button class="viewer-button" data-slide="13_estrutura_financeira" type="button"><span>13</span>Estrutura financeira</button>
-          <button class="viewer-button" data-slide="14_faturamento_por_loja" type="button"><span>14</span>Faturamento por loja</button>
-          <button class="viewer-button" data-slide="15_margens_e_rentabilidade" type="button"><span>15</span>Margens e rentabilidade</button>
-          <button class="viewer-button" data-slide="16_faturamento_por_segmento" type="button"><span>16</span>Faturamento por segmento</button>
-          <button class="viewer-button" data-slide="17_margens_por_segmento" type="button"><span>17</span>Margens por segmento</button>
-            <button class="viewer-button" data-slide="18_reforma_tributaria_resumo" type="button"><span>18</span>Reforma tributária resumo</button>
-            <button class="viewer-button" data-slide="19_reforma_tributaria_segmento" type="button"><span>19</span>Reforma tributária por segmento</button>
-            <button class="viewer-button" data-slide="20_agradecimento" type="button"><span>20</span>Agradecimento</button>
+          <button class="viewer-button" data-slide="13_divida_liquida_sem_aplicacao" type="button"><span>13</span>Dívida líquida s/ aplicação</button>
+          <button class="viewer-button" data-slide="14_avalicao_despesas_evolucao" type="button"><span>14</span>Avaliação de despesas</button>
+          <button class="viewer-button" data-slide="15_estrutura_financeira" type="button"><span>15</span>Estrutura financeira</button>
+          <button class="viewer-button" data-slide="16_faturamento_por_loja" type="button"><span>16</span>Faturamento por loja</button>
+          <button class="viewer-button" data-slide="17_margens_e_rentabilidade" type="button"><span>17</span>Margens e rentabilidade</button>
+          <button class="viewer-button" data-slide="18_faturamento_por_segmento" type="button"><span>18</span>Faturamento por segmento</button>
+          <button class="viewer-button" data-slide="19_margens_por_segmento" type="button"><span>19</span>Margens por segmento</button>
+          <button class="viewer-button" data-slide="20_reforma_tributaria_resumo" type="button"><span>20</span>Reforma tributária resumo</button>
+          <button class="viewer-button" data-slide="21_reforma_tributaria_segmento" type="button"><span>21</span>Reforma tributária por segmento</button>
+          <button class="viewer-button" data-slide="22_agradecimento" type="button"><span>22</span>Agradecimento</button>
       </nav>
           <div class="viewer-toolbar">
             <button id="export-pptx" class="export-button" type="button" title="Exportar para PowerPoint" hidden>📊 Exportar PPT</button>
@@ -167,7 +169,7 @@
           
           if (!serverAvailable) {
             exportBtn.textContent = '❌ Servidor não disponível';
-            alert(`⚠️ SERVIDOR NÃO DISPONÍVEL\n\nPara exportar para PowerPoint, verifique se o serviço GrupoLider-ExportPPT está ativo.\n\nAPI interna: http://10.15.4.252:5001`);
+            alert(`⚠️ SERVIDOR NÃO DISPONÍVEL\n\nPara exportar para PowerPoint, verifique se o backend está ativo.\n\nAPI interna: http://10.15.4.252:5001`);
             setTimeout(() => {
               exportBtn.textContent = originalText;
               exportBtn.disabled = false;

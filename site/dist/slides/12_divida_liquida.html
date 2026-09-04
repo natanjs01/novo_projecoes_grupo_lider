@@ -11,7 +11,8 @@
 <style>
 .bars { left: 170px; right: 40px; }
 .group.semester, .metric-group.semester { margin-left: 0; }
-.metrics { display: none; }
+.metrics { display: block; }
+.metrics { height: 112px; }
 .leverage-ratio { position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%); color: #fff; font-size: 16px; font-weight: 800; white-space: nowrap; }
 .callout.quarter { left: 606px; width: 190px; }
 .callout.semester { left: 1439px; right: auto; width: 199px; color: #0B449B; }
@@ -24,13 +25,14 @@
 <main class="content"><div class="chart"><div class="axis-label">Dívida líquida (R$ milhões)</div>
 <div class="callout quarter">-104,0%<br>(-R$ 49,6 mi)</div><div class="callout semester">-303,3%<br>(-R$ 55,5 mi)</div>
 <div class="bars"><div class="group"><div class="bar primary" style="height:166px"><span class="bar-value">27,5</span><span class="x-label">Mar/25</span></div></div><div class="group"><div class="bar" style="height:220px"><span class="bar-value">36,2</span><span class="x-label">Jun/25</span></div></div><div class="group"><div class="bar primary" style="height:262px"><span class="bar-value">47,7</span><span class="x-label">Set/25</span></div></div><div class="group"><div class="bar negative" style="height:10px"><span class="bar-value">-1,9</span><span class="x-label">Dez/25</span></div></div><div class="group"><div class="bar primary" style="height:202px"><span class="bar-value">33,5</span><span class="x-label">Jan/26</span></div></div><div class="group"><div class="bar primary" style="height:205px"><span class="bar-value">34,0</span><span class="x-label">Fev/26</span></div></div><div class="group"><div class="bar primary" style="height:111px"><span class="bar-value">18,3</span><span class="x-label">Mar/26</span></div></div><div class="group"><div class="bar negative" style="height:226px"><span class="bar-value">-37,2</span><span class="x-label">Jun/26</span></div></div></div></div>
-<div class="metrics"><div class="metric-label">DÍVIDA LÍQUIDA<br>R$ MILHÕES</div><div class="metric-values"><div class="metric-group"><span>27,5</span></div><div class="metric-group"><span>36,2</span></div><div class="metric-group"><span>47,7</span></div><div class="metric-group"><span class="negative">-1,9</span></div><div class="metric-group"><span>33,5</span></div><div class="metric-group"><span>34,0</span></div><div class="metric-group"><span>18,3</span></div><div class="metric-group"><span class="negative">-37,2</span></div></div></div></main>
-  <footer class="footer"><span>Grupo Lider · Controladoria</span><strong>DÍVIDA LÍQUIDA</strong><span>12/19</span></footer>
+<div class="metrics"><div class="metric-label">DÍVIDA LÍQUIDA<br>GERAL / EBITDA</div><div class="metric-values"><div class="metric-group"><span>18,73%</span></div><div class="metric-group"><span>15,53%</span></div><div class="metric-group"><span>2,63%</span></div><div class="metric-group"><span>1,11%</span></div><div class="metric-group"><span>7,12%</span></div><div class="metric-group"><span>4,24%</span></div><div class="metric-group"><span>2,66%</span></div><div class="metric-group"><span class="negative">1,08%</span></div></div></div></main>
+  <footer class="footer"><span>Grupo Lider · Controladoria</span><strong>DÍVIDA LÍQUIDA</strong><span>12/22</span></footer>
 </div>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 	var metrics = document.querySelector('.metrics');
-	if (metrics) metrics.remove();
+	var metricValues = document.querySelector('.metric-values');
+	metricValues.innerHTML = '<div class="metric-group"><span>2,63%</span></div><div class="metric-group"><span>2,66%</span></div><div class="metric-group"><span class="negative">-53,72%</span></div><div class="metric-group"><span class="negative">-0,11%</span></div><div class="metric-group"><span>2,55%</span></div><div class="metric-group"><span>3,57%</span></div><div class="metric-group"><span>1,55%</span></div><div class="metric-group"><span class="negative">-3,79%</span></div>';
 	var ratios = ['0,21x', '0,28x', '0,37x', '-0,01x', '0,33x', '0,34x', '0,18x', '-0,37x'];
 	document.querySelectorAll('.bars .bar').forEach(function (bar, index) {
 		var ratio = document.createElement('span');

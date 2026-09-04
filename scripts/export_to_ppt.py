@@ -25,7 +25,7 @@ def get_slide_files(first: int, last: int) -> list[Path]:
     return sorted(files, key=lambda path: int(path.name.split("_")[0]))
 
 
-def export_to_pptx(output_path: Path | None = None, first: int = 1, last: int = 20) -> str:
+def export_to_pptx(output_path: Path | None = None, first: int = 1, last: int = 22) -> str:
     slide_files = get_slide_files(first, last)
     if not slide_files:
         raise SystemExit("Nenhum slide encontrado no intervalo informado.")
@@ -74,7 +74,7 @@ def export_to_pptx(output_path: Path | None = None, first: int = 1, last: int = 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Exporta slides HTML para PPTX em 16:9.")
     parser.add_argument("--inicio", type=int, default=1, help="Número do primeiro slide")
-    parser.add_argument("--fim", type=int, default=20, help="Número do último slide")
+    parser.add_argument("--fim", type=int, default=22, help="Número do último slide")
     parser.add_argument("--saida", type=Path, help="Caminho do PPTX de saída")
     args = parser.parse_args()
 

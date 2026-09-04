@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dívida líquida s/ aplicação</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap');
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#071827}
+.slide{position:relative;width:1920px;height:1080px;overflow:hidden;background:#fff;color:#071827;font-family:Inter,Arial,sans-serif}
+.header{height:118px;display:flex;align-items:center;justify-content:space-between;padding:0 62px;background:#112240;border-bottom:3px solid #1E3A5F}
+.header h1{margin:0;color:#fff;font-size:34px}
+.header h1:after{content:'';display:block;width:86px;height:4px;margin-top:12px;background:linear-gradient(90deg,#F5A623,#00B4D8)}
+.logo{width:205px;height:72px;object-fit:contain}
+.content{padding:42px 82px 0}
+.chart{position:relative;height:690px;border-bottom:2px solid #CBD5E1}
+.axis-label{position:absolute;left:0;top:292px;color:#071827;font-size:19px;font-weight:800;writing-mode:vertical-rl;transform:rotate(180deg)}
+.bars{position:absolute;left:170px;right:40px;bottom:110px;height:430px;display:flex;align-items:end;justify-content:space-between}
+.group{width:150px;height:100%;display:flex;align-items:end;justify-content:center;position:relative}
+.bar{width:92px;background:#142F73;position:relative}
+.bar.primary{background:#00B4D8}
+.bar.negative{background:#D65353}
+.bar-value{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);white-space:nowrap;color:#071827;font-size:20px;font-weight:800}
+.x-label{position:absolute;top:calc(100% + 22px);left:50%;transform:translateX(-50%);white-space:nowrap;color:#475569;font-size:17px;font-weight:700}
+.callout{position:absolute;color:#0B449B;font-size:21px;line-height:1.25;font-weight:800;text-align:center}
+.callout:after{content:'';position:absolute;left:0;right:0;top:66px;height:62px;border-top:2px dotted #7B9DB8;border-left:2px dotted #7B9DB8;border-right:2px dotted #7B9DB8}
+.callout:before{content:'';position:absolute;right:-5px;top:120px;border-left:7px solid transparent;border-right:7px solid transparent;border-top:12px solid #0B449B}
+.callout.quarter{left:644px;top:10px;width:199px}
+.callout.semester{left:1441px;top:120px;width:200px}
+.metrics{position:relative;height:112px;border-top:2px solid #CBD5E1}
+.metric-label{position:absolute;left:0;top:0;width:220px;height:100%;display:flex;align-items:center;color:#0B449B;font-size:17px;font-weight:800;line-height:1.15}
+.metric-values{position:absolute;left:170px;right:40px;top:0;height:100%;display:flex;justify-content:space-between}
+.metric-group{width:150px;height:100%;display:flex;align-items:center;justify-content:center}
+.metric-group span{text-align:center;color:#0B449B;font-size:20px;font-weight:800}
+.metric-group span.negative{color:#C81E1E}
+.footer{position:absolute;left:0;right:0;bottom:0;height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 62px;background:#112240;border-top:2px solid #1E3A5F;color:#8EA3BB;font-size:13px}
+.footer strong{color:#F5A623}
+</style>
+</head>
+<body>
+<div class="slide">
+  <header class="header">
+    <h1>DÍVIDA LÍQUIDA S/ APLICAÇÃO</h1>
+    <img class="logo" src="../assets/logo.png?v=2" alt="Grupo Lider">
+  </header>
+  <main class="content">
+    <div class="chart">
+      <div class="axis-label">Dívida líquida (R$ milhões)</div>
+      <div class="callout quarter">-48,3%<br>(-R$ 52,3 mi)</div>
+      <div class="callout semester">-7,2%<br>(-R$ 5,7 mi)</div>
+      <div class="bars">
+        <div class="group"><div class="bar primary" style="height:248px"><span class="bar-value">62,584</span><span class="x-label">Mar/25</span></div></div>
+        <div class="group"><div class="bar" style="height:395px"><span class="bar-value">99,439</span><span class="x-label">Jun/25</span></div></div>
+        <div class="group"><div class="bar primary" style="height:430px"><span class="bar-value">108,258</span><span class="x-label">Set/25</span></div></div>
+        <div class="group"><div class="bar negative" style="height:222px"><span class="bar-value">55,937</span><span class="x-label">Dez/25</span></div></div>
+        <div class="group"><div class="bar primary" style="height:358px"><span class="bar-value">90,003</span><span class="x-label">Jan/26</span></div></div>
+        <div class="group"><div class="bar primary" style="height:353px"><span class="bar-value">88,820</span><span class="x-label">Fev/26</span></div></div>
+        <div class="group"><div class="bar primary" style="height:316px"><span class="bar-value">79,577</span><span class="x-label">Mar/26</span></div></div>
+        <div class="group"><div class="bar negative" style="height:293px"><span class="bar-value">73,861</span><span class="x-label">Jun/26</span></div></div>
+      </div>
+    </div>
+    <div class="metrics">
+      <div class="metric-label">DÍVIDA LÍQUIDA S/ APLICAÇÃO<br>FINANCEIRA / EBITDA</div>
+      <div class="metric-values">
+        <div class="metric-group"><span>5,99%</span></div>
+        <div class="metric-group"><span>7,30%</span></div>
+        <div class="metric-group"><span class="negative">-121,95%</span></div>
+        <div class="metric-group"><span>3,33%</span></div>
+        <div class="metric-group"><span>6,83%</span></div>
+        <div class="metric-group"><span>9,32%</span></div>
+        <div class="metric-group"><span>6,72%</span></div>
+        <div class="metric-group"><span>7,53%</span></div>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <span>Grupo Lider · Controladoria</span>
+    <strong>DÍVIDA LÍQUIDA S/ APLICAÇÃO</strong>
+    <span>13/22</span>
+  </footer>
+</div>
+</body>
+</html>

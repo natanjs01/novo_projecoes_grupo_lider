@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demonstrativo e Drill-Down de Despesas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        * { box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: #071827; color: #071827; margin: 0; padding: 0; }
+        .slide-container {
+            width: 100%;
+            height: 1080px;
+            min-height: 1080px;
+            max-height: 1080px;
+            overflow: hidden;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+        }
+        .slide-container > header { padding-top: 14px !important; padding-bottom: 14px !important; }
+        .slide-container > main { padding: 16px 24px !important; gap: 14px !important; min-height: 0; overflow: hidden; }
+        .slide-container > main > section:first-child > div { padding: 16px !important; }
+        .slide-container > main > section:nth-child(2) { padding: 16px !important; }
+        .slide-container > main > section:nth-child(2) .h-64 { height: 210px !important; }
+        .slide-container > main > section:nth-child(3) > div:first-child { padding: 14px 16px !important; }
+        .slide-container > footer { padding-top: 10px !important; padding-bottom: 10px !important; }
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .badge-positive { background-color: #dcfce7; color: #166534; }
+        .badge-negative { background-color: #fee2e2; color: #991b1b; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-800 antialiased">
+
+<div class="slide-container">
+    <!-- Header -->
+    <header class="bg-[#112240] border-b-4 border-[#1E3A5F] text-white px-8 py-5 flex justify-between items-center shadow-lg">
+        <div>
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-chart-pie text-[#00B4D8] text-2xl"></i>
+                <h1 class="text-2xl font-extrabold tracking-wide uppercase">DEMONSTRATIVO DE DESPESAS</h1>
+            </div>
+            <div class="h-1 w-24 bg-gradient-to-r from-[#F5A623] to-[#00B4D8] mt-2 rounded"></div>
+        </div>
+        <div class="flex items-center gap-6">
+            <div class="text-right text-xs text-slate-300">
+                <span class="block text-slate-400 font-semibold uppercase">Comparativo Base</span>
+                <span class="text-sm font-bold text-[#F5A623]">Maio/25 vs Junho/25</span>
+            </div>
+            <img src="../assets/logo.png?v=2" alt="Grupo Lider" class="h-12 object-contain" onerror="this.onerror=null; this.style.display='none';">
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 p-6 max-w-[1920px] mx-auto w-full flex flex-col gap-6">
+        
+        <!-- KPI Cards -->
+        <section class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div class="flex justify-between items-start">
+                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Total Despesas (Jun/25)</span>
+                    <span class="p-2 bg-blue-50 text-blue-600 rounded-lg text-sm"><i class="fa-solid fa-wallet"></i></span>
+                </div>
+                <div class="mt-3">
+                    <div class="text-2xl font-black text-slate-800" id="kpiTotalJun">R$ 0,00</div>
+                    <div class="text-xs font-semibold text-slate-500 mt-1 flex items-center gap-1" id="kpiTotalVar">
+                        vs Maio: <span>0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div class="flex justify-between items-start">
+                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Total Despesas (Maio/25)</span>
+                    <span class="p-2 bg-slate-100 text-slate-600 rounded-lg text-sm"><i class="fa-solid fa-clock-rotate-left"></i></span>
+                </div>
+                <div class="mt-3">
+                    <div class="text-2xl font-black text-slate-800" id="kpiTotalMai">R$ 0,00</div>
+                    <div class="text-xs font-semibold text-slate-500 mt-1">Base Comparativa Anterior</div>
+                </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div class="flex justify-between items-start">
+                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Maior Grupo de Despesa</span>
+                    <span class="p-2 bg-purple-50 text-purple-600 rounded-lg text-sm"><i class="fa-solid fa-layer-group"></i></span>
+                </div>
+                <div class="mt-3">
+                    <div class="text-lg font-bold text-slate-800 truncate" id="kpiTopGroup">--</div>
+                    <div class="text-xs font-semibold text-slate-500 mt-1" id="kpiTopGroupVal">R$ 0,00</div>
+                </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div class="flex justify-between items-start">
+                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Maior Variação de Aumento</span>
+                    <span class="p-2 bg-red-50 text-red-600 rounded-lg text-sm"><i class="fa-solid fa-arrow-trend-up"></i></span>
+                </div>
+                <div class="mt-3">
+                    <div class="text-lg font-bold text-red-600 truncate" id="kpiTopOffender">--</div>
+                    <div class="text-xs font-semibold text-slate-500 mt-1" id="kpiTopOffenderVal">+R$ 0,00</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chart Section -->
+        <section class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+            <div class="flex justify-between items-center mb-4">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-800">Comparativo Mensal por Grupo de Despesa (R$)</h2>
+                    <p class="text-xs text-slate-500">Visualização comparativa dos totais de Maio vs Junho para cada grupo operacional</p>
+                </div>
+            </div>
+            <div class="h-64 w-full">
+                <canvas id="mainChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Table Section -->
+        <section class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex-1">
+            <div class="p-5 border-b border-slate-200 bg-slate-50 flex flex-wrap justify-between items-center gap-4">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-800">Resumo por Grupo e Drill-Down por Conta Razão</h2>
+                    <p class="text-xs text-slate-500">Clique na linha do grupo para expandir as contas razões e ver a variação individual.</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Buscar conta ou grupo..." class="px-3 py-1.5 text-xs border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00B4D8] w-64">
+                    <button onclick="toggleExpandAll()" id="expandAllBtn" class="px-3 py-1.5 bg-[#112240] text-white text-xs font-bold rounded-lg hover:bg-[#1E3A5F] transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-folder-open"></i> Expandir Todos
+                    </button>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto custom-scroll">
+                <table class="w-full text-left border-collapse" id="expenseTable">
+                    <thead>
+                        <tr class="bg-[#112240] text-white text-xs font-bold uppercase tracking-wider">
+                            <th class="p-4 w-12 text-center"></th>
+                            <th class="p-4">Nº Conta / Grupo / Conta Razão</th>
+                            <th class="p-4 text-right">Maio/25</th>
+                            <th class="p-4 text-right">% Grupo</th>
+                            <th class="p-4 text-right">Junho/25</th>
+                            <th class="p-4 text-right">% Grupo</th>
+                            <th class="p-4 text-right">Var. R$ (MoM)</th>
+                            <th class="p-4 text-right">Var. % (MoM)</th>
+                            <th class="p-4 text-center">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody" class="divide-y divide-slate-200 text-sm font-medium">
+                        <!-- Content Injected via JS -->
+                    </tbody>
+                    <tfoot id="tableFoot" class="bg-slate-100 font-extrabold text-slate-900 border-t-2 border-slate-300">
+                        <!-- Foot Totals Injected via JS -->
+                    </tfoot>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#112240] border-t-2 border-[#1E3A5F] text-slate-400 text-xs px-8 py-4 flex justify-between items-center">
+        <span>Grupo Lider · Controladoria e Planejamento Financeiro</span>
+        <strong class="text-[#F5A623]">DEMONSTRATIVO DE DESPESAS OPERACIONAIS</strong>
+        <span>Slide 14/22</span>
+    </footer>
+</div>
+
+<!-- Modal for Individual Account Detail -->
+<div id="accountModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden border border-slate-200">
+        <div class="bg-[#112240] p-5 text-white flex justify-between items-center">
+            <div>
+                <span class="text-xs font-bold text-[#00B4D8] uppercase tracking-wider" id="modalGroupTitle">Grupo</span>
+                <h3 class="text-xl font-black" id="modalAccountTitle">Nome da Conta</h3>
+            </div>
+            <button onclick="closeModal()" class="text-slate-400 hover:text-white text-2xl font-bold p-1">&times;</button>
+        </div>
+        <div class="p-6 flex flex-col gap-6">
+            <div class="grid grid-cols-3 gap-4 bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">
+                <div>
+                    <span class="text-xs text-slate-500 font-bold block">Maio/25</span>
+                    <span class="text-lg font-black text-slate-800" id="modalValMai">R$ 0,00</span>
+                </div>
+                <div>
+                    <span class="text-xs text-slate-500 font-bold block">Junho/25</span>
+                    <span class="text-lg font-black text-slate-800" id="modalValJun">R$ 0,00</span>
+                </div>
+                <div>
+                    <span class="text-xs text-slate-500 font-bold block">Variação R$</span>
+                    <span class="text-lg font-black" id="modalValDiff">R$ 0,00</span>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-sm font-bold text-slate-700 mb-3">Comparativo de Saldo (R$)</h4>
+                <div class="h-48 w-full">
+                    <canvas id="modalAccountChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="bg-slate-100 px-6 py-4 border-t border-slate-200 flex justify-end">
+            <button onclick="closeModal()" class="px-5 py-2 bg-[#112240] text-white text-xs font-bold rounded-lg hover:bg-[#1E3A5F] transition">Fechar</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// Real Dataset Extracted from user file 'base despesas.txt'
+const expenseGroups = [
+    {
+        id: "G1",
+        name: "Despesas ADM",
+        accounts: [
+            { code: "4220100000002", name: "SALÁRIOS E ORDENADOS", mai: 190829, pctMai: 0.31, jun: 194255, pctJun: 0.30 },
+            { code: "4220100000003", name: "13º SALÁRIO", mai: 17201, pctMai: 0.03, jun: 20361, pctJun: 0.03 },
+            { code: "4220100000005", name: "SEGURO ACIDENTE DE TRABALHO", mai: 4888, pctMai: 0.01, jun: 5407, pctJun: 0.01 },
+            { code: "4220100000009", name: "CONTRIB. DE PREVIDÊNCIA", mai: 64203, pctMai: 0.10, jun: 67616, pctJun: 0.11 },
+            { code: "4220100000010", name: "FUND. GARANT. TEMPO DE SERVIÇO", mai: 26932, pctMai: 0.04, jun: 24400, pctJun: 0.04 },
+            { code: "4220100000011", name: "CONTRIBUIÇÃO SINDICAL", mai: 0, pctMai: 0.00, jun: 82, pctJun: 0.00 },
+            { code: "4220100000015", name: "VALE TRANSPORTE", mai: 2851, pctMai: 0.00, jun: 3043, pctJun: 0.00 },
+            { code: "4220100000024", name: "DESPESAS C/ EMPREGADOS", mai: 733, pctMai: 0.00, jun: 2122, pctJun: 0.00 },
+            { code: "4220100000025", name: "HORAS EXTRAS", mai: 4530, pctMai: 0.01, jun: 3716, pctJun: 0.01 },
+            { code: "4220100000026", name: "ADICIONAL NOTURNO", mai: 1954, pctMai: 0.00, jun: 1897, pctJun: 0.00 },
+            { code: "4220100000027", name: "QUINQUÊNIOS, DECÊNIOS E ANUÊNIOS", mai: 7593, pctMai: 0.01, jun: 8081, pctJun: 0.01 },
+            { code: "4220100000028", name: "ADICIONAL INSALUBRIDADE", mai: 1636, pctMai: 0.00, jun: 2056, pctJun: 0.00 },
+            { code: "4220100000029", name: "PRÊMIOS/ ASSID.", mai: 1393, pctMai: 0.00, jun: 1307, pctJun: 0.00 },
+            { code: "4220100000030", name: "AVISO PRÉVIO", mai: 3425, pctMai: 0.01, jun: 1167, pctJun: 0.00 },
+            { code: "4220100000031", name: "ADICIONAL PERICULOSIDADE", mai: 1202, pctMai: 0.00, jun: 1280, pctJun: 0.00 },
+            { code: "4220100000034", name: "FÉRIAS", mai: 28356, pctMai: 0.05, jun: 29274, pctJun: 0.05 },
+            { code: "4220100000035", name: "INDENIZAÇÕES", mai: 5141, pctMai: 0.01, jun: 2616, pctJun: 0.00 },
+            { code: "4220100000041", name: "TICKET ALIMENTAÇÃO", mai: 33054, pctMai: 0.05, jun: 35189, pctJun: 0.05 },
+            { code: "4220100000045", name: "INDENIZ.COMPENSATÓRIAS DE DOMINGO 2019", mai: 94, pctMai: 0.00, jun: 98, pctJun: 0.00 },
+            { code: "4220100000046", name: "INDENIZ.COMPENSATÓRIA DE DOMINGO 2020", mai: 118, pctMai: 0.00, jun: 113, pctJun: 0.00 },
+            { code: "4220100000047", name: "INDENIZ.COMPENSATÓRIA DE DOMINGO 2021", mai: 147, pctMai: 0.00, jun: 129, pctJun: 0.00 },
+            { code: "4220100000048", name: "INDENIZ.COMPENSATÓRIA DE DOMINGO 2022", mai: 163, pctMai: 0.00, jun: 144, pctJun: 0.00 },
+            { code: "4220100000049", name: "INDENIZ.COMPENSATÓRIA DE DOMINGO 2023", mai: 185, pctMai: 0.00, jun: 162, pctJun: 0.00 },
+            { code: "4220200000060", name: "RESTITUIÇÕES DIVERSAS", mai: 190, pctMai: 0.00, jun: 75, pctJun: 0.00 },
+            { code: "4220100000013", name: "DESPESAS C/ UNIFORMES", mai: 378, pctMai: 0.00, jun: 562, pctJun: 0.00 },
+            { code: "4220200000001", name: "SERVIÇO DE TERCEIROS - PJ", mai: 27941, pctMai: 0.05, jun: 27365, pctJun: 0.04 },
+            { code: "4220200000002", name: "SERVIÇO DE TERCEIROS - PF", mai: 87, pctMai: 0.00, jun: 17, pctJun: 0.00 },
+            { code: "4220200000003", name: "ALUGUEL", mai: 15547, pctMai: 0.03, jun: 16991, pctJun: 0.03 },
+            { code: "4220200000004", name: "TELEX E COMUNICAÇÃO", mai: 470, pctMai: 0.00, jun: 801, pctJun: 0.00 },
+            { code: "4220200000006", name: "ÁGUA, LUZ E TELEFONE", mai: 47561, pctMai: 0.08, jun: 51368, pctJun: 0.08 },
+            { code: "4220200000008", name: "DEPRECIAÇÃO", mai: 10420, pctMai: 0.02, jun: 16977, pctJun: 0.03 },
+            { code: "4220200000010", name: "ASSIST. MÉDICA E ODONTOLÓGICA", mai: -2738, pctMai: 0.00, jun: 4555, pctJun: 0.01 },
+            { code: "4220200000011", name: "DESPESAS LEGAIS JUDICIAIS", mai: 2502, pctMai: 0.00, jun: 2410, pctJun: 0.00 },
+            { code: "4220200000012", name: "DESPESAS C/ VEÍCULOS", mai: 3784, pctMai: 0.01, jun: 4134, pctJun: 0.01 },
+            { code: "4220200000015", name: "BRINDES E DOACOES", mai: 20, pctMai: 0.00, jun: 348, pctJun: 0.00 },
+            { code: "4220200000016", name: "VIAGENS E ESTADIAS", mai: 231, pctMai: 0.00, jun: 408, pctJun: 0.00 },
+            { code: "4220200000017", name: "MATERIAL DE REPOSIÇÃO", mai: 8610, pctMai: 0.01, jun: 4218, pctJun: 0.01 },
+            { code: "4220200000018", name: "MATERIAL DE CONSUMO", mai: 54533, pctMai: 0.09, jun: 45989, pctJun: 0.07 },
+            { code: "4220200000019", name: "SEGURO C/ FOGO", mai: 217, pctMai: 0.00, jun: 203, pctJun: 0.00 },
+            { code: "4220200000020", name: "DESPESAS DIVERSAS", mai: 5601, pctMai: 0.01, jun: 4699, pctJun: 0.01 },
+            { code: "4220200000021", name: "BENS DE CONSUMO", mai: 0, pctMai: 0.00, jun: 0, pctJun: 0.00 },
+            { code: "4220200000024", name: "DESPESAS CONDOMINIAIS", mai: 2517, pctMai: 0.00, jun: 1934, pctJun: 0.00 },
+            { code: "4220200000026", name: "MATERIAL DE EXPEDIENTE", mai: 4047, pctMai: 0.01, jun: 4336, pctJun: 0.01 },
+            { code: "4220200000027", name: "SEGURO DE VIDA", mai: 15, pctMai: 0.00, jun: 15, pctJun: 0.00 },
+            { code: "4220200000031", name: "EVENTOS E RECEPÇÕES", mai: 147, pctMai: 0.00, jun: 125, pctJun: 0.00 },
+            { code: "4220200000034", name: "DESPESA COM CARTÓRIO", mai: 42, pctMai: 0.00, jun: 5, pctJun: 0.00 },
+            { code: "4220200000035", name: "DESPESAS DE PROVISÃO P/ DEV. DUVIDOSO", mai: 6, pctMai: 0.00, jun: 0, pctJun: 0.00 },
+            { code: "4220200000039", name: "COMBUSTÍVEIS", mai: 814, pctMai: 0.00, jun: 854, pctJun: 0.00 },
+            { code: "4220200000040", name: "TAXA DE SERVIÇOS S/CARTÃO", mai: 25654, pctMai: 0.04, jun: 27190, pctJun: 0.04 },
+            { code: "4220200000042", name: "PERDAS E DANOS", mai: 8534, pctMai: 0.01, jun: 14110, pctJun: 0.02 },
+            { code: "4220100000040", name: "PROCESSO TRABALHISTA", mai: 145, pctMai: 0.00, jun: 670, pctJun: 0.00 },
+            { code: "4220100000042", name: "ADICIONAL RESPONSÁVEL TÉCNICO", mai: 56, pctMai: 0.00, jun: 121, pctJun: 0.00 },
+            { code: "4220200000046", name: "PREMIO PROTEÇÃO LIDERZAN", mai: 5, pctMai: 0.00, jun: 12, pctJun: 0.00 },
+            { code: "4220200000048", name: "INDENIZAÇOES A CONCILIAR", mai: 1865, pctMai: 0.00, jun: 3984, pctJun: 0.01 },
+            { code: "4220200000050", name: "DESPESA ACORDO EXTRA JUDICIAL", mai: 67, pctMai: 0.00, jun: 38, pctJun: 0.00 },
+            { code: "4220100000004", name: "FÉRIAS E INDENIZAÇÕES", mai: 63, pctMai: 0.00, jun: 0, pctJun: 0.00 },
+            { code: "4220100000007", name: "GRATIFICAÇÃO", mai: 244, pctMai: 0.00, jun: 416, pctJun: 0.00 },
+            { code: "4220100000039", name: "DESPESAS C/ REFEITORIO", mai: 528, pctMai: 0.00, jun: 539, pctJun: 0.00 },
+            { code: "4220100000050", name: "INDENIZ.COMPENSATÓRIA DE DOMINGO 2024", mai: 0, pctMai: 0.00, jun: 83, pctJun: 0.00 }
+        ]
+    },
+    {
+        id: "G2",
+        name: "Despesas Tributárias",
+        accounts: [
+            { code: "4240200000006", name: "CSLL", mai: 4002, pctMai: 0.23, jun: 4304, pctJun: 0.21 },
+            { code: "4240200000005", name: "IMPOSTO DE RENDA", mai: 10667, pctMai: 0.62, jun: 11471, pctJun: 0.55 },
+            { code: "4240100000001", name: "IMPOSTO DE LOCALIZAÇÃO", mai: 259, pctMai: 0.02, jun: 341, pctJun: 0.02 },
+            { code: "4240100000002", name: "IMPOSTO PREDIAL", mai: 1896, pctMai: 0.11, jun: 3563, pctJun: 0.17 },
+            { code: "4240100000008", name: "IMPOSTO E TAXAS ESTADUAIS", mai: 285, pctMai: 0.02, jun: 532, pctJun: 0.03 },
+            { code: "4240100000018", name: "IMPOSTO S/ SERVIÇOS", mai: 36, pctMai: 0.00, jun: 4, pctJun: 0.00 },
+            { code: "4240200000003", name: "MULTAS FISCAIS", mai: 0, pctMai: 0.00, jun: 779, pctJun: 0.04 }
+        ]
+    },
+    {
+        id: "G3",
+        name: "Despesas de vendas",
+        accounts: [
+            { code: "4210100000002", name: "PROPAGANDA E PUBLICIDADE", mai: 8310, pctMai: 0.75, jun: 2671, pctJun: 0.41 },
+            { code: "4210100000005", name: "SERVIÇOS DE TERCEIROS - PF", mai: 933, pctMai: 0.08, jun: 0, pctJun: 0.00 },
+            { code: "4210100000007", name: "FRETES E ENTREGAS", mai: 235, pctMai: 0.02, jun: 250, pctJun: 0.04 },
+            { code: "4210100000008", name: "ASSINATURAS E CONTRIBUIÇÕES", mai: 101, pctMai: 0.01, jun: 320, pctJun: 0.05 },
+            { code: "4210100000001", name: "COMISSÕES", mai: 1443, pctMai: 0.13, jun: 3271, pctJun: 0.50 }
+        ]
+    },
+    {
+        id: "G4",
+        name: "Resultado Financeiro",
+        accounts: [
+            { code: "3120100000002", name: "RENDAS DE APLICAÇÃO", mai: 0, pctMai: 0.00, jun: -1, pctJun: 0.00 },
+            { code: "3120100000004", name: "DESCONTOS OBTIDOS", mai: -9598, pctMai: -3.40, jun: -5545, pctJun: -2.04 },
+            { code: "3120100000005", name: "JUROS ATIVOS", mai: -23, pctMai: -0.01, jun: -123, pctJun: -0.05 },
+            { code: "4230100000001", name: "JUROS DISPENDIDOS", mai: 114, pctMai: 0.04, jun: 130, pctJun: 0.05 },
+            { code: "4230100000003", name: "ENCARGOS BANCÁRIOS", mai: 290, pctMai: 0.10, jun: 0, pctJun: 0.00 },
+            { code: "4230100000004", name: "VARIAÇÃO MONETÁRIA PASSIVA", mai: 63, pctMai: 0.02, jun: 131, pctJun: 0.05 },
+            { code: "4230100000008", name: "JUROS S/ EMPRÉSTIMOS", mai: 6401, pctMai: 2.27, jun: 7182, pctJun: 2.64 },
+            { code: "4230100000013", name: "DESPESAS BANCARIAS", mai: 110, pctMai: 0.04, jun: 382, pctJun: 0.14 },
+            { code: "4240200000001", name: "MULTAS, JUROS E CORREÇÃO MONETÁRIA", mai: 5364, pctMai: 1.90, jun: 367, pctJun: 0.14 },
+            { code: "4240100000017", name: "MULTAS, JUROS E CORREÇÃO MONETÁRIA", mai: 97, pctMai: 0.03, jun: 195, pctJun: 0.07 }
+        ]
+    },
+    {
+        id: "G5",
+        name: "Outras Despesas, (Receitas) Operacionais",
+        accounts: [
+            { code: "4310100000005", name: "APURAÇÃO BAIXA IMOBILIZADO", mai: 867, pctMai: -0.05, jun: 143, pctJun: -0.01 },
+            { code: "3120200000003", name: "RECUPERAÇÃO DE DESPESAS", mai: -126, pctMai: 0.01, jun: -61, pctJun: 0.00 },
+            { code: "3120200000004", name: "BONIFICAÇÃO", mai: -3161, pctMai: 0.18, jun: -7732, pctJun: 0.53 },
+            { code: "3120200000010", name: "OUTRAS RECEITAS", mai: -11680, pctMai: 0.65, jun: -7070, pctJun: 0.49 },
+            { code: "3210200000001", name: "VENDAS ATIVO PERMANENTE", mai: -450, pctMai: 0.03, jun: -59, pctJun: 0.00 },
+            { code: "3120200000008", name: "RECEITAS EVENTUAIS", mai: -1820, pctMai: 0.10, jun: 0, pctJun: 0.00 },
+            { code: "3120200000014", name: "RECEITA DE AUDITORIA VERBAS PROMOCIONAL", mai: -2087, pctMai: 0.12, jun: -2312, pctJun: 0.16 },
+            { code: "4230200000005", name: "AJUSTE ADM CARTAO", mai: 231, pctMai: -0.01, jun: 541, pctJun: -0.04 },
+            { code: "4230200000006", name: "AJUSTE AVJ", mai: 0, pctMai: 0.00, jun: 1879, pctJun: -0.13 },
+            { code: "4310200000002", name: "PERDAS EVENTUAIS", mai: 285, pctMai: -0.02, jun: 116, pctJun: -0.01 }
+        ]
+    }
+];
+
+let expandedGroups = new Set(); // All groups collapsed by default
+let mainChart = null;
+let modalChart = null;
+
+// Currency & Percent formatting helpers
+function formatMoney(value) {
+    const formatted = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Math.abs(value));
+    return value < 0 ? `(${formatted})` : formatted;
+}
+
+function formatPercent(value) {
+    if (isNaN(value) || !isFinite(value)) return "0,0%";
+    const sign = value > 0 ? "+" : "";
+    return `${sign}${value.toFixed(1).replace(".", ",")}%`;
+}
+
+function formatPercentClean(value) {
+    return `${(value * 100).toFixed(1).replace(".", ",")}%`;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    updateDashboard();
+});
+
+function updateDashboard() {
+    renderTable();
+    renderMainChart();
+    updateKPIs();
+}
+
+function renderTable() {
+    const tbody = document.getElementById("tableBody");
+    const tfoot = document.getElementById("tableFoot");
+
+    tbody.innerHTML = "";
+
+    let grandTotalMai = 0;
+    let grandTotalJun = 0;
+
+    const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+
+    expenseGroups.forEach(group => {
+        let groupMai = 0;
+        let groupJun = 0;
+
+        group.accounts.forEach(acc => {
+            groupMai += acc.mai;
+            groupJun += acc.jun;
+        });
+
+        grandTotalMai += groupMai;
+        grandTotalJun += groupJun;
+
+        const groupDiffR = groupJun - groupMai;
+        const groupDiffPct = groupMai !== 0 ? (groupDiffR / Math.abs(groupMai)) * 100 : 0;
+
+        const isExpanded = expandedGroups.has(group.id) || searchTerm.length > 0;
+
+        // Group Header Row (Subtotal)
+        const groupRow = document.createElement("tr");
+        groupRow.className = "bg-slate-100 hover:bg-slate-200/80 font-bold border-t border-slate-300 transition cursor-pointer select-none";
+        groupRow.onclick = (e) => {
+            if (e.target.tagName !== 'BUTTON' && !e.target.closest('button')) {
+                toggleGroup(group.id);
+            }
+        };
+
+        groupRow.innerHTML = `
+            <td class="p-4 text-center text-slate-600">
+                <i class="fa-solid fa-chevron-${isExpanded ? 'down' : 'right'} text-xs"></i>
+            </td>
+            <td class="p-4 text-slate-900 font-extrabold flex items-center gap-2">
+                <i class="fa-solid fa-folder text-[#00B4D8]"></i>
+                ${group.name}
+            </td>
+            <td class="p-4 text-right text-slate-700">${formatMoney(groupMai)}</td>
+            <td class="p-4 text-right text-slate-500 text-xs">100,0%</td>
+            <td class="p-4 text-right text-slate-900 font-black">${formatMoney(groupJun)}</td>
+            <td class="p-4 text-right text-slate-500 text-xs">100,0%</td>
+            <td class="p-4 text-right ${groupDiffR > 0 ? 'text-red-600' : 'text-emerald-600'}">${formatMoney(groupDiffR)}</td>
+            <td class="p-4 text-right">
+                <span class="px-2 py-1 rounded text-xs font-bold ${groupDiffPct > 0 ? 'badge-negative' : 'badge-positive'}">
+                    ${formatPercent(groupDiffPct)}
+                </span>
+            </td>
+            <td class="p-4 text-center">
+                <button onclick="toggleGroup('${group.id}')" class="text-xs bg-[#112240] text-white px-2.5 py-1 rounded hover:bg-[#1E3A5F] transition">
+                    ${isExpanded ? 'Recolher' : 'Expandir'}
+                </button>
+            </td>
+        `;
+
+        tbody.appendChild(groupRow);
+
+        // Account Detail Rows
+        if (isExpanded) {
+            group.accounts.forEach(acc => {
+                const accDiffR = acc.jun - acc.mai;
+                const accDiffPct = acc.mai !== 0 ? (accDiffR / Math.abs(acc.mai)) * 100 : 0;
+
+                // Search Filter
+                if (searchTerm && !acc.name.toLowerCase().includes(searchTerm) && !group.name.toLowerCase().includes(searchTerm) && !acc.code.includes(searchTerm)) {
+                    return;
+                }
+
+                const accRow = document.createElement("tr");
+                accRow.className = "bg-white hover:bg-blue-50/50 transition border-t border-slate-100 text-xs";
+                accRow.innerHTML = `
+                    <td></td>
+                    <td class="p-3 pl-10 text-slate-700 font-medium">
+                        <span class="text-slate-400 font-mono text-[11px] mr-2">${acc.code}</span>
+                        ${acc.name}
+                    </td>
+                    <td class="p-3 text-right text-slate-600">${formatMoney(acc.mai)}</td>
+                    <td class="p-3 text-right text-slate-400">${formatPercentClean(acc.pctMai)}</td>
+                    <td class="p-3 text-right font-bold text-slate-800">${formatMoney(acc.jun)}</td>
+                    <td class="p-3 text-right text-slate-400">${formatPercentClean(acc.pctJun)}</td>
+                    <td class="p-3 text-right ${accDiffR > 0 ? 'text-red-600 font-semibold' : 'text-emerald-600'}">${formatMoney(accDiffR)}</td>
+                    <td class="p-3 text-right font-bold ${accDiffPct > 0 ? 'text-red-600' : 'text-emerald-600'}">${formatPercent(accDiffPct)}</td>
+                    <td class="p-3 text-center">
+                        <button onclick="openModal('${group.name}', '${acc.name}', '${acc.code}')" class="text-[11px] text-[#00B4D8] hover:text-[#112240] font-bold underline flex items-center justify-center gap-1 mx-auto">
+                            <i class="fa-solid fa-chart-line"></i> Detalhar
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(accRow);
+            });
+        }
+    });
+
+    // Grand Totals Footer
+    const grandDiffR = grandTotalJun - grandTotalMai;
+    const grandDiffPct = grandTotalMai !== 0 ? (grandDiffR / Math.abs(grandTotalMai)) * 100 : 0;
+
+    tfoot.innerHTML = `
+        <tr>
+            <td></td>
+            <td class="p-4 text-base">TOTAL OPERACIONAL DAS DESPESAS</td>
+            <td class="p-4 text-right">${formatMoney(grandTotalMai)}</td>
+            <td class="p-4 text-right text-slate-500 text-xs">--</td>
+            <td class="p-4 text-right text-lg text-[#00B4D8]">${formatMoney(grandTotalJun)}</td>
+            <td class="p-4 text-right text-slate-500 text-xs">--</td>
+            <td class="p-4 text-right ${grandDiffR > 0 ? 'text-red-600' : 'text-emerald-600'}">${formatMoney(grandDiffR)}</td>
+            <td class="p-4 text-right">
+                <span class="px-2 py-1 rounded text-xs font-black ${grandDiffPct > 0 ? 'badge-negative' : 'badge-positive'}">
+                    ${formatPercent(grandDiffPct)}
+                </span>
+            </td>
+            <td></td>
+        </tr>
+    `;
+}
+
+function toggleGroup(groupId) {
+    if (expandedGroups.has(groupId)) {
+        expandedGroups.delete(groupId);
+    } else {
+        expandedGroups.add(groupId);
+    }
+    updateDashboard();
+}
+
+function toggleExpandAll() {
+    if (expandedGroups.size === expenseGroups.length) {
+        expandedGroups.clear();
+        document.getElementById("expandAllBtn").innerHTML = `<i class="fa-solid fa-folder-open"></i> Expandir Todos`;
+    } else {
+        expenseGroups.forEach(g => expandedGroups.add(g.id));
+        document.getElementById("expandAllBtn").innerHTML = `<i class="fa-solid fa-folder"></i> Recolher Todos`;
+    }
+    updateDashboard();
+}
+
+function filterTable() {
+    updateDashboard();
+}
+
+function updateKPIs() {
+    let totalMai = 0;
+    let totalJun = 0;
+
+    let topOffenderName = "";
+    let topOffenderVal = -Infinity;
+
+    let largestGroupName = "";
+    let largestGroupVal = -Infinity;
+
+    expenseGroups.forEach(group => {
+        let gMai = 0;
+        let gJun = 0;
+
+        group.accounts.forEach(acc => {
+            gMai += acc.mai;
+            gJun += acc.jun;
+
+            const diff = acc.jun - acc.mai;
+            if (diff > topOffenderVal) {
+                topOffenderVal = diff;
+                topOffenderName = acc.name;
+            }
+        });
+
+        totalMai += gMai;
+        totalJun += gJun;
+
+        if (gJun > largestGroupVal) {
+            largestGroupVal = gJun;
+            largestGroupName = group.name;
+        }
+    });
+
+    document.getElementById("kpiTotalJun").innerText = formatMoney(totalJun);
+    document.getElementById("kpiTotalMai").innerText = formatMoney(totalMai);
+
+    const totalVarPct = ((totalJun - totalMai) / Math.abs(totalMai)) * 100;
+    const kpiVarElem = document.getElementById("kpiTotalVar");
+    kpiVarElem.innerHTML = `vs Maio: <span class="${totalVarPct > 0 ? 'font-bold text-red-600' : 'font-bold text-emerald-600'}">${formatPercent(totalVarPct)}</span>`;
+
+    document.getElementById("kpiTopGroup").innerText = largestGroupName;
+    document.getElementById("kpiTopGroupVal").innerText = `${formatMoney(largestGroupVal)} (${((largestGroupVal / totalJun) * 100).toFixed(1)}% do total)`;
+
+    document.getElementById("kpiTopOffender").innerText = topOffenderName;
+    document.getElementById("kpiTopOffenderVal").innerText = `+${formatMoney(topOffenderVal)} vs Maio`;
+}
+
+function renderMainChart() {
+    const ctx = document.getElementById("mainChart").getContext("2d");
+
+    if (mainChart) mainChart.destroy();
+
+    const labels = expenseGroups.map(g => g.name);
+    const dataMai = expenseGroups.map(g => g.accounts.reduce((sum, a) => sum + a.mai, 0));
+    const dataJun = expenseGroups.map(g => g.accounts.reduce((sum, a) => sum + a.jun, 0));
+
+    mainChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Maio/25',
+                    data: dataMai,
+                    backgroundColor: '#142F73',
+                    borderRadius: 4
+                },
+                {
+                    label: 'Junho/25',
+                    data: dataJun,
+                    backgroundColor: '#00B4D8',
+                    borderRadius: 4
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'top', labels: { font: { family: 'Inter', size: 12, weight: 'bold' } } },
+                tooltip: {
+                    callbacks: {
+                        label: function(c) {
+                            return `${c.dataset.label}: ${formatMoney(c.raw)}`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: {
+                        callback: function(v) { return 'R$ ' + (v / 1000).toFixed(0) + 'k'; }
+                    }
+                }
+            }
+        }
+    });
+}
+
+function openModal(groupName, accName, accCode) {
+    document.getElementById("modalGroupTitle").innerText = groupName;
+    document.getElementById("modalAccountTitle").innerText = `${accCode} - ${accName}`;
+
+    let targetAcc = null;
+    expenseGroups.forEach(g => {
+        g.accounts.forEach(a => {
+            if (a.code === accCode) targetAcc = a;
+        });
+    });
+
+    if (!targetAcc) return;
+
+    document.getElementById("modalValMai").innerText = formatMoney(targetAcc.mai);
+    document.getElementById("modalValJun").innerText = formatMoney(targetAcc.jun);
+
+    const diff = targetAcc.jun - targetAcc.mai;
+    const diffElem = document.getElementById("modalValDiff");
+    diffElem.innerText = formatMoney(diff);
+    diffElem.className = `text-lg font-black ${diff > 0 ? 'text-red-600' : 'text-emerald-600'}`;
+
+    const ctxModal = document.getElementById("modalAccountChart").getContext("2d");
+    if (modalChart) modalChart.destroy();
+
+    modalChart = new Chart(ctxModal, {
+        type: 'bar',
+        data: {
+            labels: ['Maio/25', 'Junho/25'],
+            datasets: [
+                {
+                    label: 'Valor Realizado (R$)',
+                    data: [targetAcc.mai, targetAcc.jun],
+                    backgroundColor: ['#142F73', '#00B4D8'],
+                    borderRadius: 6
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: function(c) { return formatMoney(c.raw); }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: {
+                        callback: function(v) { return 'R$ ' + v.toLocaleString('pt-BR'); }
+                    }
+                }
+            }
+        }
+    });
+
+    document.getElementById("accountModal").classList.remove("hidden");
+}
+
+function closeModal() {
+    document.getElementById("accountModal").classList.add("hidden");
+}
+</script>
+</body>
+</html>
