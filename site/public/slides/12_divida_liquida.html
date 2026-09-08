@@ -30,16 +30,8 @@
 </div>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-	var metrics = document.querySelector('.metrics');
 	var metricValues = document.querySelector('.metric-values');
 	metricValues.innerHTML = '<div class="metric-group"><span>2,63%</span></div><div class="metric-group"><span>2,66%</span></div><div class="metric-group"><span class="negative">-53,72%</span></div><div class="metric-group"><span class="negative">-0,11%</span></div><div class="metric-group"><span>2,55%</span></div><div class="metric-group"><span>3,57%</span></div><div class="metric-group"><span>1,55%</span></div><div class="metric-group"><span class="negative">-3,79%</span></div>';
-	var ratios = ['0,21x', '0,28x', '0,37x', '-0,01x', '0,33x', '0,34x', '0,18x', '-0,37x'];
-	document.querySelectorAll('.bars .bar').forEach(function (bar, index) {
-		var ratio = document.createElement('span');
-		ratio.className = 'leverage-ratio';
-		ratio.textContent = ratios[index];
-		bar.appendChild(ratio);
-	});
 });
 </script>
 </body></html>

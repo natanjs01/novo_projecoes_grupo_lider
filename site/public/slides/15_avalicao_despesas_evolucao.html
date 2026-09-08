@@ -130,8 +130,8 @@
         <section class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
             <div class="flex justify-between items-center mb-4">
                 <div>
-                    <h2 class="text-lg font-bold text-slate-800">Comparativo Mensal por Grupo de Despesa (R$)</h2>
-                    <p class="text-xs text-slate-500">Visualização comparativa dos totais de Maio vs Junho para cada grupo operacional</p>
+                    <h2 class="text-lg font-bold text-slate-800">Evolução Mensal por Grupo de Despesa (R$)</h2>
+                    <p class="text-xs text-slate-500">Comparativo em colunas por grupo operacional (Maio/25 vs Junho/25, com escala independente por grupo)</p>
                 </div>
             </div>
             <div class="h-64 w-full">
@@ -353,11 +353,10 @@ const expenseGroups = [
     }
 ];
 
-let expandedGroups = new Set(); // All groups collapsed by default
+let expandedGroups = new Set();
 let mainChart = null;
 let modalChart = null;
 
-// Currency & Percent formatting helpers
 function formatMoney(value) {
     const formatted = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Math.abs(value));
     return value < 0 ? `(${formatted})` : formatted;
@@ -411,7 +410,6 @@ function renderTable() {
 
         const isExpanded = expandedGroups.has(group.id) || searchTerm.length > 0;
 
-        // Group Header Row (Subtotal)
         const groupRow = document.createElement("tr");
         groupRow.className = "bg-slate-100 hover:bg-slate-200/80 font-bold border-t border-slate-300 transition cursor-pointer select-none";
         groupRow.onclick = (e) => {
@@ -447,13 +445,11 @@ function renderTable() {
 
         tbody.appendChild(groupRow);
 
-        // Account Detail Rows
         if (isExpanded) {
             group.accounts.forEach(acc => {
                 const accDiffR = acc.jun - acc.mai;
                 const accDiffPct = acc.mai !== 0 ? (accDiffR / Math.abs(acc.mai)) * 100 : 0;
 
-                // Search Filter
                 if (searchTerm && !acc.name.toLowerCase().includes(searchTerm) && !group.name.toLowerCase().includes(searchTerm) && !acc.code.includes(searchTerm)) {
                     return;
                 }
@@ -483,7 +479,6 @@ function renderTable() {
         }
     });
 
-    // Grand Totals Footer
     const grandDiffR = grandTotalJun - grandTotalMai;
     const grandDiffPct = grandTotalMai !== 0 ? (grandDiffR / Math.abs(grandTotalMai)) * 100 : 0;
 
@@ -583,49 +578,94 @@ function renderMainChart() {
 
     if (mainChart) mainChart.destroy();
 
+    // Eixo X contendo os Grupos de Despesa
     const labels = expenseGroups.map(g => g.name);
-    const dataMai = expenseGroups.map(g => g.accounts.reduce((sum, a) => sum + a.mai, 0));
-    const dataJun = expenseGroups.map(g => g.accounts.reduce((sum, a) => sum + a.jun, 0));
+    const datasets = [];
+    const scales = {
+        x: {
+            grid: { display: false },
+            ticks: { font: { family: 'Inter', size: 11, weight: 'bold' } }
+        }
+    };
+
+    // Para cada grupo, cria dataset de Maio e Junho vinculados ao seu próprio eixo Y
+    expenseGroups.forEach((group, index) => {
+        const mai = group.accounts.reduce((sum, a) => sum + a.mai, 0);
+        const jun = group.accounts.reduce((sum, a) => sum + a.jun, 0);
+        const axisId = `y_${group.id}`;
+
+        const dataMai = Array(expenseGroups.length).fill(null);
+        const dataJun = Array(expenseGroups.length).fill(null);
+        dataMai[index] = mai;
+        dataJun[index] = jun;
+
+        datasets.push({
+            label: 'Maio/25',
+            data: dataMai,
+            backgroundColor: '#142F73',
+            borderRadius: 4,
+            yAxisID: axisId,
+            skipNull: true
+        });
+
+        datasets.push({
+            label: 'Junho/25',
+            data: dataJun,
+            backgroundColor: '#00B4D8',
+            borderRadius: 4,
+            yAxisID: axisId,
+            skipNull: true
+        });
+
+        scales[axisId] = {
+            type: 'linear',
+            display: false
+        };
+    });
 
     mainChart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: labels,
-            datasets: [
-                {
-                    label: 'Maio/25',
-                    data: dataMai,
-                    backgroundColor: '#142F73',
-                    borderRadius: 4
-                },
-                {
-                    label: 'Junho/25',
-                    data: dataJun,
-                    backgroundColor: '#00B4D8',
-                    borderRadius: 4
-                }
-            ]
+            datasets: datasets
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-                legend: { position: 'top', labels: { font: { family: 'Inter', size: 12, weight: 'bold' } } },
+                legend: {
+                    position: 'top',
+                    labels: {
+                        font: { family: 'Inter', size: 11, weight: 'bold' },
+                        generateLabels: function() {
+                            return [
+                                { text: 'Maio/25', fillStyle: '#142F73', strokeStyle: '#142F73', datasetIndex: 0 },
+                                { text: 'Junho/25', fillStyle: '#00B4D8', strokeStyle: '#00B4D8', datasetIndex: 1 }
+                            ];
+                        }
+                    },
+                    onClick: function(e, legendItem, legend) {
+                        const targetIdx = legendItem.datasetIndex;
+                        legend.chart.data.datasets.forEach((d, i) => {
+                            if (i % 2 === targetIdx) d.hidden = !d.hidden;
+                        });
+                        legend.chart.update();
+                    }
+                },
                 tooltip: {
                     callbacks: {
+                        title: function(tooltipItems) {
+                            return tooltipItems[0].label;
+                        },
                         label: function(c) {
-                            return `${c.dataset.label}: ${formatMoney(c.raw)}`;
+                            const isJun = c.datasetIndex % 2 === 1;
+                            const period = isJun ? 'Junho/25' : 'Maio/25';
+                            return `${period}: ${formatMoney(c.raw)}`;
                         }
                     }
                 }
             },
-            scales: {
-                y: {
-                    ticks: {
-                        callback: function(v) { return 'R$ ' + (v / 1000).toFixed(0) + 'k'; }
-                    }
-                }
-            }
+            scales: scales
         }
     });
 }
