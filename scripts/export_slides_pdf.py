@@ -60,7 +60,7 @@ def export_pdf(output_path: Path, first: int, last: int) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Exporta os slides HTML para um PDF 16:9.")
     parser.add_argument("--inicio", type=int, default=1, help="Número do primeiro slide")
-    parser.add_argument("--fim", type=int, default=20, help="Número do último slide")
+    parser.add_argument("--fim", type=int, default=22, help="Número do último slide")
     parser.add_argument("--saida", type=Path, help="Caminho do PDF de saída")
     args = parser.parse_args()
 
