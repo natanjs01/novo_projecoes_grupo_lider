@@ -22,7 +22,6 @@
       padding: 0;
     }
 
-    /* Container formato Slide 16:9 */
     .slide-container {
       width: 1920px;
       height: 1080px;
@@ -34,7 +33,6 @@
       color: #fff;
     }
 
-    /* Header estilizado idêntico ao exemplo */
     .header {
       height: 86px;
       background: #112240;
@@ -72,18 +70,6 @@
       color: #F5A623;
     }
 
-    .header-logo .icon-coracao {
-      width: 44px;
-      height: 44px;
-      background: #F5A623;
-      border-radius: 8px;
-      display: grid;
-      place-items: center;
-      font-size: 16px;
-      color: #0A1628;
-      font-weight: bold;
-    }
-
     .header-logo img {
       width: 205px;
       height: 72px;
@@ -93,7 +79,6 @@
       border-radius: 0;
     }
 
-    /* Conteúdo principal dividido em 2 colunas */
     .main-content {
       flex: 1;
       display: grid;
@@ -103,7 +88,6 @@
       position: relative;
     }
 
-    /* Coluna Esquerda: Mapa */
     .map-section {
       position: relative;
       display: flex;
@@ -231,7 +215,6 @@
       transform-origin: 580px 200px;
     }
 
-    /* Coluna Direita: Cards das Lojas */
     .sidebar {
       display: flex;
       flex-direction: column;
@@ -239,7 +222,6 @@
       padding-top: 0;
     }
 
-    /* Box do Total de Lojas */
     .total-box {
       background: #00B4D8;
       display: flex;
@@ -248,15 +230,36 @@
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
 
-    .total-number {
-      width: 95px;
+    .total-metrics {
       display: flex;
+      background: #008BA8;
+    }
+
+    .total-metric-item {
+      display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-size: 38px;
+      padding: 0 12px;
+    }
+
+    .total-metric-item:first-child {
+      border-right: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .total-number-val {
+      font-size: 26px;
       font-weight: 900;
       letter-spacing: -1px;
-      background: #008BA8;
+      line-height: 1;
+    }
+
+    .total-number-lbl {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      opacity: 0.9;
+      margin-top: 2px;
     }
 
     .total-label {
@@ -265,14 +268,13 @@
       flex-direction: column;
       justify-content: center;
       padding-left: 12px;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
-      line-height: 1.1;
+      line-height: 1.2;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
 
-    /* Cards de cada bandeira */
     .brand-card {
       display: flex;
       height: 76px;
@@ -329,7 +331,6 @@
       font-weight: 500;
     }
 
-    /* Área da foto no card com degradê */
     .brand-photo {
       flex: 1;
       position: relative;
@@ -345,7 +346,6 @@
       background: linear-gradient(90deg, inherit 0%, rgba(0,0,0,0) 65%, rgba(0,0,0,0.2) 100%);
     }
 
-    /* Cores personalizadas por bandeira */
     .bg-super { background: #d71920; }
     .bg-magazan { background: #e38d13; }
     .bg-farma { background: #138752; }
@@ -357,8 +357,8 @@
     .bg-pets { background: #c43b74; }
     .bg-magazan-casa { background: #c46a20; }
     .bg-clinica { background: #0b7f9a; }
+    .bg-fazenda { background: #3d6a2a; }
 
-    /* Estilo dos círculos com número das lojas no mapa */
     .city-bubble {
       cursor: pointer;
       transition: transform 0.2s ease;
@@ -369,7 +369,6 @@
       transform-origin: center;
     }
 
-    /* Faixa de rodapé estilizada */
     .footer-strip {
       position: absolute;
       bottom: 0;
@@ -390,7 +389,6 @@
 
   <div class="slide-container">
     
-    <!-- Topo -->
     <header class="header">
       <div class="header-title">
         NÚMERO DE LOJAS <span>| GRUPO LÍDER</span>
@@ -400,14 +398,11 @@
       </div>
     </header>
 
-    <!-- Conteúdo do Slide -->
     <main class="main-content">
       
-      <!-- Lado Esquerdo: Mapa do Pará com nós de dados -->
       <section class="map-section">
         <svg class="map-svg" viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <!-- Gradiente para o estado do Pará -->
             <linearGradient id="paraGrad" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stop-color="#1B5D7C" />
               <stop offset="55%" stop-color="#0F3C58" />
@@ -418,19 +413,16 @@
               <path d="M 46 0 L 0 0 0 46" fill="none" stroke="#4C8AA2" stroke-width="1" opacity=".14"/>
             </pattern>
 
-            <!-- Halo de destaque atrás do estado -->
             <radialGradient id="stateHalo" cx="50%" cy="45%" r="60%">
               <stop offset="0%" stop-color="#3FB6D6" stop-opacity="0.28"/>
               <stop offset="100%" stop-color="#3FB6D6" stop-opacity="0"/>
             </radialGradient>
 
-            <!-- Gradiente para os rios -->
             <linearGradient id="riverGrad" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stop-color="#9FE8F2"/>
               <stop offset="100%" stop-color="#4FA9C4"/>
             </linearGradient>
 
-            <!-- Gradientes 3D das bolhas por porte -->
             <radialGradient id="bubbleHub" cx="35%" cy="30%" r="75%">
               <stop offset="0%" stop-color="#3FA9E8"/>
               <stop offset="55%" stop-color="#0E64AD"/>
@@ -447,12 +439,10 @@
               <stop offset="100%" stop-color="#0B3C5C"/>
             </radialGradient>
 
-            <!-- Sombra dos círculos de cidades -->
             <filter id="bubbleShadow" x="-40%" y="-40%" width="180%" height="180%">
               <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#031B34" flood-opacity="0.55"/>
             </filter>
 
-            <!-- Brilho suave para o hub principal -->
             <filter id="softGlow" x="-80%" y="-80%" width="260%" height="260%">
               <feGaussianBlur stdDeviation="9" result="blur"/>
               <feMerge>
@@ -462,10 +452,8 @@
             </filter>
           </defs>
 
-          <!-- Halo suave por trás do território -->
           <circle cx="430" cy="330" r="330" fill="url(#stateHalo)"/>
 
-          <!-- Traçado geográfico realista e estilizado do Pará -->
           <path d="M 210,65 
                    C 260,40 330,45 385,60 
                    C 430,70 480,95 530,90 
@@ -486,24 +474,22 @@
 
                   <path d="M 210,65 C 260,40 330,45 385,60 C 430,70 480,95 530,90 C 575,85 640,110 680,140 C 725,175 750,225 740,270 C 730,310 700,340 735,395 C 760,440 730,500 705,550 C 670,610 600,640 540,655 C 480,670 430,640 375,615 C 320,590 280,520 250,475 C 220,430 180,390 145,340 C 115,295 100,240 120,185 C 140,135 170,90 210,65 Z" fill="url(#mapGrid)" opacity=".9"/>
 
-          <!-- Divisórias e Rio Amazonas estilizados -->
           <path d="M 120,185 Q 260,220 400,230 T 740,270" fill="none" stroke="url(#riverGrad)" stroke-width="3.2" stroke-linecap="round" opacity=".8"/>
           <path d="M 375,615 Q 430,450 490,320 T 680,140" fill="none" stroke="url(#riverGrad)" stroke-width="2.4" stroke-linecap="round" opacity=".55"/>
           <path d="M 185,300 Q 330,315 470,350 T 680,470" fill="none" stroke="url(#riverGrad)" stroke-width="1.4" stroke-linecap="round" opacity=".4"/>
 
-          <!-- Linhas de rede a partir do hub (Belém) -->
           <g stroke="#7AD6E5" stroke-width="1.2" stroke-dasharray="2 5" opacity="0.5">
-            <line x1="580" y1="200" x2="670" y2="225"/>
+            <line x1="580" y1="200" x2="615" y2="235"/>
             <line x1="580" y1="200" x2="650" y2="155"/>
             <line x1="580" y1="200" x2="525" y2="205"/>
             <line x1="580" y1="200" x2="515" y2="270"/>
-            <line x1="580" y1="200" x2="610" y2="115"/>
+            <line x1="580" y1="200" x2="690" y2="120"/>
             <line x1="580" y1="200" x2="715" y2="190"/>
             <line x1="580" y1="200" x2="685" y2="330"/>
             <line x1="580" y1="200" x2="630" y2="450"/>
+            <line x1="580" y1="200" x2="655" y2="190"/>
           </g>
 
-          <!-- Siglas de referência geográfica -->
           <text x="645" y="130" fill="#ffff" font-size="20" font-weight="800" opacity="0.85">PA</text>
           <text x="760" y="240" fill="#9FB4C7" font-size="16" font-weight="700" opacity="0.7">MA</text>
           <text x="750" y="470" fill="#9FB4C7" font-size="16" font-weight="700" opacity="0.7">TO</text>
@@ -511,72 +497,79 @@
           <text x="80" y="270" fill="#9FB4C7" font-size="16" font-weight="700" opacity="0.7">AM</text>
           <text x="320" y="45" fill="#9FB4C7" font-size="16" font-weight="700" opacity="0.7">AP</text>
 
-          <!-- 1. BELÉM (Maior hub com concentração) -->
+          <!-- 1. BELÉM -->
           <g class="city-bubble" filter="url(#softGlow)">
             <circle class="pulse-ring" cx="580" cy="200" r="54" fill="none" stroke="#5FCBE6" stroke-width="2"/>
             <circle cx="580" cy="200" r="54" fill="url(#bubbleHub)" stroke="#ffff" stroke-width="3.5" filter="url(#bubbleShadow)"/>
-            <text x="580" y="196" fill="#ffff" font-size="28" font-weight="900" text-anchor="middle">67</text>
+            <text x="580" y="196" fill="#ffff" font-size="28" font-weight="900" text-anchor="middle">25</text>
             <text x="580" y="214" fill="#ffff" font-size="10" font-weight="700" text-anchor="middle" letter-spacing="1">BELÉM</text>
           </g>
 
           <!-- 2. ANANINDEUA -->
           <g class="city-bubble" filter="url(#bubbleShadow)">
-            <circle cx="670" cy="225" r="34" fill="url(#bubbleMed)" stroke="#ffff" stroke-width="2.5"/>
-            <text x="670" y="223" fill="#ffff" font-size="18" font-weight="800" text-anchor="middle">18</text>
-            <text x="670" y="238" fill="#ffff" font-size="8.5" font-weight="700" text-anchor="middle">ANAN.</text>
+            <circle cx="615" cy="235" r="26" fill="url(#bubbleSmall)" stroke="#ffff" stroke-width="2"/>
+            <text x="615" y="233" fill="#ffff" font-size="14" font-weight="800" text-anchor="middle">01</text>
+            <text x="615" y="245" fill="#ffff" font-size="7.5" font-weight="700" text-anchor="middle">ANAN.</text>
           </g>
 
           <!-- 3. CASTANHAL -->
           <g class="city-bubble" filter="url(#bubbleShadow)">
             <circle cx="650" cy="155" r="30" fill="url(#bubbleMed)" stroke="#ffff" stroke-width="2.5"/>
-            <text x="650" y="153" fill="#ffff" font-size="16" font-weight="800" text-anchor="middle">10</text>
+            <text x="650" y="153" fill="#ffff" font-size="16" font-weight="800" text-anchor="middle">04</text>
             <text x="650" y="167" fill="#ffff" font-size="8" font-weight="700" text-anchor="middle">CAST.</text>
           </g>
 
-          <!-- 4. MARABÁ (Sul do Pará) -->
+          <!-- 4. MARABÁ -->
           <g class="city-bubble" filter="url(#bubbleShadow)">
-            <circle cx="630" cy="450" r="32" fill="url(#bubbleMed)" stroke="#ffff" stroke-width="2.5"/>
-            <text x="630" y="448" fill="#ffff" font-size="17" font-weight="800" text-anchor="middle">06</text>
-            <text x="630" y="463" fill="#ffff" font-size="8" font-weight="700" text-anchor="middle">MARABÁ</text>
+            <circle cx="630" cy="450" r="26" fill="url(#bubbleSmall)" stroke="#ffff" stroke-width="2"/>
+            <text x="630" y="448" fill="#ffff" font-size="14" font-weight="800" text-anchor="middle">01</text>
+            <text x="630" y="460" fill="#ffff" font-size="7.5" font-weight="700" text-anchor="middle">MARABÁ</text>
           </g>
 
           <!-- 5. PARAGOMINAS -->
           <g class="city-bubble" filter="url(#bubbleShadow)">
             <circle cx="685" cy="330" r="26" fill="url(#bubbleSmall)" stroke="#ffff" stroke-width="2"/>
-            <text x="685" y="328" fill="#ffff" font-size="14" font-weight="800" text-anchor="middle">05</text>
+            <text x="685" y="328" fill="#ffff" font-size="14" font-weight="800" text-anchor="middle">01</text>
             <text x="685" y="340" fill="#ffff" font-size="7.5" font-weight="700" text-anchor="middle">PARAG.</text>
           </g>
 
           <!-- 6. ABAETETUBA -->
           <g class="city-bubble" filter="url(#bubbleShadow)">
             <circle cx="515" cy="270" r="26" fill="url(#bubbleSmall)" stroke="#ffff" stroke-width="2"/>
-            <text x="515" y="268" fill="#ffff" font-size="14" font-weight="800" text-anchor="middle">06</text>
+            <text x="515" y="268" fill="#ffff" font-size="14" font-weight="800" text-anchor="middle">01</text>
             <text x="515" y="280" fill="#ffff" font-size="7.5" font-weight="700" text-anchor="middle">ABAET.</text>
           </g>
 
           <!-- 7. BARCARENA -->
           <g class="city-bubble" filter="url(#bubbleShadow)">
             <circle cx="525" cy="205" r="24" fill="url(#bubbleSmall)" stroke="#ffff" stroke-width="2"/>
-            <text x="525" y="203" fill="#ffff" font-size="13" font-weight="800" text-anchor="middle">06</text>
+            <text x="525" y="203" fill="#ffff" font-size="13" font-weight="800" text-anchor="middle">01</text>
             <text x="525" y="214" fill="#ffff" font-size="7" font-weight="700" text-anchor="middle">BARC.</text>
           </g>
 
           <!-- 8. CAPANEMA -->
           <g class="city-bubble" filter="url(#bubbleShadow)">
             <circle cx="715" cy="190" r="23" fill="url(#bubbleSmall)" stroke="#ffff" stroke-width="2"/>
-            <text x="715" y="188" fill="#ffff" font-size="13" font-weight="800" text-anchor="middle">06</text>
+            <text x="715" y="188" fill="#ffff" font-size="13" font-weight="800" text-anchor="middle">01</text>
             <text x="715" y="199" fill="#ffff" font-size="7" font-weight="700" text-anchor="middle">CAPAN.</text>
           </g>
 
-          <!-- 9. SALINAS -->
+          <!-- 9. SALINÓPOLIS -->
           <g class="city-bubble" filter="url(#bubbleShadow)">
-            <circle cx="610" cy="115" r="23" fill="url(#bubbleSmall)" stroke="#ffff" stroke-width="2"/>
-            <text x="610" y="113" fill="#ffff" font-size="13" font-weight="800" text-anchor="middle">06</text>
-            <text x="610" y="124" fill="#ffff" font-size="7" font-weight="700" text-anchor="middle">SALINAS</text>
+            <circle cx="690" cy="120" r="23" fill="url(#bubbleSmall)" stroke="#ffff" stroke-width="2"/>
+            <text x="690" y="118" fill="#ffff" font-size="13" font-weight="800" text-anchor="middle">01</text>
+            <text x="690" y="129" fill="#ffff" font-size="7" font-weight="700" text-anchor="middle">SALINAS</text>
           </g>
+
+          <!-- 10. SÃO FRANCISCO DO PARÁ -->
+          <g class="city-bubble" filter="url(#bubbleShadow)">
+            <circle cx="655" cy="190" r="23" fill="url(#bubbleSmall)" stroke="#ffff" stroke-width="2"/>
+            <text x="655" y="188" fill="#ffff" font-size="13" font-weight="800" text-anchor="middle">01</text>
+            <text x="655" y="199" fill="#ffff" font-size="7" font-weight="700" text-anchor="middle">SÃO FRANC.</text>
+          </g>
+
         </svg>
 
-        <!-- Legenda aprimorada -->
         <div class="map-key">
           <div class="key-group"><span class="key-dot lg"></span>Grande</div>
           <div class="key-group"><span class="key-dot md"></span>Médio</div>
@@ -584,26 +577,31 @@
           <div class="key-group"><span class="key-line"></span>Rios / Rede</div>
         </div>
 
-        <!-- Escala e bússola -->
         <div class="map-scale"><span class="bar"></span>ESCALA APROX.</div>
         <div class="map-compass">N<span style="font-size:14px; line-height:1;">▲</span></div>
       </section>
 
-      <!-- Lado Direito: Cards Empilhados das Bandeiras -->
       <aside class="sidebar">
         
-        <!-- Total Geral -->
         <div class="total-box">
-          <div class="total-number">130</div>
+          <div class="total-metrics">
+            <div class="total-metric-item">
+              <span class="total-number-val">42</span>
+              <span class="total-number-lbl">FILIAIS</span>
+            </div>
+            <div class="total-metric-item">
+              <span class="total-number-val">153</span>
+              <span class="total-number-lbl">OPERAÇÕES</span>
+            </div>
+          </div>
           <div class="total-label">
-            Operações / Unidades<br>
+            Presença Operacional<br>
             <span>Estado do Pará</span>
           </div>
         </div>
 
-        <!-- 1. Supermercados Líder -->
         <div class="brand-card bg-super" style="order:1">
-          <div class="brand-count">33 <small>LOJAS</small></div>
+          <div class="brand-count">29 <small>LOJAS</small></div>
           <div class="brand-divider"></div>
           <div class="brand-info">
             <span class="brand-name">Líder</span>
@@ -612,9 +610,8 @@
           <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=300&auto=format&fit=crop&q=80');"></div>
         </div>
 
-        <!-- 2. Magazan -->
         <div class="brand-card bg-magazan" style="order:2">
-          <div class="brand-count">32 <small>LOJAS</small></div>
+          <div class="brand-count">26 <small>LOJAS</small></div>
           <div class="brand-divider"></div>
           <div class="brand-info">
             <span class="brand-name">Magazan</span>
@@ -623,8 +620,7 @@
           <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=300&auto=format&fit=crop&q=80');"></div>
         </div>
 
-        <!-- 3. FarmaLíder -->
-        <div class="brand-card bg-farma" style="order:4">
+        <div class="brand-card bg-farma" style="order:3">
           <div class="brand-count">30 <small>LOJAS</small></div>
           <div class="brand-divider"></div>
           <div class="brand-info">
@@ -634,20 +630,8 @@
           <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1585435557343-3b092031a831?w=900&auto=format&fit=crop&q=85');"></div>
         </div>
 
-        <!-- 4. Ótica Líder -->
-        <div class="brand-card bg-otica" style="order:7">
-          <div class="brand-count">21 <small>LOJAS</small></div>
-          <div class="brand-divider"></div>
-          <div class="brand-info">
-            <span class="brand-name">Ótica Líder</span>
-            <span class="brand-sub">Óticas</span>
-          </div>
-          <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=300&auto=format&fit=crop&q=80');"></div>
-        </div>
-
-        <!-- 5. Líder Home Center -->
-        <div class="brand-card bg-home" style="order:3">
-          <div class="brand-count">32 <small>LOJAS</small></div>
+        <div class="brand-card bg-home" style="order:4">
+          <div class="brand-count">17 <small>LOJAS</small></div>
           <div class="brand-divider"></div>
           <div class="brand-info">
             <span class="brand-name">Home Center</span>
@@ -656,9 +640,8 @@
           <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?w=300&auto=format&fit=crop&q=80');"></div>
         </div>
 
-        <!-- 6. Pets Líder -->
         <div class="brand-card bg-pets" style="order:5">
-          <div class="brand-count">28 <small>LOJAS</small></div>
+          <div class="brand-count">15 <small>LOJAS</small></div>
           <div class="brand-divider"></div>
           <div class="brand-info">
             <span class="brand-name">Pets Líder</span>
@@ -667,20 +650,18 @@
           <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=900&auto=format&fit=crop&q=85');"></div>
         </div>
 
-        <!-- 7. NutriLíder -->
-        <div class="brand-card bg-farma" style="order:6">
-          <div class="brand-count">24 <small>LOJAS</small></div>
+        <div class="brand-card bg-otica" style="order:6">
+          <div class="brand-count">17 <small>LOJAS</small></div>
           <div class="brand-divider"></div>
           <div class="brand-info">
-            <span class="brand-name">NutriLíder</span>
-            <span class="brand-sub">Nutrição e bem-estar</span>
+            <span class="brand-name">Ótica Líder</span>
+            <span class="brand-sub">Óticas</span>
           </div>
-          <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=900&auto=format&fit=crop&q=85');"></div>
+          <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=300&auto=format&fit=crop&q=80');"></div>
         </div>
 
-        <!-- 7. Clínica Líder Saúde -->
-        <div class="brand-card bg-clinica" style="order:8">
-          <div class="brand-count">09 <small>UNID.</small></div>
+        <div class="brand-card bg-clinica" style="order:7">
+          <div class="brand-count">08 <small>UNID.</small></div>
           <div class="brand-divider"></div>
           <div class="brand-info">
             <span class="brand-name">Clínica Líder Saúde</span>
@@ -689,32 +670,39 @@
           <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1516841273335-e39b37888115?w=900&auto=format&fit=crop&q=85');"></div>
         </div>
 
-        <!-- 7. Magazan Casa -->
-        <div class="brand-card bg-magazan-casa" style="order:9">
-          <div class="brand-count">01 <small>LOJA</small></div>
+        <div class="brand-card bg-farma" style="order:8">
+          <div class="brand-count">03 <small>LOJAS</small></div>
           <div class="brand-divider"></div>
           <div class="brand-info">
-            <span class="brand-name">Magazan Casa</span>
-            <span class="brand-sub">Casa e decoração</span>
+            <span class="brand-name">NutriLíder</span>
+            <span class="brand-sub">Nutrição e bem-estar</span>
           </div>
-          <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=900&auto=format&fit=crop&q=85');"></div>
+          <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=900&auto=format&fit=crop&q=85');"></div>
         </div>
 
-        <!-- 7. Centro de Distribuição -->
-        <div class="brand-card bg-cd" style="order:10">
+        <div class="brand-card bg-cd" style="order:9">
           <div class="brand-count">02 <small>UNID.</small></div>
           <div class="brand-divider"></div>
           <div class="brand-info">
             <span class="brand-name">Centros Logísticos</span>
-            <span class="brand-sub">Belém & Castanhal</span>
+            <span class="brand-sub">Belém (CDAM e FarmaLíder)</span>
           </div>
           <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=300&auto=format&fit=crop&q=80');"></div>
+        </div>
+
+        <div class="brand-card bg-fazenda" style="order:10">
+          <div class="brand-count">02 <small>UNID.</small></div>
+          <div class="brand-divider"></div>
+          <div class="brand-info">
+            <span class="brand-name">Fazendas</span>
+            <span class="brand-sub">Castanhal & São Francisco</span>
+          </div>
+          <div class="brand-photo" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=300&auto=format&fit=crop&q=80');"></div>
         </div>
 
       </aside>
     </main>
 
-    <!-- Rodapé -->
     <div class="footer-strip">
       Grupo Líder • Informações Institucionais • 2/22
     </div>
