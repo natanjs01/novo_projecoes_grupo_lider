@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnóstico Fiscal | 2022–2026</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bebas+Neue&display=swap');
+
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #071827; }
+    body { font-family: Inter, Arial, sans-serif; color: #edf5ff; }
+
+    .slide {
+      position: relative;
+      display: flex;
+      width: 1920px;
+      height: 1080px;
+      flex-direction: column;
+      overflow: hidden;
+      background: radial-gradient(circle at 78% 28%, #102b43 0, #071827 58%);
+    }
+
+    .header {
+      display: flex;
+      height: 118px;
+      flex: 0 0 118px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 64px;
+      border-bottom: 3px solid #1e3a5f;
+      background: #112240;
+    }
+
+    .header h1 {
+      margin: 0;
+      color: #fff;
+      font-size: 34px;
+      letter-spacing: .02em;
+    }
+
+    .header p {
+      margin: 9px 0 0;
+      color: #00b4d8;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: .04em;
+    }
+
+    .logo { width: 205px; height: 72px; object-fit: contain; }
+
+    .content {
+      display: grid;
+      flex: 1;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1.15fr;
+      gap: 20px 28px;
+      padding: 24px 78px 82px;
+    }
+
+    .panel {
+      min-width: 0;
+      padding: 24px 28px;
+      border: 1px solid rgba(142, 163, 187, .2);
+      border-radius: 18px;
+      background: rgba(17, 34, 64, .78);
+    }
+
+    .annual-panel { grid-column: 1 / -1; }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: #00b4d8;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .panel h2 {
+      margin: 0;
+      color: #fff;
+      font-size: 25px;
+      line-height: 1.25;
+    }
+
+    .chart-layout {
+      display: flex;
+      height: calc(100% - 64px);
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .chart-visual {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pie {
+      position: relative;
+      width: 245px;
+      height: 245px;
+      flex: 0 0 245px;
+      border: 7px solid rgba(255, 255, 255, .08);
+      border-radius: 50%;
+      background: conic-gradient(
+        #00b4d8 0deg 8.71deg,
+        #f5a623 8.71deg 30.52deg,
+        #2878d0 30.52deg 360deg
+      );
+      box-shadow: 0 20px 70px rgba(0, 0, 0, .28);
+    }
+
+    .pie::after {
+      position: absolute;
+      inset: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(142, 163, 187, .2);
+      border-radius: 50%;
+      background: #10243a;
+      color: #fff;
+      content: 'R$ 2,33 mi';
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      white-space: nowrap;
+    }
+
+    .pie-total {
+      margin: 0;
+      color: #8ea3bb;
+      font-size: 15px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .legend {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      min-width: 275px;
+    }
+
+    .legend-item {
+      display: grid;
+      grid-template-columns: 18px 1fr auto;
+      align-items: center;
+      gap: 8px;
+      color: #dbe7f3;
+      font-size: 14px;
+    }
+
+    .swatch { width: 14px; height: 14px; border-radius: 4px; }
+    .legend-item strong { color: #fff; font-size: 13px; }
+    .legend-item small { grid-column: 2 / 4; margin-top: -5px; color: #8ea3bb; font-size: 12px; }
+
+    .headline {
+      margin: 16px 0 0;
+      padding: 16px 18px;
+      border-left: 5px solid #f5a623;
+      border-radius: 0 10px 10px 0;
+      background: rgba(245, 166, 35, .1);
+      color: #dbe7f3;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .headline strong { color: #f5a623; }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .metric {
+      min-height: 100px;
+      padding: 16px;
+      border: 1px solid rgba(142, 163, 187, .18);
+      border-radius: 12px;
+      background: rgba(7, 24, 39, .55);
+    }
+
+    .metric span {
+      display: block;
+      color: #8ea3bb;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 10px;
+      color: #fff;
+      font-size: 23px;
+      line-height: 1.1;
+    }
+
+    .metric.highlight strong { color: #00b4d8; }
+    .note { margin: 15px 0 0; color: #8ea3bb; font-size: 12px; line-height: 1.45; }
+
+    .annual-panel {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .annual-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .annual-heading .note {
+      flex: 0 0 auto;
+      margin: 0 0 3px;
+    }
+
+    .annual-chart {
+      display: grid;
+      flex: 1;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      margin-top: 18px;
+      border-bottom: 1px solid rgba(142, 163, 187, .35);
+      background: repeating-linear-gradient(
+        to top,
+        transparent 0,
+        transparent calc(25% - 1px),
+        rgba(142, 163, 187, .16) calc(25% - 1px),
+        rgba(142, 163, 187, .16) 25%
+      );
+    }
+
+    .year-column {
+      display: grid;
+      min-width: 0;
+      grid-template-rows: 1fr auto auto;
+      align-items: end;
+      padding: 0 18px 12px;
+      border-right: 1px solid rgba(142, 163, 187, .12);
+    }
+
+    .year-column:last-child { border-right: 0; }
+
+    .bars {
+      display: flex;
+      height: 100%;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .bar {
+      position: relative;
+      width: min(50px, 28%);
+      min-height: 0;
+      border-radius: 6px 6px 0 0;
+    }
+
+    .bar.excess { height: var(--value); background: #f5a623; }
+    .bar.gap { height: var(--value); background: #00b4d8; }
+
+    .year-values {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      padding-top: 9px;
+      color: #dbe7f3;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .year-values .excess-value { color: #f5a623; }
+    .year-values .gap-value { color: #00b4d8; }
+
+    .year-label {
+      padding-top: 8px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .annual-legend {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 12px;
+      color: #8ea3bb;
+      font-size: 12px;
+    }
+
+    .annual-legend span { display: inline-flex; align-items: center; gap: 7px; }
+    .annual-legend i { width: 10px; height: 10px; border-radius: 2px; }
+    .annual-legend .excess-key { background: #f5a623; }
+    .annual-legend .gap-key { background: #00b4d8; }
+
+    .footer {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      height: 66px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 62px;
+      border-top: 2px solid #1e3a5f;
+      background: #112240;
+      color: #8ea3bb;
+      font-size: 13px;
+    }
+
+    .footer strong { color: #f5a623; }
+  </style>
+</head>
+<body>
+  <div class="slide">
+    <header class="header">
+      <div>
+        <h1>DIAGNÓSTICO FISCAL</h1>
+        <p>EXCEDENTES CONSOLIDADOS · 2022–2026</p>
+      </div>
+      <img class="logo" src="../assets/logo.png?v=2" alt="Grupo Líder">
+    </header>
+
+    <main class="content">
+      <section class="panel" aria-labelledby="chart-title">
+        <p class="eyebrow">Impostos e contribuições</p>
+        <h2 id="chart-title">Excedente por categoria fiscal</h2>
+        <div class="chart-layout">
+          <div class="chart-visual">
+            <div class="pie" role="img" aria-label="Gráfico de rosca: impostos diretos 2,42%, impostos indiretos 6,06% e contribuições e retenções 91,52% do excedente total de R$ 2.332.489,67"></div>
+            <p class="pie-total">Excedente acumulado · 2022–2026</p>
+          </div>
+          <div class="legend">
+            <div class="legend-item"><span class="swatch" style="background:#00b4d8"></span><span>Impostos diretos</span><strong>R$ 56.413,03</strong><small>2,42% · IRRF</small></div>
+            <div class="legend-item"><span class="swatch" style="background:#f5a623"></span><span>Impostos indiretos</span><strong>R$ 141.327,41</strong><small>6,06% · PIS + COFINS</small></div>
+            <div class="legend-item"><span class="swatch" style="background:#2878d0"></span><span>Contribuições / retenções</span><strong>R$ 2.134.749,23</strong><small>91,52% · INSS + CSRF</small></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="summary-title">
+        <p class="eyebrow">Resumo executivo</p>
+        <h2 id="summary-title">Contribuições concentram o excedente</h2>
+        <p class="headline"><strong>91,52% do excedente</strong> está em INSS e CSRF. Os impostos indiretos somam <strong>R$ 141,3 mil</strong>; os diretos, <strong>R$ 56,4 mil</strong>.</p>
+        <div class="metrics">
+          <article class="metric highlight">
+            <span>Excedente total</span>
+            <strong>R$ 2.332.489,67</strong>
+          </article>
+          <article class="metric">
+            <span>Gap potencial informado</span>
+            <strong>R$ 537.334,52</strong>
+          </article>
+        </div>
+        <p class="note">Classificação: diretos = IRPJ, CSLL e IRRF; indiretos = PIS e COFINS; contribuições/retensões = INSS e CSRF. IRPJ e CSLL sem excedente reportado; FGTS não aplicável.</p>
+      </section>
+
+      <section class="panel annual-panel" aria-labelledby="annual-title">
+        <div class="annual-heading">
+          <div>
+            <p class="eyebrow">Evolução anual · R$ milhões</p>
+            <h2 id="annual-title">Excedente x gap potencial por ano</h2>
+          </div>
+          <p class="note">Rótulos arredondados; valores abaixo de R$ 0,01 mi aparecem como “&lt; 0,01”.</p>
+        </div>
+        <div class="annual-chart" role="img" aria-label="Gráfico anual comparando pagamento excedente e gap potencial: em 2022, excedente de R$ 1,34 milhão e gap de R$ 0,47 milhão; em 2023, R$ 0,06 milhão e R$ 0,07 milhão; em 2024, R$ 0,47 milhão e gap abaixo de R$ 0,01 milhão; em 2025, R$ 0,46 milhão e gap abaixo de R$ 0,01 milhão; em 2026, ambos abaixo de R$ 0,01 milhão.">
+          <div class="year-column">
+            <div class="bars">
+              <div class="bar excess" style="--value:95.5%" title="Pagamento excedente: R$ 1.336.385,42"></div>
+              <div class="bar gap" style="--value:33.6%" title="Gap potencial: R$ 470.160,94"></div>
+            </div>
+            <div class="year-values"><span class="excess-value">1,34</span><span class="gap-value">0,47</span></div>
+            <div class="year-label">2022</div>
+          </div>
+          <div class="year-column">
+            <div class="bars">
+              <div class="bar excess" style="--value:4.4%" title="Pagamento excedente: R$ 61.255,94"></div>
+              <div class="bar gap" style="--value:4.8%" title="Gap potencial: R$ 67.078,70"></div>
+            </div>
+            <div class="year-values"><span class="excess-value">0,06</span><span class="gap-value">0,07</span></div>
+            <div class="year-label">2023</div>
+          </div>
+          <div class="year-column">
+            <div class="bars">
+              <div class="bar excess" style="--value:33.7%" title="Pagamento excedente: R$ 472.204,17"></div>
+              <div class="bar gap" style="--value:0.01%" title="Gap potencial: R$ 0,11"></div>
+            </div>
+            <div class="year-values"><span class="excess-value">0,47</span><span class="gap-value">&lt; 0,01</span></div>
+            <div class="year-label">2024</div>
+          </div>
+          <div class="year-column">
+            <div class="bars">
+              <div class="bar excess" style="--value:33%" title="Pagamento excedente: R$ 462.496,93"></div>
+              <div class="bar gap" style="--value:0.01%" title="Gap potencial: R$ 0,43"></div>
+            </div>
+            <div class="year-values"><span class="excess-value">0,46</span><span class="gap-value">&lt; 0,01</span></div>
+            <div class="year-label">2025</div>
+          </div>
+          <div class="year-column">
+            <div class="bars">
+              <div class="bar excess" style="--value:0.01%" title="Pagamento excedente: R$ 147,21"></div>
+              <div class="bar gap" style="--value:0.01%" title="Gap potencial: R$ 94,34"></div>
+            </div>
+            <div class="year-values"><span class="excess-value">&lt; 0,01</span><span class="gap-value">&lt; 0,01</span></div>
+            <div class="year-label">2026</div>
+          </div>
+        </div>
+        <div class="annual-legend" aria-hidden="true">
+          <span><i class="excess-key"></i>Pagamento excedente</span>
+          <span><i class="gap-key"></i>Gap potencial</span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Controladoria · Uso gerencial · Acumulado 2022–2026</span>
+      <strong>DIAGNÓSTICO FISCAL</strong>
+      <span>22/23</span>
+    </footer>
+  </div>
+</body>
+</html>
