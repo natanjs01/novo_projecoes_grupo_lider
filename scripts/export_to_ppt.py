@@ -74,7 +74,7 @@ def export_to_pptx(output_path: Path | None = None, first: int = 1, last: int = 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Exporta slides HTML para PPTX em 16:9.")
     parser.add_argument("--inicio", type=int, default=1, help="Número do primeiro slide")
-    parser.add_argument("--fim", type=int, default=25, help="Número do último slide")
+    parser.add_argument("--fim", type=int, default=24, help="Número do último slide")
     parser.add_argument("--saida", type=Path, help="Caminho do PPTX de saída")
     args = parser.parse_args()
 

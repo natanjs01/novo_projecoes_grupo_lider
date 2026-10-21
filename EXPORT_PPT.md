@@ -114,7 +114,7 @@ nova_apresentacao/
 ├── site/
 │   ├── index.html               # Frontend com botão
 │   └── public/
-│       └── slides/              # HTML dos slides (01-23)
+│       └── slides/              # HTML dos slides (01-24)
 └── EXPORT_PPT.md                # Esta documentação
 ```
 
@@ -151,4 +151,3 @@ nova_apresentacao/
 - [ ] Suportar PDF export
 - [ ] Interface web para gerenciar exports
 - [ ] Agendamento de exports periódicos
-
