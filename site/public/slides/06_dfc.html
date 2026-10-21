@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DFC e EBITDA · Agosto de 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #071827; }
+.slide { position: relative; width: 1920px; height: 1080px; overflow: hidden; color: #edf5ff; background: linear-gradient(180deg, #081a2a, #0a1d2f); font-family: Inter, Arial, sans-serif; }
+.header { height: 100px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; background: #112240; border-bottom: 3px solid #1e3a5f; }
+.header h1 { margin: 0; font-size: 33px; letter-spacing: .01em; }
+.header h1::after { content: ''; display: block; width: 100px; height: 4px; margin-top: 12px; background: linear-gradient(90deg, #f5a623, #00b4d8); }
+.logo { width: 205px; height: 72px; object-fit: contain; }
+.intro { display: flex; align-items: center; justify-content: space-between; padding: 12px 40px; }
+.intro p { margin: 0; color: #a9bed3; font-size: 18px; }
+.period { padding: 10px 20px; border: 1px solid #23748e; background: #0b3d5a; color: #8de3f3; font-size: 19px; font-weight: 800; }
+.content { display: grid; grid-template-columns: 1fr 1.15fr; align-items: start; gap: 20px; padding: 0 40px; }
+.panel { border: 1px solid #28435b; border-radius: 8px; overflow: hidden; background: #0c1e2d; }
+.panel h2 { margin: 0; padding: 17px 22px; background: #0b3d5a; font-size: 18px; letter-spacing: .04em; text-transform: uppercase; }
+table { width: 100%; border-collapse: collapse; font-size: 17px; }
+th, td { padding: 9px 22px; text-align: left; }
+th { color: #9cb6cd; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+td:last-child, th:last-child { width: 130px; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+tbody tr + tr { border-top: 1px solid #183247; }
+.subtotal { background: #142e43; font-weight: 800; }
+.subtotal td { padding-top: 13px; padding-bottom: 13px; }
+.total { background: #104257; color: #8de3f3; font-weight: 800; }
+.total td { padding-top: 15px; padding-bottom: 15px; }
+.section-label td { padding-top: 17px; padding-bottom: 10px; color: #f5a623; font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.negative { color: #ffc5ae; }
+.dfc table { font-size: 17px; line-height: 21px; }
+.dfc td { padding: 3px 20px; }
+.dfc .subtotal td, .dfc .total td { padding-top: 6px; padding-bottom: 6px; }
+.dfc .section-label td { padding-top: 9px; padding-bottom: 6px; text-align: left; }
+.ebitda table { font-size: 15px; line-height: 18px; }
+.ebitda th, .ebitda td { padding: .5px 10px; }
+.ebitda th { padding-top: 7px; padding-bottom: 7px; font-size: 13px; }
+.ebitda .section-label td { padding: 3px 10px; text-align: left; font-size: 14px; }
+.ebitda .ratio { color: #f5a623; }
+.ebitda th:not(:first-child), .ebitda td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ebitda td:first-child { width: 48%; }
+.ebitda td:last-child, .ebitda th:last-child { width: auto; }
+.footer { position: absolute; left: 0; right: 0; bottom: 0; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; border-top: 2px solid #1e3a5f; background: #112240; color: #8ea3bb; font-size: 13px; }
+.footer strong { color: #f5a623; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <header class="header">
+    <h1>DFC E EBITDA</h1>
+    <img class="logo" src="../assets/logo.png?v=2" alt="Grupo Lider">
+  </header>
+  <div class="intro">
+    <p>Fluxo de caixa e comparação mensal de EBITDA</p>
+    <span class="period">AGOSTO / 2025 × 2026</span>
+  </div>
+  <main class="content">
+    <section class="panel dfc">
+      <h2>DFC · Ago/2026 · R$ milhões</h2>
+      <table aria-label="Demonstração dos fluxos de caixa de agosto de 2026 em milhões de reais">
+        <thead><tr><th scope="col">Descrição</th><th scope="col">2026 ago</th></tr></thead>
+        <tbody>
+          <tr class="subtotal"><td>Lucro (Prejuízo) do período</td><td>38</td></tr>
+          <tr><td>Depreciação e amortização</td><td>25</td></tr>
+          <tr><td>Resultado na venda/baixa de ativo imobilizado</td><td>0</td></tr>
+          <tr><td>Juros e atualização monetária sobre empréstimos e financiamentos</td><td>9</td></tr>
+          <tr><td>Provisão para obsolescências e perdas</td><td>19</td></tr>
+          <tr class="subtotal"><td>Lucro (Prejuízo) ajustado</td><td>91</td></tr>
+          <tr><td>Contas a receber</td><td>56</td></tr>
+          <tr><td>Estoques</td><td class="negative">(79)</td></tr>
+          <tr><td>Impostos a recuperar</td><td class="negative">(21)</td></tr>
+          <tr><td>Outros ativos</td><td class="negative">(10)</td></tr>
+          <tr><td>Fornecedores</td><td class="negative">(80)</td></tr>
+          <tr><td>Salários, provisões e encargos sociais</td><td>38</td></tr>
+          <tr><td>Obrigações tributárias a recolher</td><td class="negative">(31)</td></tr>
+          <tr><td>Outros passivos</td><td>46</td></tr>
+          <tr class="total"><td>Fluxo de caixa das atividades operacionais</td><td>9</td></tr>
+          <tr class="section-label"><td colspan="2">Investimentos</td></tr>
+            <tr><td>Aquisição de ativo imobilizado e intangível</td><td>31</td></tr>
+            <tr class="total"><td>Fluxo de caixa de investimentos</td><td>31</td></tr>
+          <tr class="section-label"><td colspan="2">Financiamentos</td></tr>
+            <tr><td>Empréstimos e financiamentos, líquido</td><td class="negative">(1)</td></tr>
+            <tr><td>Aporte de capital/Distribuição de lucros</td><td class="negative">(15)</td></tr>
+            <tr><td>Partes relacionadas</td><td>5</td></tr>
+            <tr class="total"><td>Fluxo de caixa de financiamentos</td><td class="negative">(11)</td></tr>
+          <tr class="total"><td>Caixa gerado das atividades operacionais</td><td>29</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="panel ebitda">
+      <h2>EBITDA · Ago/2025 × Ago/2026 · R$ mil</h2>
+      <table aria-label="Comparativo mensal de EBITDA de agosto de 2025 e agosto de 2026 em milhares de reais">
+        <thead>
+          <tr><th scope="col">Descrição</th><th scope="col">Ago/2025</th><th scope="col">Ago/2026</th><th scope="col">Var. %</th></tr>
+        </thead>
+        <tbody>
+          <tr data-row="14"><td>Receita bruta de mercadorias</td><td>473.917,71</td><td>511.329,44</td><td>+7,89%</td></tr>
+          <tr data-row="15"><td>Receita bruta reciclados</td><td>166,63</td><td>174,36</td><td>+4,63%</td></tr>
+          <tr data-row="16"><td>Receita bruta de serviços</td><td>701,89</td><td>2.102,21</td><td>+199,51%</td></tr>
+          <tr data-row="17"><td>Receita bruta de aluguéis</td><td>538,84</td><td>579,52</td><td>+7,55%</td></tr>
+          <tr class="subtotal" data-row="18"><td>Total Receitas</td><td>475.325,07</td><td>514.185,52</td><td>+8,18%</td></tr>
+          <tr data-row="20"><td>(-) Deduções da receita bruta</td><td>(78.352,98)</td><td>(87.230,61)</td><td class="negative">-11,33%</td></tr>
+          <tr class="subtotal" data-row="21"><td>Receita líquida</td><td>396.972,09</td><td>426.954,91</td><td>+7,55%</td></tr>
+          <tr class="section-label"><td colspan="4">Variável</td></tr>
+          <tr data-row="24"><td>Custos das mercadorias vendidas e dos serviços prestados</td><td>(283.136,99)</td><td>(309.157,15)</td><td class="negative">-9,19%</td></tr>
+          <tr data-row="25"><td>Despesas</td><td>(9.089,14)</td><td>(9.698,07)</td><td class="negative">-6,70%</td></tr>
+          <tr class="subtotal" data-row="29"><td>Margem de Contribuição</td><td>104.745,97</td><td>108.099,68</td><td>+3,20%</td></tr>
+          <tr class="ratio" data-row="30"><td>MC %</td><td>26,39%</td><td>25,32%</td><td class="negative">-1,07 p.p.</td></tr>
+          <tr class="subtotal" data-row="31"><td>Lucro Bruto</td><td>113.835,11</td><td>117.797,76</td><td>+3,48%</td></tr>
+          <tr class="ratio" data-row="32"><td>MB %</td><td>28,68%</td><td>27,59%</td><td class="negative">-1,09 p.p.</td></tr>
+          <tr class="section-label"><td colspan="4">Fixo</td></tr>
+          <tr data-row="34"><td>Custos das mercadorias vendidas e dos serviços prestados</td><td>0,00</td><td>0,00</td><td>—</td></tr>
+          <tr data-row="35"><td>Despesas</td><td>(94.897,45)</td><td>(101.643,08)</td><td class="negative">-7,11%</td></tr>
+          <tr data-row="40"><td>Outras receitas (despesas), líquido</td><td>2.651,42</td><td>2.616,28</td><td class="negative">-1,33%</td></tr>
+          <tr data-row="41"><td>Receitas financeiras</td><td>834,59</td><td>1.170,61</td><td>+40,26%</td></tr>
+          <tr class="total" data-row="42"><td>EBITDA</td><td>13.334,53</td><td>10.243,48</td><td class="negative">-23,18%</td></tr>
+          <tr class="ratio" data-row="43"><td>Margem EBITDA %</td><td>3,36%</td><td>2,40%</td><td class="negative">-0,96 p.p.</td></tr>
+          <tr data-row="45"><td>Depreciações/amortizações (custos)</td><td>0,00</td><td>0,00</td><td>—</td></tr>
+          <tr class="subtotal" data-row="46"><td>Resultado operacional</td><td>13.334,53</td><td>10.243,48</td><td class="negative">-23,18%</td></tr>
+          <tr data-row="48"><td>Depreciações/amortizações</td><td>(1.815,42)</td><td>(3.809,76)</td><td class="negative">-109,86%</td></tr>
+          <tr data-row="49"><td>Despesas financeiras</td><td>(1.764,15)</td><td>(2.053,21)</td><td class="negative">-16,38%</td></tr>
+          <tr class="subtotal" data-row="50"><td>LAIR</td><td>9.754,95</td><td>4.380,51</td><td class="negative">-55,09%</td></tr>
+          <tr data-row="52"><td>Imposto de renda e contribuição social</td><td>0,00</td><td>0,00</td><td>—</td></tr>
+          <tr class="subtotal" data-row="53"><td>Lucro Líquido</td><td>9.754,95</td><td>4.380,51</td><td class="negative">-55,09%</td></tr>
+          <tr class="ratio" data-row="54"><td>Margem líquida %</td><td>2,46%</td><td>1,03%</td><td class="negative">-1,43 p.p.</td></tr>
+          <tr class="section-label"><td colspan="4">Check</td></tr>
+          <tr data-row="57"><td>Depreciação e Amortização</td><td>1.815,42</td><td>3.809,76</td><td>+109,86%</td></tr>
+          <tr data-row="58"><td>Outras receitas (despesas), líquido</td><td>0,00</td><td>0,00</td><td>—</td></tr>
+          <tr data-row="59"><td>Resultado financeiro</td><td>1.764,15</td><td>2.053,21</td><td>+16,38%</td></tr>
+          <tr data-row="60"><td>Imposto de renda e contribuição social</td><td>0,00</td><td>0,00</td><td>—</td></tr>
+          <tr class="total" data-row="61"><td>EBITDA</td><td>13.334,53</td><td>10.243,48</td><td class="negative">-23,18%</td></tr>
+          <tr data-row="62"><td>Check</td><td>0,00</td><td>0,00</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <footer class="footer"><span>Grupo Lider · Controladoria</span><strong>DFC / EBITDA</strong><span>6/24</span></footer>
+</div>
+</body>
+</html>

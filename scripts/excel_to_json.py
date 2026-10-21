@@ -7,7 +7,7 @@ from pathlib import Path
 from openpyxl import load_workbook
 
 ROOT = Path(__file__).resolve().parent.parent
-EXCEL_PATH = ROOT / "Apresent_1ºSemestre26.xlsx"
+EXCEL_PATH = ROOT / "Apresentação_08_26.xlsx"
 OUTPUT_PATH = ROOT / "site" / "public" / "dashboard.json"
 TARGET_SHEETS = [
     "BP 06_2026",

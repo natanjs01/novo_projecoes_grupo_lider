@@ -139,18 +139,18 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 .bp-table-wrap thead th:first-child { text-align: left; }
 .bp-table-wrap thead th:not(:first-child) { text-align: center; }
 .bp-table-wrap tbody td {
-  height: 40px;
-  padding: 8px 6px;
+  height: 30px;
+  padding: 4px 5px;
   border-bottom: 1px solid rgba(148,163,184,0.12);
   color: #d5e3f2;
   vertical-align: middle;
-  line-height: 1.5;
+  line-height: 1.2;
 }
 .bp-table-wrap tbody td:first-child {
   text-align: left;
   color: #edf5ff;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 11px;
 }
 .bp-table-wrap tbody td:not(:first-child) { text-align: center; font-weight: 700; }
 .bp-table-wrap tbody tr:nth-child(odd) { background: rgba(255,255,255,0.01); }
@@ -176,12 +176,13 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
   color: #f5f9ff;
   font-weight: 800;
 }
+.bp-table-wrap tbody tr.section.spacer td { padding-top: 14px; }
 .bp-table-wrap tbody tr.spacer td {
   background: rgba(255,255,255,0.01);
   color: transparent;
   height: 28px;
 }
-.bp-table-wrap tbody tr { height: 32px; }
+.bp-table-wrap tbody tr { height: 27px; }
 .num { color: #fff; }
 .pos { color: #52d197; }
 .neg { color: #ff7d7d; }
@@ -200,23 +201,39 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
 .dre-panel .panel-header span:last-child { color: #f5a623; font-size: 11px; letter-spacing: .16em; }
 .dre-table-wrap { flex: 1; padding: 8px 12px 10px; background: rgba(10,22,34,0.34); }
 .dre-table-wrap table {
-  width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 15px;
+  width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 13px;
 }
 .dre-table-wrap thead th {
-  color: #dfeafb; background: rgba(17,35,53,0.8); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; font-weight: 800; padding: 9px 6px; border-bottom: 1px solid rgba(148,163,184,0.2);
+  color: #dfeafb; background: rgba(17,35,53,0.8); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; font-weight: 800; padding: 7px 4px; border-bottom: 1px solid rgba(148,163,184,0.2);
 }
 .dre-table-wrap thead th:first-child { text-align: left; }
 .dre-table-wrap thead th:not(:first-child) { text-align: center; }
 .dre-table-wrap th:first-child,
-.dre-table-wrap td:first-child { width: 53%; }
+.dre-table-wrap td:first-child { width: 50%; }
 .dre-table-wrap th:not(:first-child),
-.dre-table-wrap td:not(:first-child) { width: 15.66%; }
+.dre-table-wrap td:not(:first-child) { width: 16.66%; }
 .dre-table-wrap tbody td {
-  height: 44px; padding: 8px 6px; border-bottom: 1px solid rgba(148,163,184,0.12); color: #d5e3f2; vertical-align: middle; line-height: 1.5; white-space: normal; overflow: visible; text-overflow: clip;
+  height: 38px; padding: 5px 4px; border-bottom: 1px solid rgba(148,163,184,0.12); color: #d5e3f2; vertical-align: middle; line-height: 1.25; white-space: normal; overflow: visible; text-overflow: clip;
 }
-.dre-table-wrap tbody td:first-child { text-align: left; color: #edf5ff; font-weight: 600; font-size: 14px; line-height: 1.5; }
+.dre-table-wrap tbody td:first-child { text-align: left; color: #edf5ff; font-weight: 600; font-size: 12px; line-height: 1.2; }
 .dre-table-wrap tbody td:not(:first-child) { text-align: center; font-weight: 700; }
 .dre-table-wrap tbody tr:nth-child(odd) { background: rgba(255,255,255,0.01); }
+.dre-table-wrap tbody tr.subtotal td {
+  background: rgba(0,180,216,0.13);
+  color: #fff;
+  font-weight: 800;
+}
+.dre-table-wrap tbody tr.total td {
+  background: rgba(245,166,35,0.14);
+  color: #fff;
+  font-weight: 800;
+}
+.dre-source-note {
+  margin: 10px 4px 0;
+  color: #8ea3bb;
+  font-size: 10px;
+  line-height: 1.4;
+}
 .footer {
   position: absolute; left: 48px; right: 48px; bottom: 18px;
   display: flex; justify-content: space-between; align-items: center;
@@ -253,24 +270,32 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
           <div class="bp-table-wrap">
             <table>
               <thead>
-                <tr><th>Conta</th><th>jun/26</th><th>dez/25</th><th>%</th></tr>
+                <tr><th>Conta</th><th>ago/26</th><th>ago/25</th><th>Var.</th></tr>
               </thead>
               <tbody>
-                <tr><td>Caixa e equivalentes</td><td class="num">131</td><td class="num">111</td><td class="pos">18%</td></tr>
-                <tr><td>Contas a receber</td><td class="num">227</td><td class="num">256</td><td class="neg">-11%</td></tr>
-                <tr><td>Estoques</td><td class="num">631</td><td class="num">650</td><td class="neg">-3%</td></tr>
-                <tr><td>Outros</td><td class="num">101</td><td class="num">35</td><td class="pos">189%</td></tr>
-                <tr class="subtotal"><td><strong>Total ativo circulante</strong></td><td class="num"><strong>1.090</strong></td><td class="num"><strong>1.065</strong></td><td class="pos"><strong>2%</strong></td></tr>
-                <tr><td>Imobilizado</td><td class="num">77</td><td class="num">73</td><td class="pos">6%</td></tr>
-                <tr><td>Intangível</td><td class="num">382</td><td class="num">382</td><td class="muted">0%</td></tr>
-                <tr class="subtotal"><td><strong>Total não circulante</strong></td><td class="num"><strong>467</strong></td><td class="num"><strong>473</strong></td><td class="neg"><strong>-1%</strong></td></tr>
-                <tr class="spacer"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-                <tr class="spacer"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-                <tr class="spacer"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-                <tr class="spacer"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-                <tr class="spacer"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-                <tr class="spacer"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-                <tr class="total" style="height: 36px;"><td><strong>Total ativo</strong></td><td class="num"><strong>1.558</strong></td><td class="num"><strong>1.539</strong></td><td class="pos"><strong>1%</strong></td></tr>
+                <tr class="section"><td colspan="4">Circulante</td></tr>
+                <tr><td>Caixa e equivalentes</td><td class="num">139,7</td><td class="num">72,1</td><td class="pos">+93,8%</td></tr>
+                <tr><td>Contas a receber</td><td class="num">343,5</td><td class="num">368,2</td><td class="neg">-6,7%</td></tr>
+                <tr><td>Títulos e valores mobiliários</td><td class="num">—</td><td class="num">—</td><td class="muted">—</td></tr>
+                <tr><td>Estoques</td><td class="num">711,4</td><td class="num">648,4</td><td class="pos">+9,7%</td></tr>
+                <tr><td>Impostos a recuperar</td><td class="num">27,1</td><td class="num">24,1</td><td class="pos">+12,5%</td></tr>
+                <tr><td>Adiantamentos a fornecedores</td><td class="num">16,5</td><td class="num">7,3</td><td class="pos">+126,0%</td></tr>
+                <tr><td>Despesas antecipadas</td><td class="num">5,3</td><td class="num">2,4</td><td class="pos">+115,7%</td></tr>
+                <tr><td>Partes relacionadas</td><td class="num">2,1</td><td class="num">—</td><td class="muted">—</td></tr>
+                <tr><td>Outros ativos</td><td class="num">15,5</td><td class="num">10,5</td><td class="pos">+47,1%</td></tr>
+                <tr class="subtotal"><td><strong>Total ativo circulante</strong></td><td class="num"><strong>1.261,1</strong></td><td class="num"><strong>1.133,1</strong></td><td class="pos"><strong>+11,3%</strong></td></tr>
+                <tr class="section"><td colspan="4">Não circulante</td></tr>
+                <tr><td>Realizável a longo prazo</td><td class="num">77,8</td><td class="num">—</td><td class="muted">—</td></tr>
+                <tr><td>Ativo biológico</td><td class="num">8,5</td><td class="num">—</td><td class="muted">—</td></tr>
+                <tr><td>Imobilizado</td><td class="num">328,9</td><td class="num">376,8</td><td class="neg">-12,7%</td></tr>
+                <tr><td>Intangível</td><td class="num">—</td><td class="num">—</td><td class="muted">—</td></tr>
+                <tr class="subtotal"><td><strong>Total ativo não circulante</strong></td><td class="num"><strong>415,2</strong></td><td class="num"><strong>376,8</strong></td><td class="pos"><strong>+10,2%</strong></td></tr>
+                <tr class="section spacer"><td colspan="4">&nbsp;</td></tr>
+                <tr class="section"><td colspan="4">&nbsp;</td></tr>
+                <tr class="section"><td colspan="4">&nbsp;</td></tr>
+                <tr class="section"><td colspan="4">&nbsp;</td></tr>
+                <tr class="section"><td colspan="4">&nbsp;</td></tr>
+                <tr class="total"><td><strong>Total ativo</strong></td><td class="num"><strong>1.676,3</strong></td><td class="num"><strong>1.509,9</strong></td><td class="pos"><strong>+11,0%</strong></td></tr>
               </tbody>
             </table>
           </div>
@@ -281,24 +306,32 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
           <div class="bp-table-wrap">
             <table>
               <thead>
-                <tr><th>Conta</th><th>jun/26</th><th>dez/25</th><th>%</th></tr>
+                <tr><th>Conta</th><th>ago/26</th><th>ago/25</th><th>Var.</th></tr>
               </thead>
               <tbody>
-                <tr><td>Fornecedores</td><td class="num">555</td><td class="num">613</td><td class="neg">-9%</td></tr>
-                <tr><td>Fornecedores par. relacionadas</td><td class="num">-</td><td class="num">-</td><td class="muted">0%</td></tr>
-                <tr><td>Empréstimos e financiamentos</td><td class="num">38</td><td class="num">29</td><td class="pos">31%</td></tr>
-                <tr><td>Outros</td><td class="num">411</td><td class="num">317</td><td class="pos">30%</td></tr>
-                <tr class="subtotal"><td><strong>Total passivo circulante</strong></td><td class="num"><strong>1.004</strong></td><td class="num"><strong>959</strong></td><td class="pos"><strong>5%</strong></td></tr>
-                <tr><td>Empréstimos e financiamentos NC</td><td class="num">56</td><td class="num">80</td><td class="neg">-30%</td></tr>
-                <tr><td>Tributos</td><td class="num">35</td><td class="num">34</td><td class="pos">3%</td></tr>
-                <tr><td>Outros</td><td class="num">-</td><td class="num">-</td><td class="muted">0%</td></tr>
-                <tr class="subtotal"><td><strong>Total do passivo não circulante</strong></td><td class="num"><strong>91</strong></td><td class="num"><strong>120</strong></td><td class="neg"><strong>-20%</strong></td></tr>
-                <tr class="total" style="height: 36px;"><td><strong>Total do passivo</strong></td><td class="num"><strong>1.095</strong></td><td class="num"><strong>1.079</strong></td><td class="pos"><strong>1%</strong></td></tr>
+                <tr class="section"><td colspan="4">Circulante</td></tr>
+                <tr><td>Fornecedores</td><td class="num">532,3</td><td class="num">465,3</td><td class="pos">+14,4%</td></tr>
+                <tr><td>Fornecedores partes relacionadas</td><td class="num">—</td><td class="num">—</td><td class="muted">—</td></tr>
+                <tr><td>Empréstimos e financiamentos</td><td class="num">33,5</td><td class="num">28,6</td><td class="pos">+16,9%</td></tr>
+                <tr><td>Arrendamento mercantil</td><td class="num">1,3</td><td class="num">0,5</td><td class="pos">+180,2%</td></tr>
+                <tr><td>Salários, provisões e contribuições sociais</td><td class="num">263,9</td><td class="num">245,5</td><td class="pos">+7,5%</td></tr>
+                <tr><td>Obrigações tributárias a recolher</td><td class="num">45,4</td><td class="num">45,7</td><td class="neg">-0,8%</td></tr>
+                <tr><td>IR e contribuição social a pagar</td><td class="num">—</td><td class="num">—</td><td class="muted">—</td></tr>
+                <tr><td>Outras contas a pagar</td><td class="num">37,8</td><td class="num">18,8</td><td class="pos">+100,5%</td></tr>
+                <tr class="subtotal"><td><strong>Total passivo circulante</strong></td><td class="num"><strong>914,1</strong></td><td class="num"><strong>804,4</strong></td><td class="pos"><strong>+13,6%</strong></td></tr>
+                <tr class="section"><td colspan="4">Não circulante</td></tr>
+                <tr><td>Obrigações tributárias a recolher</td><td class="num">4,5</td><td class="num">13,0</td><td class="neg">-65,5%</td></tr>
+                <tr><td>Outras contas a pagar</td><td class="num">157,2</td><td class="num">101,8</td><td class="pos">+54,4%</td></tr>
+                <tr><td>Empréstimos e financiamentos</td><td class="num">56,1</td><td class="num">89,8</td><td class="neg">-37,5%</td></tr>
+                <tr><td>Provisões cíveis, fiscais e trabalhistas</td><td class="num">34,8</td><td class="num">34,1</td><td class="pos">+2,0%</td></tr>
+                <tr class="subtotal"><td><strong>Total passivo não circulante</strong></td><td class="num"><strong>252,6</strong></td><td class="num"><strong>238,7</strong></td><td class="pos"><strong>+5,8%</strong></td></tr>
+                <tr class="total"><td><strong>Total do passivo</strong></td><td class="num"><strong>1.166,7</strong></td><td class="num"><strong>1.043,1</strong></td><td class="pos"><strong>+11,8%</strong></td></tr>
                 <tr class="section"><td colspan="4">Patrimônio líquido</td></tr>
-                <tr><td>Capital social</td><td class="num">100</td><td class="num">100</td><td class="muted">0%</td></tr>
-                <tr><td>Lucros acumulados</td><td class="num">358</td><td class="num">359</td><td class="muted">0%</td></tr>
-                <tr class="subtotal"><td><strong>Total do patrimônio líquido</strong></td><td class="num"><strong>458</strong></td><td class="num"><strong>459</strong></td><td class="muted"><strong>0%</strong></td></tr>
-                <tr class="total" style="height: 36px;"><td><strong>Total do passivo e patrimônio líquido</strong></td><td class="num"><strong>1.558</strong></td><td class="num"><strong>1.539</strong></td><td class="pos"><strong>1%</strong></td></tr>
+                <tr><td>Capital social</td><td class="num">97,1</td><td class="num">100,0</td><td class="neg">-2,9%</td></tr>
+                <tr><td>Lucros acumulados</td><td class="num">412,4</td><td class="num">366,8</td><td class="pos">+12,4%</td></tr>
+                <tr><td>Reservas de lucros</td><td class="num">—</td><td class="num">—</td><td class="muted">—</td></tr>
+                <tr class="subtotal"><td><strong>Total patrimônio líquido</strong></td><td class="num"><strong>509,5</strong></td><td class="num"><strong>466,8</strong></td><td class="pos"><strong>+9,1%</strong></td></tr>
+                <tr class="total"><td><strong>Total passivo e patrimônio líquido</strong></td><td class="num"><strong>1.676,3</strong></td><td class="num"><strong>1.509,9</strong></td><td class="pos"><strong>+11,0%</strong></td></tr>
               </tbody>
             </table>
           </div>
@@ -307,35 +340,40 @@ html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background:
     </section>
 
     <aside class="dre-panel">
-      <div class="panel-header"><span>DRE</span><span>R$ em milhões</span></div>
+      <div class="panel-header"><span>DRE · Agosto/26 x Agosto/25</span><span>R$ em milhões</span></div>
       <div class="dre-table-wrap">
         <table>
           <thead>
-            <tr><th>Conta</th><th>jun/26</th><th>jun/25</th><th>%</th></tr>
+            <tr><th>Conta</th><th>ago/26</th><th>ago/25</th><th>Var. a/a</th></tr>
           </thead>
           <tbody>
-            <tr><td>Receita operacional líquida</td><td class="num">2.434</td><td class="num">2.276</td><td class="pos">7%</td></tr>
-            <tr class="subtotal"><td><strong>Lucro operacional bruto</strong></td><td class="num"><strong>682</strong></td><td class="num"><strong>651</strong></td><td class="pos"><strong>5%</strong></td></tr>
-            <tr><td>Despesas gerais e administrativas</td><td class="num">(640)</td><td class="num">(617)</td><td class="neg">4%</td></tr>
-            <tr><td>Despesas comerciais</td><td class="num">(7)</td><td class="num">(11)</td><td class="pos">-36%</td></tr>
-            <tr><td>Despesas tributárias</td><td class="num">(5)</td><td class="num">(3)</td><td class="neg">66%</td></tr>
-            <tr class="subtotal"><td><strong>Operacionais</strong></td><td class="num"><strong>(637)</strong></td><td class="num"><strong>(612)</strong></td><td class="neg"><strong>4%</strong></td></tr>
-            <tr><td>Receitas financeiras</td><td class="num">6</td><td class="num">10</td><td class="neg">-42%</td></tr>
-            <tr><td>Despesas financeiras</td><td class="num">(8)</td><td class="num">(12)</td><td class="pos">-33%</td></tr>
-            <tr class="subtotal"><td><strong>Resultado financeiro</strong></td><td class="num"><strong>(3)</strong></td><td class="num"><strong>(3)</strong></td><td class="muted"><strong>-89%</strong></td></tr>
-            <tr class="total"><td><strong>Resultado antes dos impostos</strong></td><td class="num"><strong>42</strong></td><td class="num"><strong>36</strong></td><td class="pos"><strong>17%</strong></td></tr>
-            <tr><td>Imposto de renda e contribuição social</td><td class="num">(18)</td><td class="num">(15)</td><td class="neg">20%</td></tr>
-            <tr class="total"><td><strong>Lucro (prejuízo) líquido</strong></td><td class="num"><strong>26</strong></td><td class="num"><strong>21</strong></td><td class="pos"><strong>24%</strong></td></tr>
+            <tr><td>Receita operacional líquida</td><td class="num">3.291,3</td><td class="num">3.070,0</td><td class="pos">+7,2%</td></tr>
+            <tr><td>CMV e serviços prestados</td><td class="num">(2.370,3)</td><td class="num">(2.192,0)</td><td class="neg">+8,1%</td></tr>
+            <tr class="subtotal"><td><strong>Lucro bruto operacional</strong></td><td class="num"><strong>921,0</strong></td><td class="num"><strong>878,0</strong></td><td class="pos"><strong>+4,9%</strong></td></tr>
+            <tr><td>Despesas gerais e administrativas</td><td class="num">(866,9)</td><td class="num">(816,7)</td><td class="neg">+6,1%</td></tr>
+            <tr><td>Despesas comerciais</td><td class="num">(10,4)</td><td class="num">(15,1)</td><td class="pos">-31,2%</td></tr>
+            <tr><td>Despesas tributárias</td><td class="num">(7,1)</td><td class="num">(3,6)</td><td class="neg">+98,6%</td></tr>
+            <tr><td>Outras receitas/despesas, líquidas</td><td class="num">21,0</td><td class="num">23,1</td><td class="neg">-9,2%</td></tr>
+            <tr class="subtotal"><td><strong>Total despesas operacionais</strong></td><td class="num"><strong>(863,4)</strong></td><td class="num"><strong>(812,2)</strong></td><td class="neg"><strong>+6,3%</strong></td></tr>
+            <tr class="total"><td><strong>Resultado operacional (EBIT)</strong></td><td class="num"><strong>57,6</strong></td><td class="num"><strong>65,8</strong></td><td class="neg"><strong>-12,4%</strong></td></tr>
+            <tr><td>Receitas financeiras</td><td class="num">8,0</td><td class="num">11,2</td><td class="neg">-28,6%</td></tr>
+            <tr><td>Despesas financeiras</td><td class="num">(11,8)</td><td class="num">(16,1)</td><td class="pos">-26,2%</td></tr>
+            <tr class="subtotal"><td><strong>Resultado financeiro</strong></td><td class="num"><strong>(3,8)</strong></td><td class="num"><strong>(4,8)</strong></td><td class="pos"><strong>+20,8%</strong></td></tr>
+            <tr class="total"><td><strong>Resultado antes dos impostos</strong></td><td class="num"><strong>53,8</strong></td><td class="num"><strong>61,0</strong></td><td class="neg"><strong>-11,7%</strong></td></tr>
+            <tr><td>IR e contribuição social</td><td class="num">(15,8)</td><td class="num">(14,7)</td><td class="neg">+7,5%</td></tr>
+            <tr class="total"><td><strong>Lucro líquido do exercício</strong></td><td class="num"><strong>38,0</strong></td><td class="num"><strong>46,3</strong></td><td class="neg"><strong>-17,8%</strong></td></tr>
+            <tr><td>Margem líquida</td><td class="num">1,16%</td><td class="num">1,51%</td><td class="neg">-0,35 p.p.</td></tr>
           </tbody>
         </table>
+        <p class="dre-source-note">Fonte: aba DRE de Apresentação_08_26.xlsx · saldos sem ajustes em 31/08/2026 e 31/08/2025 · valores arredondados.</p>
       </div>
     </aside>
   </main>
 
   <div class="footer">
     <span>Grupo Líder · Controladoria</span>
-    <strong>BP / DRE</strong>
-    <span>5/23</span>
+    <strong>BP / DRE · Fonte: aba BP de Apresentação_08_26.xlsx · Ago/26 x Ago/25 · R$ milhões</strong>
+    <span>5/24</span>
   </div>
 </div>
 </body>

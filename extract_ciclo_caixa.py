@@ -12,7 +12,7 @@ except ImportError:
     import openpyxl
 
 # Carregar planilha
-wb = openpyxl.load_workbook("Apresent_1ºSemestre26.xlsx")
+wb = openpyxl.load_workbook("Apresentação_08_26.xlsx", data_only=True)
 
 # Extrair dados de Liquidez_25 e Liquidez_26
 data = {}
