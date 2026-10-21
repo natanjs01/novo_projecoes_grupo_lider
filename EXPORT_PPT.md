@@ -114,7 +114,7 @@ nova_apresentacao/
 ├── site/
 │   ├── index.html               # Frontend com botão
 │   └── public/
-│       └── slides/              # HTML dos slides (01-24)
+│       └── slides/              # HTML dos slides (01-25)
 └── EXPORT_PPT.md                # Esta documentação
 ```
 

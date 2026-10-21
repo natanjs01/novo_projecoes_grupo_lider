@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impactos das retificações das PER/DCOMPs</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #071827; }
+    body { font-family: Arial, Helvetica, sans-serif; color: #edf5ff; }
+    .slide { width: 1920px; height: 1080px; display: flex; flex-direction: column; overflow: hidden; background: radial-gradient(circle at 78% 28%, #102b43 0, #071827 58%); }
+    .header { height: 102px; flex: 0 0 102px; padding: 3px 64px; color: #fff; background: #112240; border-bottom: 3px solid #1e3a5f; }
+    .header-main { height: 72px; display: flex; align-items: center; justify-content: space-between; }
+    .header h1 { margin: 0; font-size: 34px; line-height: 1.1; letter-spacing: .02em; }
+    .logo { width: 205px; height: 72px; object-fit: contain; }
+    .subtitle { height: 24px; padding: 4px 2px 0; border-top: 1px solid #345166; color: #dbe7f3; font-size: 15px; }
+    .source { height: 22px; flex: 0 0 22px; text-align: center; color: #8ea3bb; background: #10243a; font-size: 13px; font-style: italic; padding-top: 3px; }
+    .kpis { display: grid; height: 114px; flex: 0 0 114px; grid-template-columns: 1.25fr 1.12fr .88fr .88fr; padding: 12px 12px 8px; }
+    .kpi { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 7px; text-align: center; border: 1px solid rgba(142, 163, 187, .25); background: rgba(17, 34, 64, .78); }
+    .kpi + .kpi { border-left-width: 0; }
+    .kpi-label { color: #dbe7f3; font-size: 18px; font-weight: 700; }
+    .kpi-value { font-size: 29px; font-weight: 800; }
+    .kpi-note { color: #8ea3bb; font-size: 14px; font-style: italic; }
+    .red { color: #f5a623; border-color: rgba(245, 166, 35, .65); }
+    .green { color: #00b4d8; border-color: rgba(0, 180, 216, .55); }
+    .blue { color: #00b4d8; border-color: rgba(0, 180, 216, .55); }
+    .conclusion { margin: 6px 12px 10px; border: 1px solid rgba(0, 180, 216, .45); background: rgba(17, 34, 64, .78); }
+    .section-title { padding: 5px 10px; color: #fff; background: #10243a; font-size: 18px; font-weight: 700; }
+    .conclusion .section-title { color: #00b4d8; border-bottom: 1px solid rgba(0, 180, 216, .35); }
+    .conclusion p { margin: 5px 10px 7px; color: #dbe7f3; font-size: 18px; line-height: 1.23; font-weight: 700; }
+    .analysis { display: grid; flex: 1 1 auto; min-height: 0; grid-template-columns: 58% 42%; gap: 10px; padding: 0 12px 10px; }
+    .table-wrap { min-width: 0; overflow: hidden; }
+    table { width: 100%; height: 100%; border-collapse: collapse; table-layout: fixed; font-size: 15px; }
+    th { height: 34px; padding: 5px 6px; color: #fff; background: #10243a; font-size: 14px; text-align: left; }
+    td { padding: 6px; border: 1px solid rgba(142, 163, 187, .2); line-height: 1.17; color: #dbe7f3; }
+    tbody tr:nth-child(even) { background: rgba(16, 36, 58, .78); }
+    tbody tr:last-child { color: #f5a623; background: rgba(245, 166, 35, .1); font-weight: 700; }
+    td.value { text-align: right; white-space: nowrap; }
+    .chart { min-width: 0; height: 100%; padding: 5px 4px 0; border: 1px solid rgba(142, 163, 187, .2); background: rgba(17, 34, 64, .55); }
+    .chart svg { display: block; width: 100%; height: 100%; }
+    .notes { margin: 0 12px 9px; border: 1px solid rgba(245, 166, 35, .45); background: rgba(17, 34, 64, .78); }
+    .notes .section-title { color: #f5a623; border-bottom: 1px solid rgba(245, 166, 35, .3); }
+    .notes ul { margin: 7px 12px 8px; padding-left: 16px; color: #dbe7f3; font-size: 14px; line-height: 1.28; }
+    .forward { flex: 0 0 118px; margin: 0 12px 10px; border: 1px solid rgba(0, 180, 216, .45); background: rgba(17, 34, 64, .78); }
+    .forward .section-title { color: #00b4d8; border-bottom: 1px solid rgba(0, 180, 216, .3); }
+    .forward p { margin: 9px 10px; color: #dbe7f3; font-size: 21px; line-height: 1.3; font-weight: 700; }
+    @media (max-height: 700px) { body { transform-origin: top left; } }
+  </style>
+</head>
+<body>
+  <main class="slide">
+    <header class="header">
+      <div class="header-main">
+        <h1>Impactos das retificações das PER/DCOMPs — 1ª habilitação</h1>
+        <img class="logo" src="../assets/logo.png?v=2" alt="Grupo Líder">
+      </div>
+      <div class="subtitle">Grupo Líder | Síntese executiva da regularização do excesso de compensação e da formação do saldo credor residual</div>
+    </header>
+    <div class="source">Fontes: quatro planilhas e relatório Sicalc | Data da análise: 09/09/2026 | Valores em R$ | Status: ATUALIZADO</div>
+    <section class="kpis" aria-label="Indicadores principais">
+      <div class="kpi red">
+        <div class="kpi-label">Valor corrigido compensado a maior</div>
+        <div class="kpi-value">R$ 5.937.642,01</div>
+        <div class="kpi-note">Principal + multa + juros</div>
+      </div>
+      <div class="kpi green">
+        <div class="kpi-label">Exposição material após</div>
+        <div class="kpi-value">-</div>
+        <div class="kpi-note">R$ 0,01 de arredondamento</div>
+      </div>
+      <div class="kpi blue">
+        <div class="kpi-label">Saldo credor residual</div>
+        <div class="kpi-value">R$ 7.408.744,84</div>
+        <div class="kpi-note">Após retificações e reapuração</div>
+      </div>
+      <div class="kpi green">
+        <div class="kpi-label">Melhora da posição fiscal</div>
+        <div class="kpi-value">R$ 13.346.386,85</div>
+        <div class="kpi-note">Obrigação eliminada + crédito</div>
+      </div>
+    </section>
+    <section class="conclusion">
+      <div class="section-title">Conclusão executiva</div>
+      <p>O excesso de principal compensado pela AG, apurado em R$ 4.200.796,22 no Sicalc, alcançaria R$ 5.937.642,01 em 31/08/2026 após multa de R$ 840.159,23 e juros de R$ 896.686,56. As retificações das PER/DCOMPs e a reapuração de PIS e Cofins de 2025 eliminaram essa obrigação e mantiveram saldo credor residual de R$ 7.408.744,84. Assim, a melhora total da posição fiscal é de R$ 13.346.386,85.</p>
+    </section>
+    <section class="analysis">
+      <div class="table-wrap">
+        <table aria-label="Detalhamento dos impactos fiscais">
+          <colgroup>
+            <col style="width: 20%"><col style="width: 15%"><col style="width: 12%"><col style="width: 24%"><col style="width: 17%"><col style="width: 12%">
+          </colgroup>
+          <thead><tr><th>Impacto</th><th>Valor</th><th>Natureza</th><th>Leitura</th><th>Origem / memória</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Principal compensado a maior</td><td class="value">R$ 4.200.796,22</td><td>Favorável</td><td>Obrigação principal evitada pela regularização.</td><td>Valor Corrigido AG!B19</td><td>Fórmula</td></tr>
+            <tr><td>Multa de mora evitada</td><td class="value">R$ 840.159,23</td><td>Favorável</td><td>Multa que integraria o desembolso em 31/08/2026.</td><td>Valor Corrigido AG!C19</td><td>Fórmula</td></tr>
+            <tr><td>Juros de mora evitados</td><td class="value">R$ 896.686,56</td><td>Favorável</td><td>Juros que integrariam o desembolso em 31/08/2026.</td><td>Valor Corrigido AG!D19</td><td>Fórmula</td></tr>
+            <tr><td>Saldo credor residual</td><td class="value">R$ 7.408.744,84</td><td>Favorável</td><td>Crédito remanescente após retificações e reapuração de 2025.</td><td>Dados Fonte!F16</td><td>Entrada</td></tr>
+            <tr><td>MELHORA DA POSIÇÃO FISCAL</td><td class="value">R$ 13.346.386,85</td><td>Resultado</td><td>Obrigação eliminada somada ao saldo credor residual.</td><td>Check 07</td><td>Atualizado</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="chart" role="img" aria-label="Gráfico de barras com os impactos fiscais em reais">
+        <svg viewBox="0 0 800 500" preserveAspectRatio="none">
+          <g font-family="Arial, sans-serif" font-size="12" fill="#8ea3bb">
+            <g stroke="#526a80" stroke-dasharray="5 5" stroke-width="1">
+              <line x1="128" y1="20" x2="785" y2="20"/><line x1="128" y1="75" x2="785" y2="75"/>
+              <line x1="128" y1="130" x2="785" y2="130"/><line x1="128" y1="185" x2="785" y2="185"/>
+              <line x1="128" y1="240" x2="785" y2="240"/><line x1="128" y1="295" x2="785" y2="295"/>
+              <line x1="128" y1="350" x2="785" y2="350"/><line x1="128" y1="405" x2="785" y2="405"/>
+            </g>
+            <g text-anchor="end">
+              <text x="120" y="24">R$ 8.000.000,00</text><text x="120" y="79">R$ 7.000.000,00</text>
+              <text x="120" y="134">R$ 6.000.000,00</text><text x="120" y="189">R$ 5.000.000,00</text>
+              <text x="120" y="244">R$ 4.000.000,00</text><text x="120" y="299">R$ 3.000.000,00</text>
+              <text x="120" y="354">R$ 2.000.000,00</text><text x="120" y="409">R$ 1.000.000,00</text>
+            </g>
+          </g>
+          <line x1="128" y1="425" x2="785" y2="425" stroke="#8ea3bb" stroke-width="2"/>
+          <g fill="#00b4d8">
+            <rect x="145" y="194" width="92" height="231"/><rect x="310" y="379" width="92" height="46"/>
+            <rect x="475" y="376" width="92" height="49"/><rect x="640" y="18" width="92" height="407"/>
+          </g>
+          <g font-family="Arial, sans-serif" font-size="12" fill="#dbe7f3" text-anchor="middle">
+            <text x="191" y="447"><tspan x="191">Principal</tspan><tspan x="191" dy="15">compensado a maior</tspan></text>
+            <text x="356" y="447"><tspan x="356">Multa de mora</tspan><tspan x="356" dy="15">evitada</tspan></text>
+            <text x="521" y="447"><tspan x="521">Juros de mora</tspan><tspan x="521" dy="15">evitados</tspan></text>
+            <text x="686" y="447"><tspan x="686">Saldo credor</tspan><tspan x="686" dy="15">residual</tspan></text>
+          </g>
+        </svg>
+      </div>
+    </section>
+    <section class="notes">
+      <div class="section-title">Ressalvas para decisão</div>
+      <ul>
+        <li>O Sicalc está consolidado em 31/08/2026 e foi emitido em 09/09/2026; multa e juros podem variar em outra data.</li>
+        <li>O total corrigido é de R$ 5.937.642,01: principal de R$ 4.200.796,22, multa de R$ 840.159,23 e juros de R$ 896.686,56.</li>
+        <li>A posição fiscal é uma medida gerencial da obrigação evitada somada ao crédito residual; não representa automaticamente ganho de caixa e permanece sujeita às validações fiscais aplicáveis.</li>
+      </ul>
+    </section>
+    <section class="forward">
+      <div class="section-title">Encaminhamento sugerido</div>
+      <p>Apresentar à Diretoria: obrigação corrigida eliminada de R$ 5.937.642,01; saldo credor residual de R$ 7.408.744,84; melhora total da posição fiscal de R$ 13.346.386,85. Valores sujeitos às validações fiscais aplicáveis.</p>
+    </section>
+  </main>
+</body>
+</html>
